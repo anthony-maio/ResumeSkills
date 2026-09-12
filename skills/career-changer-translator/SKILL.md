@@ -17,13 +17,15 @@ Use this skill when the user:
 
 ## Candidate Guardrails (always apply)
 
-**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+**Truthfulness:** Every claim, metric, course, certification, skill, tool, and responsibility must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. Missing number? Insert [USER-CONFIRMED METRIC] and ask. Estimates only on explicit request, marked (~ or range), with a logged derivation.
 
-**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere (resume, interviews, references).
+**Privacy & age signals:** On resumes, omit graduation years by default for senior candidates and never include street address, DOB, or photo (US industry norm; academic CVs and non-US norms differ — follow field conventions there). Frame seniority as scope, not elapsed time; total-years phrasing is the user's choice, not a default. Never mention legal disputes, HR complaints, or settlements; reason-for-leaving is one neutral, forward-looking line, used consistently.
 
-**Confidential search (employed users):** Ask before naming the current employer anywhere semi-public; offer blind variants. Never publish employer-confidential metrics without a confidentiality pass.
+**Confidential search (employed users):** Ask before naming the current employer in any outbound or public artifact; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
 
-**Anti-fabrication (translation examples):** All "translated" bullet examples below deliberately use [PLACEHOLDER] markers for metrics. Never copy the pattern of inserting impressive-sounding numbers ("$2M in equipment", "generated $500K", "95% satisfaction") that the user never stated — invented metrics are the #1 failure mode of career-change resumes, and interviewers probe them first. Translate the *language*; every number must come from the user or stay a placeholder.
+**Examples in this skill are illustrative only:** never copy numbers, names, employers, venues, patent numbers, or identifiers from examples into user output.
+
+**Anti-fabrication (translation examples):** The truthfulness rule covers more than numbers — never add tools, systems, scope, methodologies, compliance responsibilities, or outcomes the user didn't state, either. All "translated" bullet examples below deliberately use [PLACEHOLDER] markers. Never copy the pattern of inserting impressive-sounding specifics ("$2M in equipment", "generated $500K", "95% satisfaction", "Epic", "HIPAA compliance") that the user never stated — invented specifics are the #1 failure mode of career-change resumes, and interviewers probe them first. Translate the *language*; every number, tool, and responsibility must come from the user or stay a placeholder. **Before adding any system, compliance duty, or methodology not stated by the user — ask.**
 
 ## Core Capabilities
 
@@ -56,7 +58,8 @@ Use this skill when the user:
 ### Teacher → Corporate Trainer / L&D
 
 **Original:** "Taught 25 students in 5th grade classroom"
-**Translated:** "Designed and delivered curriculum for 25 learners, achieving [X]% proficiency on standardized assessments through differentiated instruction and data-driven intervention"
+**Translated:** "Led a classroom of 25 learners — planned, delivered, and assessed daily instruction"
+**Adds nothing beyond the source:** assessment results, "differentiated instruction", or "data-driven intervention" go in only if the user actually states them ([X]% proficiency stays a placeholder until then)
 
 | Teaching Term | Corporate Term |
 |---------------|----------------|
@@ -96,7 +99,8 @@ Use this skill when the user:
 ### Hospitality → Customer Success
 
 **Original:** "Managed front desk and handled guest complaints"
-**Translated:** "Primary contact for [X]+ daily guests, resolving escalated issues with [X]% satisfaction rate and implementing feedback processes"
+**Translated:** "Primary point of contact for guests; de-escalated and resolved complaints in person and by phone at the front desk of a [X]-room property"
+**Adds nothing beyond the source:** satisfaction rates or "implementing feedback processes" appear only if the user states them
 
 | Hospitality Term | Corporate Term |
 |-----------------|----------------|
@@ -109,7 +113,8 @@ Use this skill when the user:
 ### Healthcare → Tech/Pharma
 
 **Original:** "Provided patient care and maintained medical records"
-**Translated:** "Delivered patient-centered care for [X]+ daily cases, maintaining full HIPAA compliance and using EMR systems (Epic) for documentation and care coordination"
+**Translated:** "Delivered patient care and maintained accurate, timely medical records for [X]+ daily cases"
+**Adds nothing beyond the source:** named EMR systems (e.g., Epic) or compliance responsibilities (e.g., HIPAA) appear only if the user states them
 
 | Healthcare Term | Corporate Term |
 |----------------|----------------|
@@ -160,9 +165,7 @@ Google Digital Marketing Certificate | 2023
 
 ## Addressing the "Why" Question
 
-**Good reasons:** natural evolution of interests, discovered through exposure, specific experience that sparked it, skills translate naturally, seeking growth unavailable on current path.
-
-**Bad reasons (never say):** "burned out", "I hate my current job", "more money", "seems easier".
+**Frame the real reason truthfully.** Natural evolution of interests, discovered through exposure, specific experience that sparked it, skills translating naturally, growth unavailable on the current path — these frame well. If burnout, compensation, or dissatisfaction with the current role is genuinely part of the story, don't hide it and don't lead with hostility or money alone: state it truthfully alongside the forward-looking direction and the evidence backing the change ("The last two years pushed me toward [target field], and I've since [bridge evidence]" reads honestly; "I hate my job" or "seems easier" reads as pure negativity with no direction).
 
 ### Story Framework
 ```
@@ -173,6 +176,8 @@ Google Digital Marketing Certificate | 2023
 ```
 
 ## Industry-Specific Entry Points
+
+**Possible entry points, depending on evidence** — treat each as a candidate bridge, gated by what the user can actually demonstrate (experience, portfolio, certification):
 
 **Into Tech:** Customer Success (client-facing), Technical PM (any PM), Sales/ AE (any sales), Product Management (domain expertise), Technical Writing (any writing). Bridges: SQL/coding, AWS/Google certs, personal projects, meetups.
 
@@ -222,7 +227,7 @@ Google Digital Marketing Certificate | 2023
 
 1. **Lead with transferable skills**, not job titles
 2. **Use target industry language** — translate everything
-3. **Never invent metrics** — placeholders until the user supplies real numbers
+3. **Never invent specifics** — metrics, tools, systems, and responsibilities stay placeholders until the user supplies them
 4. **Build bridges** — get any real experience in the target field
 5. **Tell a coherent story** — make the change make sense
 6. **Keep dates visible** — functional format only for relevance, never concealment

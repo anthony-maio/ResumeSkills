@@ -16,11 +16,13 @@ Use this skill when the user:
 
 ## Candidate Guardrails (always apply)
 
-**Truthfulness:** Every claim, metric, and relationship description must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one.
+**Truthfulness:** Every claim, metric, course, certification, skill, tool, and responsibility must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. Missing number? Insert [USER-CONFIRMED METRIC] and ask. Estimates only on explicit request, marked (~ or range), with a logged derivation.
 
-**Privacy & age signals:** Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere (resume, interviews, references). Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo.
+**Privacy & age signals:** On resumes, omit graduation years by default for senior candidates and never include street address, DOB, or photo (US industry norm; academic CVs and non-US norms differ — follow field conventions there). Frame seniority as scope, not elapsed time; total-years phrasing is the user's choice, not a default. Never mention legal disputes, HR complaints, or settlements; reason-for-leaving is one neutral, forward-looking line, used consistently.
 
-**Confidential search (employed users):** Ask before naming the current employer anywhere semi-public; offer blind variants.
+**Confidential search (employed users):** Ask before naming the current employer in any outbound or public artifact; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
+
+**Examples in this skill are illustrative only:** never copy numbers, names, employers, venues, patent numbers, or identifiers from examples into user output.
 
 ## Reference Strategy
 
@@ -37,13 +39,13 @@ Use this skill when the user:
 
 ### Who to Avoid
 
-- ❌ **Anyone still at your current employer — excluded by default while you are employed.** A reference there means your search becomes their knowledge; even sympathetic colleagues can't un-know it. Use colleagues who have *already left* the company instead (they're equally credible and safe).
-- ❌ **Anyone at an organization in active legal dispute with you** — never, under any circumstances. Beyond ethics, it's a litigation risk and an instant red flag to any checker.
+- ⚠️ **Anyone still at your current employer — context-dependent while you are employed.** In a **confidential search**, do not list current-employer references without the person's explicit, informed permission — a reference there means your search becomes their knowledge, and even sympathetic colleagues can't un-know it. If the search is **known or you're post-notice**, a current manager or colleague may be entirely appropriate. In **late-stage / offer-contingent checks**, ask the employer whether a current manager is required and schedule that call last. In every case, colleagues who have *already left* are equally credible and safe.
+- ❌ **Anyone directly involved in a legal dispute with you, or bound by confidentiality obligations that would prevent them from giving an independent reference.** Consider legal advice where appropriate; a reference compromised this way is both a litigation risk and a red flag to any checker.
 - ❌ People who barely know you; references from 10+ years ago only; personal friends; anyone who might give lukewarm feedback; anyone you haven't contacted in advance.
 
 ### Freshness Rule
 
-**At least 2 of your 3 core references should be from the last 5-7 years.** Checkers weight recent collaboration heavily; a glowing 2012 reference reads as "nothing recent to point to."
+Checkers tend to weight recent collaboration heavily — a common preference is that **most of your core references (e.g., 2 of 3) come from the last 5-7 years**, because a reference set drawn entirely from a decade ago can read as "nothing recent to point to." Treat recency as a preference for relevance, not a hard threshold; the strongest recent references are the ones who can speak to the work the target role cares about.
 
 **Senior-candidate sweet spot: departed colleagues of your current employer.** They know your most recent, most senior work (unlike older references), but they're no longer inside the company, so the confidentiality risk disappears. Former manager who moved on, a peer who left last year — these are the strongest safe references for someone employed at senior level.
 
@@ -51,15 +53,17 @@ Use this skill when the user:
 
 ### Standard Format
 
+*Fictional example for structure only — never copy its facts into user output.*
+
 ```
 PROFESSIONAL REFERENCES
 
-Jane Smith
+[First Name] [Last Name]
 Senior Director of Product
-TechCorp Inc. (former colleague — departed 2024)
-Email: jane.smith@currentcompany.com
-LinkedIn: linkedin.com/in/janesmith
-Relationship: Direct supervisor for 3 years (2020-2023)
+[Company] (former colleague — departed [YEAR])
+Email: [current-work-email — the referee's current employer, not yours]
+LinkedIn: [profile URL]
+Relationship: Direct supervisor for 3 years ([YEARS])
 ```
 
 ### Contact Information: Consent Per Channel
@@ -90,7 +94,7 @@ Call or email before listing anyone: ask permission, confirm **which contact cha
 Send: resume, job description, key points to highlight, projects they might be asked about, contact timeline.
 
 **Departure-narrative briefing (do this with every reference):**
-1. **Agree on one true, neutral reason-for-leaving line** with each reference — e.g., "She's looking for a role with more scope in platform work" or "He completed the migration he was hired for and is ready for the next challenge." It must be true, it must match what you say in interviews, and every reference should say the *same* version.
+1. **Share your truthful context and agree on one neutral reason-for-leaving line** — e.g., "She's looking for a role with more scope in platform work." It must be true and consistent with what you say in interviews. Then **ask each reference to speak independently, in their own words** — not to recite a script, and not to speculate beyond what they actually know. Rehearsed, identical testimony from multiple references reads as coached and can undermine an otherwise strong check.
 2. **Tell them what NOT to speculate about:** salary details, conflicts, internal politics, any legal matters, or guessing at reasons you left ("I think he was frustrated with..."). If they don't know something, "You'd have to ask them" is the right answer. A reference improvising a motivation you didn't state is how offers die.
 
 **Briefing email template:**
@@ -104,9 +108,9 @@ Thanks for agreeing to be a reference! Context:
 **The Role:** [title] at [Company] — they're looking for [key requirements]
 **Points I'm emphasizing:** [achievement 1], [achievement 2], [skill]
 **Our work together they may ask about:** [project 1], [project 2]
-**On why I'm leaving [current/last company]:** [the agreed one-line neutral reason]
-  — please stick to that line; if asked anything beyond it (salary, internal
-  matters), "you'd have to ask [me]" is a great answer.
+**On why I'm leaving [current/last company]:** [your true one-line neutral reason]
+  — please speak to it in your own words; if asked anything beyond it (salary,
+  internal matters), "you'd have to ask [me]" is a great answer.
 **Channel they'll use:** [the consented channel]
 
 They may reach out within [timeframe]. Resume and JD attached. Thank you again!
@@ -119,8 +123,8 @@ After checks: thank references regardless of outcome, share the result, offer to
 ## Handling Special Situations
 
 ### Currently Employed — Search Must Stay Quiet
-- **Exclude current-employer references by default** (see above)
-- Use colleagues who have already departed the company
+- **Confidential search:** no current-employer references without explicit, informed permission (see above)
+- Prefer colleagues who have already departed the company
 - If the best possible reference is still there, ask that the check wait until late stage / offer contingency — never before
 
 ### Manager Left the Company
@@ -179,7 +183,7 @@ No footer line needed — see timing below.
 
 ## Reference Strategy
 **Target Role:** [Position] | **Company:** [Company]
-**Confidential search:** [yes/no] — current-employer refs excluded?
+**Confidential search:** [yes/no] — current-employer references only with explicit permission?
 
 ## Recommended References
 
@@ -194,8 +198,8 @@ No footer line needed — see timing below.
 
 ## Briefing Notes
 ### Per reference: [ ] resume [ ] JD [ ] talking points [ ] agreed departure line [ ] "don't speculate" list
-### Agreed departure narrative (identical everywhere)
-[One neutral true line]
+### Shared departure context
+[One neutral true line] — references speak to it independently, in their own words
 
 ## Reference Outreach
 ### Permission script (incl. channel-consent ask)
@@ -205,11 +209,11 @@ No footer line needed — see timing below.
 
 ## Reference Checklist
 
-- ✅ 3-5 references ready; ≥2 of 3 from the last 5-7 years
-- ✅ No one currently at the employer (while employed); no one at any org in legal dispute with the user
+- ✅ 3-5 references ready; weighted toward the last 5-7 years where relevance allows
+- ✅ Current-employer references only with explicit permission (confidential search); no one directly involved in a dispute or bound from speaking independently
 - ✅ Every reference gave permission — and consented to the specific channel shared
 - ✅ Shared channels default to work email/LinkedIn, not personal phone
-- ✅ Departure narrative agreed with each reference — one line, true, identical everywhere
+- ✅ Departure context shared with each reference — one true line; each speaks independently
 - ✅ Each reference briefed on what not to speculate about
 - ✅ References know the specific role; have resume + talking points
 - ✅ No "references available upon request" anywhere

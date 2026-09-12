@@ -17,11 +17,13 @@ For visual layout and fonts, defer to resume-formatter (canonical). This skill c
 
 ## Candidate Guardrails (always apply)
 
-**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+**Truthfulness:** Every claim, metric, course, certification, skill, tool, and responsibility must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. Missing number? Insert [USER-CONFIRMED METRIC] and ask. Estimates only on explicit request, marked (~ or range), with a logged derivation.
 
-**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere.
+**Privacy & age signals:** On resumes, omit graduation years by default for senior candidates and never include street address, DOB, or photo (US industry norm; academic CVs and non-US norms differ — follow field conventions there). Frame seniority as scope, not elapsed time; total-years phrasing is the user's choice, not a default. Never mention legal disputes, HR complaints, or settlements; reason-for-leaving is one neutral, forward-looking line, used consistently.
 
-**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass — prefer percentages, ranges, anonymized phrasing.
+**Confidential search (employed users):** Ask before naming the current employer in any outbound or public artifact; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
+
+**Examples in this skill are illustrative only:** never copy numbers, names, employers, venues, patent numbers, or identifiers from examples into user output.
 
 ## How ATS Actually Works (2026 reality)
 
@@ -32,7 +34,7 @@ The real risks, in order:
 2. **Missing searchable keywords** — true skills the user has, phrased so search finds them
 3. **Knockout questions** — answer these carefully in the portal, not the resume
 
-Context that lowers the stakes: referrals, recruiter outreach, and Easy Apply with a strong profile largely bypass keyword screening. Keyword coverage matters, but it is not the bottleneck folklore makes it. Never cite rejection-percentage statistics — the popular ones are debunked myths.
+Context that lowers the stakes: referrals and recruiter outreach skip the cold-pile problem entirely. Easy Apply skips re-entering your data, but the resume still lands in the employer's ATS — keyword coverage still matters there. Never cite rejection-percentage statistics — the popular ones are debunked myths.
 
 ## Parseability Verification (actually run this)
 
@@ -42,7 +44,7 @@ Don't guess whether a resume parses — extract its text and check:
 pdftotext resume.pdf - | head -80
 ```
 
-(Available in poppler-utils; `python -m pip install pdftotext` or use `pdftotext` via WSL. For .docx, unzip and read `word/document.xml`, or convert with `libreoffice --headless --convert-to pdf`.)
+(Available in poppler-utils: `apt install poppler-utils`, `brew install poppler`, or the poppler build for your OS. For .docx, unzip and read `word/document.xml`, or convert with `libreoffice --headless --convert-to pdf`.)
 
 **Pass criteria — all must survive extraction:**
 - [ ] Name and contact info present and in order
@@ -51,7 +53,7 @@ pdftotext resume.pdf - | head -80
 - [ ] Section headers recognizable ("Experience", "Education", "Skills")
 - [ ] Skills list intact, not scrambled or merged
 
-If text extraction scrambles the layout (columns interleaving, dates detached from titles), simplify the layout and re-run. If contact info and dates survive a text-extraction pass, parsing will almost certainly work.
+If text extraction scrambles the layout (columns interleaving, dates detached from titles), simplify the layout and re-run. If contact info and dates survive a text-extraction pass, parsing will very likely work — but the paste test is necessary, not sufficient; it proves extraction order, not how a specific vendor's parser handles columns.
 
 ## Formatting Risk Tiers
 
@@ -62,8 +64,7 @@ If text extraction scrambles the layout (columns interleaving, dates detached fr
 
 **Low risk, verify with the paste test:**
 - Headers/footers — major platforms extract them; still keep contact info in the body as belt-and-suspenders
-- Simple tables and two-column layouts — fine on Greenhouse/Lever/Workday if the paste test passes (text extraction keeps names/dates/sections in order)
-- Columns for skills lists — acceptable; verify extraction order reads sensibly
+- Two-column layouts and columnar skills lists — Greenhouse and Lever handle multi-column PDFs well; Workday, Taleo, and older iCIMS builds often interleave columns left-to-right, scrambling the reading order. Default to single-column when the target ATS is unknown or in the Workday family; keep multi-column only when the target platform is known to handle it and the paste test passes (text extraction keeps names/dates/sections in order)
 
 **Always safe:**
 - ✅ Single column, standard headers, standard bullets (•, -), consistent MM/YYYY dates
@@ -94,7 +95,7 @@ Three coverage levels only: **Verbatim** (JD's term appears), **Synonym** (equiv
 - Synonym → suggest adding the JD's exact term *if truthfully the user's skill* ("aligned 4 teams" can also say "stakeholder alignment across 4 teams")
 - Absent → ask the user: do you have this? If yes, where? If no, don't add it
 
-**Placement principle:** each critical term should appear where a reader expects it — once in skills, once inside a concrete achievement. Never repeat a term solely to raise density; there is no keyword-density ranking factor on mainstream platforms, and repetition reads as spam to the recruiter who opens the file.
+**Placement principle:** each critical term should appear where a reader expects it — once in skills, once inside a concrete achievement. Don't stuff: recruiter-side keyword search does reward a term being present, but repetition beyond skills-plus-one-bullet reads as spam to the human who opens the file.
 
 ## Analysis Output Format
 
@@ -140,7 +141,7 @@ No "overall score", no "estimated new match %" — coverage decisions belong to 
 - Recruiters screen for **scope and org-level influence**, not keyword count
 - Coverage language that matters: "across N teams", "org-wide", "adopted by N product lines", "defined technical strategy for..."
 - **Certifications rarely influence screening** at this level at major tech companies — don't add AWS/Azure certs to chase keywords; noise at best
-- A **publications / patents / talks** line carries far more weight than any certification: "Publications: 6 papers on applied LLM serving (NeurIPS, arXiv); talk, KubeCon 2024" — searchable, verifiable, differentiating
+- A **publications / patents / talks** line carries far more weight than any certification: "Publications: [Title] — [Venue], [Year] (see resume-formatter for layout)" — searchable, verifiable, differentiating
 - Design-review ownership, migration leadership, and strategy-doc authorship are the searchable signals of staff scope
 
 ### Executive level

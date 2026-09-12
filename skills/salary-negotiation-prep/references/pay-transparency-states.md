@@ -1,12 +1,12 @@
 # Pay Transparency States — Ranges in Job Postings
 
-**This is a planning aid, not legal advice.** Pay-transparency law is changing fast: legislatures add states, raise/lower thresholds, and courts narrow rules every year. **Verify current law** (state labor agency or an up-to-date source) before telling a user a specific rule applies.
+**Verify current law before relying on any entry; thresholds and effective dates change.** This is a planning aid, not legal advice. Pay-transparency law is changing fast: legislatures add states, raise/lower thresholds, and courts narrow rules every year. **Verify current law** (state labor agency or an up-to-date source) before telling a user a specific rule applies.
 
 ## States (+DC) requiring salary ranges in job postings
 
 | State | Effective | Employer threshold | Notes |
 |-------|-----------|--------------------|-------|
-| California | Jan 1, 2023 | 15+ employees | From **Jan 1, 2026**, postings must also include the stock/bonus components of the pay range. |
+| California | Jan 1, 2023 | 15+ employees | California's 2026 amendments broaden pay-transparency definitions and enforcement — verify current Labor Code requirements before relying on specifics. |
 | Colorado | Jan 1, 2021 | 1+ employee | Broadest reach: covers remote postings performable from CO. |
 | Washington | Jan 1, 2023 | 15+ employees | Covers postings for WA-performable work, including remote. |
 | New York | Sep 17, 2023 | 4+ employees | Statewide; NYC had its own earlier rule. |
@@ -23,7 +23,7 @@
 
 Other jurisdictions with posting-range or wage-disclosure rules to check: Oregon (plus Portland), Rhode Island, Connecticut (on request), Nevada (on interview), Alaska (verify), and local ordinances (Cincinnati, Toledo, Jersey City, NYC, etc.).
 
-**Count: roughly 20 states + DC**, and growing. If a state isn't listed above, don't assume it's exempt — verify.
+If a state isn't listed above, don't assume it's exempt — verify. Don't quote a state count; the set changes yearly.
 
 ## Remote roles trigger multiple states' laws
 
@@ -31,7 +31,7 @@ A fully-remote posting that could be performed from CO, WA, NY, CA, or similar g
 
 ## Salary-history bans (separate but related laws)
 
-Asking an applicant's salary history is illegal in **20+ states and many cities**. Key examples:
+Asking an applicant's salary history is banned in a growing set of states and cities. Key examples (verify current law):
 
 - **Massachusetts — M.G.L. c. 149 §105A, since 2018** (the original first-in-nation ban)
 - California (2018, strengthened since), New York (state + NYC, 2017), New Jersey (2020), Oregon (2017), Delaware (2017), Connecticut (2019), Colorado (2021), Illinois (2021), Maryland (2020), Maine, Hawaii, Vermont, Nevada (2021), Rhode Island, Washington, Minnesota, Pennsylvania (state jobs), Puerto Rico, plus cities like Philadelphia, NYC, San Francisco, Atlanta, Chicago — verify the current local list

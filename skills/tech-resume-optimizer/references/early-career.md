@@ -27,14 +27,14 @@ coursework.
 
 Recent grads may include graduation year, GPA if 3.5+, and relevant coursework:
 ```
-B.S. Computer Science | Stanford University | 2024
+B.S. Computer Science | [University] | [YEAR]
 GPA: 3.8/4.0
 Relevant Coursework: Distributed Systems, Machine Learning
 ```
 
 ### Bootcamp graduates
 ```
-Software Engineering Certificate | App Academy | 2024
+Software Engineering Certificate | App Academy | [YEAR]
 • 1000+ hour immersive program — full-stack JavaScript, React, Node.js
 B.A. Economics | UCLA
 ```
@@ -46,7 +46,7 @@ Lead with demonstrable work (projects, OSS, employment); formal coursework
 second:
 ```
 Professional Certifications:
-- AWS Solutions Architect Associate | 2024
+- AWS Solutions Architect Associate | [YEAR]
 Self-Directed Study:
 - MIT OpenCourseWare: Algorithms, Data Structures
 ```

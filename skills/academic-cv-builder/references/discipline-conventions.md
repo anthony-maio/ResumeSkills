@@ -18,6 +18,8 @@ Emphasize: (1) publications, (2) technical skills, (3) grant-writing experience,
 
 ## Discipline-Specific Conventions
 
+*These are common tendencies, not rules — verify the target field's and department's conventions before applying any of them.*
+
 ### Sciences (Biology, Chemistry, Physics)
 - Author order matters: first author = did the work; last author = senior/PI
 - Impact factors sometimes listed when the posting or field expects them

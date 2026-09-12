@@ -2,24 +2,26 @@
 
 Sales, Marketing, Customer Success, Data Analysis, and Operations examples moved
 from the main resume-bullet-writer SKILL.md. Apply the same truthfulness rules —
-every number must come from the user before it goes in a resume.
+every number must come from the user before it goes in a resume. The ✅ lines
+below show structure only: [USER-METRIC] slots are where the user's real
+figures go.
 
 ## Sales
 ❌ "Met with clients" / "Closed deals"
-✅ "Generated $3.2M in new business by closing 15 enterprise deals, 142% of annual quota" *(numbers user-confirmed)*
+✅ "Generated [$ USER-METRIC] in new business by closing [N] enterprise deals, [N]% of annual quota"
 
 ## Marketing
 ❌ "Created marketing campaigns"
-✅ "Launched 12 multi-channel campaigns generating $500K attributed revenue and 2,500+ qualified leads"
+✅ "Launched [N] multi-channel campaigns generating [$ USER-METRIC] attributed revenue and [N]+ qualified leads"
 
 ## Customer Success
 ❌ "Helped customers with problems"
-✅ "Maintained 95% retention across 50 enterprise accounts ($4M ARR)"
+✅ "Maintained [N]% retention across [N] enterprise accounts ([$ USER-METRIC] ARR)"
 
 ## Data Analysis
 ❌ "Analyzed data"
-✅ "Analyzed 500K+ transaction records to identify a $2M revenue opportunity; findings drove a new product line"
+✅ "Analyzed [N]+ transaction records to identify a [$ USER-METRIC] revenue opportunity; findings drove a new product line"
 
 ## Operations / Project Management
 ❌ "Managed projects"
-✅ "Led 8 cross-functional projects, 100% on-time across a $5M portfolio with zero overruns"
+✅ "Led [N] cross-functional projects, [N]% on-time across a [$ USER-METRIC] portfolio with zero overruns"

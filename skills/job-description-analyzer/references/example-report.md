@@ -22,8 +22,8 @@ This is a worked example of the report skeleton from SKILL.md. All candidate fac
 
 | Requirement | Verdict | Evidence |
 |---|---|---|
-| 8+ years backend engineering | Meets | Senior/staff roles across last 3 companies (see resume) |
-| Distributed systems at scale | Meets | Owned payments ingestion at 40K req/s; led sharding migration |
+| 8+ years backend engineering | Meets | Multi-team systems ownership across last 3 roles (see resume) — evidenced by scope, not title count |
+| Distributed systems at scale | Meets | Owned payments ingestion at [USER-CONFIRMED METRIC] scale; led sharding migration |
 | Go or equivalent | Meets | 6 years Go; earlier Java |
 | Incident leadership | Meets | Commanded 2 SEV1s; wrote postmortem program |
 | "Own technical direction for billing" | Meets (needs story) | Led 18-month billing monolith decomposition — bank 2 narratives |
@@ -40,7 +40,7 @@ This is a worked example of the report skeleton from SKILL.md. All candidate fac
 
 ## Strengths to Emphasize (top 3, with evidence)
 
-1. **Payments-scale distributed systems** — 40K req/s ingestion ownership maps directly to their billing-infrastructure emphasis.
+1. **Payments-scale distributed systems** — ingestion ownership at user-confirmed scale maps directly to their billing-infrastructure emphasis.
 2. **Incident leadership** — they list on-call as "load-bearing"; the postmortem-program story is the differentiator.
 3. **Monolith decomposition at org level** — 4 teams aligned on a staged migration; evidence for their "own technical direction" requirement.
 

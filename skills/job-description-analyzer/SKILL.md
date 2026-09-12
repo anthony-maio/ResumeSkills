@@ -19,11 +19,13 @@ Use this BEFORE resume tailoring to ensure effort is worth it.
 
 ## Candidate Guardrails (always apply)
 
-**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+**Truthfulness:** Every claim, metric, course, certification, skill, tool, and responsibility must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. Missing number? Insert [USER-CONFIRMED METRIC] and ask. Estimates only on explicit request, marked (~ or range), with a logged derivation.
 
-**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-leaning line, identical everywhere.
+**Privacy & age signals:** On resumes, omit graduation years by default for senior candidates and never include street address, DOB, or photo (US industry norm; academic CVs and non-US norms differ — follow field conventions there). Frame seniority as scope, not elapsed time; total-years phrasing is the user's choice, not a default. Never mention legal disputes, HR complaints, or settlements; reason-for-leaving is one neutral, forward-looking line, used consistently.
 
-**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
+**Confidential search (employed users):** Ask before naming the current employer in any outbound or public artifact; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
+
+**Examples in this skill are illustrative only:** never copy numbers, names, employers, venues, patent numbers, or identifiers from examples into user output.
 
 **Fabrication guard (gap handling):** Before writing ANY claim about the user's learning activities, certifications, or skills ("I'm learning X", "I hold Y cert", adding a skill to their resume), ask the user what their actual experience with it is. Never insert named courses, self-study claims, or skill-list additions without explicit confirmation. If a gap skill is genuinely absent, write "gap — no evidence; ask the user before addressing it anywhere."
 
@@ -76,7 +78,7 @@ No overqualified penalty. If the user meets ~100% of requirements and the title 
 
 **Culture red flags:** "rockstar/ninja/guru", "work hard play hard", "unlimited vacation", "like a family".
 
-**Compensation red flags:** "competitive salary" with no range, equity-heavy comp, commission-based, "DOE" with no range. Note: pay-transparency laws (CO, CA, NY, WA, MA and others) require ranges in many jurisdictions — a missing range where one is legally required is itself a signal.
+**Compensation red flags:** "competitive salary" with no range, equity-heavy comp, commission-based, "DOE" with no range. Note: a growing set of states requires posted pay ranges (incl. CA, CO, NY, WA, and MA since Oct 2025); a different, overlapping set bans salary-history questions. Check the specific jurisdiction — if the role is in a covered jurisdiction and no range is posted, flag it; absence is often just out-of-jurisdiction or an posting error, not necessarily a violation.
 
 **AI-washing (flag explicitly):** JDs that say "AI-powered", "LLM experience required", or "GenAI" without describing what the AI actually does or what the person would build. Probe: is this a real ML/LLM engineering role, a conventional role rebranded for funding optics, or prompt-engineering theater? Surface the discrepancy and ask the user how much it matters to them.
 
@@ -86,7 +88,7 @@ When the user is a senior/staff engineer:
 
 1. **Weight scope over tool keywords.** "Own the technical direction for payments infrastructure" outranks five framework names. Judge: systems owned, scale (QPS, data volume, uptime), blast radius, org-level influence, incident leadership.
 2. **Vague staff+ requirements resist keyword counting** — "set technical vision" is evidenced by narratives (RFCs authored, migrations led, standards set), not resume keywords. Flag these as "evidence-gathering needed: ask the user for 1-2 stories per vague requirement."
-3. **Years bars are negotiable.** See dealbreakers above. Don't let a "10+ years" bar cause a strong 22-year candidate to self-select out — or a strong 8-year candidate to skip. The evidence, not the arithmetic, decides.
+3. **Years bars are negotiable.** See dealbreakers above. Don't let a "10+ years" bar push a candidate with deep, multi-team scope evidence to self-select out — or one with thinner evidence to lean on arithmetic. The evidence, not the year count, decides.
 4. **Prefer referral/warm-intro paths.** Most tech applications get no response regardless of match. Before recommending a cold application, ask: does the user know anyone at the company, or anyone two hops away? A referral or a warm intro to an engineering leader converts far better than a portal submission. Cold-apply as the fallback, not the default.
 
 ## Report Skeleton
@@ -114,14 +116,14 @@ Never include fabricated fields: no "estimated competition", no "expected respon
 
 ## Application Plan Guidance (candidate-controllable only)
 
-- **Apply when the resume is properly tailored** — not "within 48 hours". Freshness urgency is manufactured; ATS pipelines commonly run 2-4+ weeks.
+- **Apply when the resume is properly tailored** — don't manufacture freshness urgency; response timelines vary by company, and you don't know theirs.
 - **Follow up once**, politely, after **10-14 days** if no response.
 - **Contact one relevant person** — the hiring manager or a relevant engineer/EM, with a specific, short note. Not a LinkedIn blast to 2-3 employees.
-- **Silence is the default outcome** in the 2026 tech market; it is not evidence the user is unqualified. Prioritize quality over quantity: 10-15 well-targeted applications beat 50 blind ones.
+- **Silence is the default outcome** in the current tech market; it is not evidence the user is unqualified. Prioritize quality over quantity: a few well-targeted applications beat a spray of blind ones.
 
 ## Company Research Checklist
 
-Before applying, check:
+Before applying, optionally check:
 - Glassdoor reviews (patterns in 1-2 star reviews)
 - Blind and LinkedIn tenure (high turnover?)
 - layoffs.fyi and recent news (layoffs, down-rounds, pivots)

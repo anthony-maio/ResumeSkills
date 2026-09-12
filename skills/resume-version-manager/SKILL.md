@@ -16,13 +16,13 @@ Use this skill when the user:
 
 ## Candidate Guardrails (always apply)
 
-**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+**Truthfulness:** Every claim, metric, course, certification, skill, tool, and responsibility must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. Missing number? Insert [USER-CONFIRMED METRIC] and ask. Estimates only on explicit request, marked (~ or range), with a logged derivation.
 
-**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere (resume, interviews, references).
+**Privacy & age signals:** On resumes, omit graduation years by default for senior candidates and never include street address, DOB, or photo (US industry norm; academic CVs and non-US norms differ — follow field conventions there). Frame seniority as scope, not elapsed time; total-years phrasing is the user's choice, not a default. Never mention legal disputes, HR complaints, or settlements; reason-for-leaving is one neutral, forward-looking line, used consistently.
 
-**Confidential search (employed users):** Ask before naming the current employer anywhere semi-public; offer blind variants. Never publish employer-confidential metrics without a confidentiality pass.
+**Confidential search (employed users):** Ask before naming the current employer in any outbound or public artifact; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
 
-**Outbound-version privacy:** Every version you actually send carries only: name, phone, email, city/state, and optional links — never a street address, DOB, or photo. Never attach reference lists to outbound resumes; track references separately (see `reference-list-builder`) and share them only on request after the employer asks. The master resume may hold fuller detail internally, but outbound copies get the minimal contact set.
+**Examples in this skill are illustrative only:** never copy numbers, names, employers, venues, patent numbers, or identifiers from examples into user output.
 
 ## Core Capabilities
 
@@ -51,7 +51,7 @@ Last Updated: [Date]
 ## PROFESSIONAL EXPERIENCE
 ### Company | Title | Dates
 • All bullets (leadership / technical / results / collaboration variants)
-• Keywords this experience covers
+• Keywords this experience covers + confidentiality tag (public-safe / confidential / needs-confirmation / excluded)
 ## EDUCATION (full history internally)
 ## CERTIFICATIONS
 ## PROJECTS
@@ -59,14 +59,25 @@ Last Updated: [Date]
 ## REFERENCES TRACKED SEPARATELY (names, consent dates, last-contacted — never on the resume)
 ```
 
-## Experience Horizon Rule
+## Master Resume Confidentiality
 
-**Default: detail the most recent 10-15 years on tailored versions; compress everything older to a single line.**
+Tag every master-resume entry with a confidentiality field:
 
-- Roles within the horizon: full treatment (bullets, metrics, keywords)
-- Roles beyond the horizon: one line each, or one collective line — "Earlier career: [Role] at [Company], [Role] at [Company] (20XX-20XX)". No bullets, no dated detail.
-- Reasons: relevance decay (15-year-old tech stacks and titles rarely match current postings), length control, and age-signal hygiene — a detailed 25-year history broadcasts an age proxy while adding little.
-- Exceptions: a genuinely relevant older role (e.g., the one startup the target company knows) may stay detailed — decide per application, from the master.
+- **public-safe** — verified facts that may appear in any outbound version
+- **confidential/internal** — employer-confidential metrics, unreleased products, internal infra; redact or anonymize in every outbound version
+- **needs-confirmation** — unclear what may be shared; ask before any outbound use
+- **legal-sensitive/excluded** — NDA-covered, settlement-related, or dispute material; never appears in outbound versions or talking points
+
+**Mandatory outbound redaction pass (every tailored version):** strip or anonymize anything not tagged public-safe or explicitly confirmed for that application — confidential metrics become percentages or [USER-CONFIRMED METRIC], internal names become anonymized descriptors, legal-sensitive material is removed entirely. Outbound copies carry only the minimal contact set (name, phone, email, city/state, optional links) — never street address, DOB, or photo — and never attach reference lists (tracked separately; see `reference-list-builder`).
+
+## Experience Horizon Guidance (relevance-first)
+
+**Start from the target role's requirements, not a fixed cutoff.** Detail the roles that best evidence fit for the posting; compress older roles when they are no longer relevant or when space requires it. Many senior candidates default to detailing the most recent 10-15 years and compressing everything earlier to a single line — a reasonable default, not a rule.
+
+- Detailed roles: full treatment (bullets, metrics, keywords) — chosen for relevance to the target, not recency alone
+- Compressed roles: one line each, or one collective line — "Earlier career: [Role] at [Company], [Role] at [Company] ([YEARS])". No bullets, no dated detail.
+- Why compressing helps: relevance decay (old stacks and titles rarely match current postings), length control, and age-signal hygiene — a detailed 25-year history broadcasts an age proxy while adding little
+- Exceptions: a genuinely relevant older role (e.g., the one startup the target company knows) may stay detailed — decide per application, from the master
 
 ## File Organization System
 
@@ -76,16 +87,16 @@ Resume/
 │   └── LastName_Master_Resume.docx
 ├── Tailored/
 │   ├── ProductManagement/
-│   │   └── LastName_PM_Google_Jan2024.pdf
+│   │   └── LastName_PM_[Company]_[YYYY-MM].pdf
 │   ├── Engineering/
-│   │   └── LastName_SWE_Stripe_Feb2024.pdf
+│   │   └── LastName_SWE_[Company]_[YYYY-MM].pdf
 │   └── General/
 ├── CoverLetters/
 └── Applications/
     └── ApplicationTracker.xlsx
 ```
 
-**Naming:** `[LastName]_[Role/Type]_[Company]_[Date].pdf` — e.g. `Smith_SWE_Stripe_Feb2024.pdf`.
+**Naming:** `[LastName]_[Role/Type]_[Company]_[YYYY-MM].pdf` — e.g. `Smith_SWE_[Company]_[YYYY-MM].pdf`. (For the file you actually send, see `resume-formatter` for file naming.)
 
 ## Version Categories
 
@@ -99,8 +110,8 @@ Tailored versions vary along three axes — the *content guidance* for what each
 
 | Company | Role | Version Used | Date Applied | Status | Notes |
 |---------|------|--------------|--------------|--------|-------|
-| Google | PM | PM_Google_Jan | 1/15/24 | Interview | 2nd round 2/1 |
-| Startup | PM | PM_General | 1/20/24 | Rejected | Too senior |
+| [Company] | PM | PM_[Company]_[YYYY-MM] | [YYYY-MM-DD] | Interview | 2nd round [YYYY-MM-DD] |
+| [Company] | PM | PM_General | [YYYY-MM-DD] | Rejected | Too senior |
 
 Also track: application method (portal/referral/direct), follow-up dates, contacts. Keep a separate reference tracker (who, consent date, last contacted) — see `reference-list-builder`.
 
@@ -108,16 +119,16 @@ Also track: application method (portal/referral/direct), follow-up dates, contac
 
 **Update the master immediately for:** new job/promotion, major completed project, new skills/certs, significant achievements.
 
-**Quarterly:** add recent wins, refresh metrics, prune outdated material, re-check the experience horizon (roles crossing the 10-15 year line get compressed).
+**Quarterly:** add recent wins, refresh metrics, prune outdated material, re-check the experience horizon (roles that no longer earn their space get compressed).
 
 **Master → tailored:**
 ```
 1. Copy master (never edit master for an application)
 2. Analyze the job description
-3. Apply the experience horizon (10-15 yrs detailed, earlier = one line)
+3. Apply the experience horizon (relevance-first: detail what evidences fit; compress what doesn't)
 4. Select relevant bullets; choose the summary variant
-5. Reorder skills; add job-specific keywords
-6. Strip outbound contact info to the minimal set
+5. Reorder skills; add job-specific keywords only where supported by confirmed experience — JD keywords with no covering experience are recorded as gaps to address, never inserted
+6. Run the outbound redaction pass (confidentiality tags + minimal contact set)
 7. Trim to length; save with naming convention; update tracker
 ```
 
@@ -126,7 +137,7 @@ Also track: application method (portal/referral/direct), follow-up dates, contac
 If the user is comfortable with git, a repo beats folders:
 
 - **Markdown master** (`resume.md`) in a **private repo** — single source of truth, plain-text diffs show exactly what changed and when
-- **Per-company tailored versions**: generate from the master on a branch or tag per application — `git checkout -b apply/stripe-2024-02` or tag `stripe-2024-02` after generating
+- **Per-company tailored versions**: generate from the master on a branch or tag per application — `git checkout -b apply/[company]-[YYYY-MM]` or tag `[company]-[YYYY-MM]` after generating
 - **Generated PDFs**: build via pandoc/typst/HTML template, never hand-edited; PDFs are build artifacts, optionally ignored or kept per-tag
 - **History = tracker**: `git log` / `git tag` answers "exactly what did I send Stripe, and when" for free; keep a lightweight `APPLICATIONS.md` in-repo for status
 - **Privacy:** private repo only — resumes are dense PII. If the user open-sources anything (theme/template), keep the resume content itself out
@@ -151,7 +162,7 @@ If the user is comfortable with git, a repo beats folders:
 
 ## Master Resume Status
 **Last Updated:** [Date] | **Location:** [path or repo]
-**Experience Horizon Check:** [roles >15 yrs compressed? which crossed recently?]
+**Experience Horizon Check:** [which roles detailed vs. compressed — and why]
 
 ## Active Versions
 ### Role Type: [e.g. Engineering]
@@ -169,9 +180,9 @@ If the user is comfortable with git, a repo beats folders:
 ## Checklist
 
 - ✅ Master resume exists and is current
-- ✅ Experience horizon applied (10-15 yrs detailed; earlier = one line)
+- ✅ Experience horizon applied relevance-first (irrelevant/older roles compressed)
 - ✅ Naming convention consistent; tracker maintained
-- ✅ Outbound copies carry only phone/email/city-state/links
+- ✅ Outbound redaction pass run; copies carry only phone/email/city-state/links
 - ✅ References tracked separately, never attached
 - ✅ All versions pull from the same master
 - ✅ Backup (cloud or private git repo) in place

@@ -8,19 +8,21 @@ description: Use when optimizing a resume for software/AI engineering roles at s
 ## When to Use This Skill
 
 Use this skill when the user:
-- Is applying for software/AI engineering roles (mid through staff/principal)
+- Is applying for software/AI engineering roles at senior level or above
 - Wants to optimize a technical resume
 - Mentions: "tech resume", "software engineer resume", "SWE resume", "staff engineer resume", "ML resume", "AI resume"
 
-Focuses on senior-and-above engineering ICs; for early-career material (bootcamps, GPA, first projects) see `references/early-career.md`.
+Targets senior-and-above engineering ICs; for early-career material (bootcamps, GPA, first projects) see `references/early-career.md`, which keeps its own early-career framing.
 
 ## Candidate Guardrails (always apply)
 
-**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+**Truthfulness:** Every claim, metric, course, certification, skill, tool, and responsibility must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. Missing number? Insert [USER-CONFIRMED METRIC] and ask. Estimates only on explicit request, marked (~ or range), with a logged derivation.
 
-**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere.
+**Privacy & age signals:** On resumes, omit graduation years by default for senior candidates and never include street address, DOB, or photo (US industry norm; academic CVs and non-US norms differ — follow field conventions there). Frame seniority as scope, not elapsed time; total-years phrasing is the user's choice, not a default. Never mention legal disputes, HR complaints, or settlements; reason-for-leaving is one neutral, forward-looking line, used consistently.
 
-**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass — prefer percentages, ranges, anonymized phrasing.
+**Confidential search (employed users):** Ask before naming the current employer in any outbound or public artifact; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
+
+**Examples in this skill are illustrative only:** never copy numbers, names, employers, venues, patent numbers, or identifiers from examples into user output.
 
 ## What Tech Screeners Actually Evaluate
 
@@ -30,7 +32,7 @@ Focuses on senior-and-above engineering ICs; for early-career material (bootcamp
 4. **Depth where it counts** — can defend every listed technology in interview
 5. **Influence** — strategy, design reviews, mentorship, external voice (talks, papers, OSS)
 
-At staff level, hiring committees look for evidence the candidate moved the *org*, not just shipped systems. GitHub activity is not a screening signal at this level.
+At staff level, hiring committees look for evidence the candidate moved the *org*, not just shipped systems. GitHub activity is rarely decisive at staff level in large companies — but an empty linked repo can still hurt if you list it, and startups vary.
 
 ## The Scope Ladder (diagnose the resume's level)
 
@@ -43,11 +45,11 @@ Read the bullets and place each — and the resume overall — on the ladder:
 | **Multi-team programs** | "Drove migration across N teams", "owned platform adopted by N product lines" | Senior–staff |
 | **Org strategy** | "Defined technical strategy", "set direction for the org's platform", "owned the design-review process" | Staff+ |
 
-**Diagnosis rules:**
+**Diagnosis rules** (diagnose by blast radius and decision scope — what the bullet says was affected and decided, not by which verb it uses):
 - Most bullets on rung 1 → the resume reads junior regardless of title; rewrite to systems-and-up
 - All bullets on rung 2 with no cross-team evidence → reads mid-level; surface the multi-team work
 - Manager title but staff-IC target → keep technical bullets dominant; frame leadership as technical leadership
-- If the honest ceiling is rung 2–3, don't inflate — target roles one rung up
+- If the honest evidence ceiling is rung 2–3, present the rung you can evidence. Stretch applications are a user decision to make knowingly, not a rewrite the agent performs.
 
 ## Tech Resume Structure
 
@@ -66,7 +68,7 @@ Read the bullets and place each — and the resume overall — on the ladder:
 The summary is the primary tailoring surface — never just "optional". Lead with **scope and domain, not tenure**:
 
 ❌ "25-year veteran software engineer..." *(leads with age, generic)*
-✅ "Staff engineer specializing in LLM inference platforms. Drove the serving-infrastructure migration used by 4 product teams; published applied work on latency-optimized model serving."
+✅ "Staff engineer specializing in LLM inference platforms. Drove the serving-infrastructure migration used by [N] product teams; published applied work on latency-optimized model serving." *(illustrative structure — magnitudes come from the user)*
 
 ### Contact & Links
 
@@ -102,27 +104,27 @@ AI/ML: LLM serving (vLLM), evaluation harnesses, RAG pipelines
 ```
 • Architected the microservices migration from the monolith, cutting deploy
   time from 2h to 15min and enabling independent team deployments
-• Optimized PostgreSQL + Redis caching for a 500K-DAU API, reducing p99
-  latency 60% (500ms → 200ms)
+• Optimized PostgreSQL + Redis caching for a [N]-DAU API, reducing p99
+  latency [X]% ([baseline] → [new])
 ```
 
-✅ Staff-level (scope → decision → org-level outcome):
+✅ Staff-level (scope → decision → org-level outcome; illustrative — magnitudes from the user only):
 ```
 • Drove the org-wide migration from a shared monolith to team-owned services
-  across 6 teams (60+ engineers), ending the release train and cutting
-  cross-team escalations by half
-• Defined the 2-year technical strategy for the AI platform adopted by 4
-  product lines; the stack now serves 100K req/min at 38% lower cost
-• Owned design reviews for the 40-engineer platform org; RFC process cut
-  review turnaround from 2 weeks to 3 days
-• Mentored 5 engineers to senior; two now lead their own service areas
+  across [N] teams ([N]+ engineers), ending the release train and cutting
+  cross-team escalations by [X]%
+• Defined the [N]-year technical strategy for the AI platform adopted by [N]
+  product lines; the stack now serves [USER-CONFIRMED METRIC] at [X]% lower cost
+• Owned design reviews for the platform org; RFC process cut review turnaround
+  from 2 weeks to 3 days
+• Mentored [N] engineers to senior; two now lead their own service areas
 ```
 
 ✅ AI/ML flavor:
 ```
 • Took a published distillation technique to production reranking, lifting
-  top-3 relevance 9 points while holding p99 serving latency under 80ms
-• Built the eval harness (human + automated) now used by 3 model teams as
+  top-3 relevance [X] points while holding p99 serving latency under [threshold]
+• Built the eval harness (human + automated) now used by [N] model teams as
   the release gate for quality regressions
 ```
 
@@ -135,17 +137,16 @@ For senior+ candidates this is the highest-leverage section most resumes omit. C
 ```
 PUBLICATIONS & TALKS
 
-• J. Doe, "Latency-Optimized Model Serving for Production LLMs," NeurIPS
-  2024 Workshop on Efficient ML. Applied as the serving design behind
-  [Company]'s 100K-req/min inference platform.
-• "Cutting Inference Cost 10x," KubeCon 2024 talk (2K+ attendees). Methods
-  adopted by two internal platform teams.
-• Patent US12,345,678 — Adaptive request batching for multi-tenant
-  inference. Licensed in the company's managed offering.
+• [Author list, self bolded], "[Title]," [Venue], [Year]. Applied as the
+  serving design behind [Company]'s inference platform.
+• "[Title]," [Venue] [Year] talk ([N]+ attendees). Methods adopted by two
+  internal platform teams.
+• Patent [NUMBER] — [one-line invention description]. [Applied outcome,
+  if public.]
 
 OPEN SOURCE
 
-• Maintainer, vLLM (sampling engine; 40+ merged PRs). Contributions
+• Maintainer, [Project] ([role: sampling engine; N merged PRs]). Contributions
   shipped inside [Company]'s serving stack.
 ```
 
@@ -173,11 +174,11 @@ Missing 3+ → the resume undersells; mine the user's history for these before a
 
 ```
 EDUCATION
-B.S. Computer Science | Stanford University
-M.S. Machine Learning | Carnegie Mellon
+B.S. Computer Science | [University]
+M.S. Machine Learning | [University]
 ```
 
-Graduation year optional after ~10 years of experience (age proxy — default to omitting); GPA and coursework omitted for senior candidates. Early-career variants (bootcamp, self-taught, certifications-first) live in `references/early-career.md`.
+Graduation year omitted by default after the first job (age proxy; include only on user request or field convention); GPA and coursework omitted for senior candidates. Early-career variants (bootcamp, self-taught, certifications-first) live in `references/early-career.md`.
 
 ## Dealing with Stack Mismatch
 
@@ -203,7 +204,7 @@ Only claim technologies the user can discuss deeply; every bullet must have a st
 **Optimized:** [categorized, relevance-ordered]
 
 ## Experience Improvements
-Per bullet: current → improved, with [PLACEHOLDER] for unconfirmed numbers
+Per bullet: current → improved, with [USER-CONFIRMED METRIC] for unconfirmed numbers
 
 ## Publications / Talks / OSS
 - [Section draft from user-confirmed entries, or questions to surface them]

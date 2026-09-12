@@ -15,9 +15,13 @@ Use this skill when the user:
 
 ## Candidate Guardrails (always apply)
 
-**Truthfulness:** Every claim, metric, and number must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation.
-**Privacy & age signals:** Never volunteer age proxies (graduation years by default for senior candidates; "20+ years" framing; early-career dates). Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral line used identically everywhere.
-**Confidential search (employed users):** Ask before naming the current employer; blind variants. Never publish employer-confidential metrics (revenue, internal infra numbers) without an explicit confidentiality pass — prefer percentages, ranges, anonymized phrasing.
+**Truthfulness:** Every claim, metric, course, certification, skill, tool, and responsibility must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. Missing number? Insert [USER-CONFIRMED METRIC] and ask. Estimates only on explicit request, marked (~ or range), with a logged derivation.
+
+**Privacy & age signals:** On resumes, omit graduation years by default for senior candidates and never include street address, DOB, or photo (US industry norm; academic CVs and non-US norms differ — follow field conventions there). Frame seniority as scope, not elapsed time; total-years phrasing is the user's choice, not a default. Never mention legal disputes, HR complaints, or settlements; reason-for-leaving is one neutral, forward-looking line, used consistently.
+
+**Confidential search (employed users):** Ask before naming the current employer in any outbound or public artifact; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
+
+**Examples in this skill are illustrative only:** never copy numbers, names, employers, venues, patent numbers, or identifiers from examples into user output.
 
 ## Core Capabilities
 
@@ -35,9 +39,9 @@ Use this skill when the user:
 
 **Do not value equity at grant face value.** All equity math lives in `references/equity-math.md` (single source of truth; `salary-negotiation-prep` points here too). Summary:
 
-- **Private options:** EV = P(success) × (exit common price × diluted shares) − exercise cost − taxes. Account for the 409A-vs-preferred spread (409A overstates realizable value), liquidation preference, and future dilution. Rule of thumb: haircut face value 50–90% by stage.
-- **Public RSUs:** cash-equivalent, taxed at vest as ordinary income.
-- **Private RSUs:** check single-trigger (tax at vest with no liquidity = cash trap) vs. double-trigger.
+- **Private options:** EV = P(success) × (exit common price × diluted shares) − exercise cost − taxes. Account for the 409A-vs-preferred spread (409A is an imperfect proxy for exit proceeds), liquidation preference, and future dilution. Haircuts of 50–90% by stage are **illustrative scenario ranges, not defaults** — the user must supply or confirm every assumption (P(success), exit model, dilution, tax), and the output should show sensitivity to those assumptions.
+- **Public RSUs:** liquid and market-linked — value moves with the stock until vest (they are not guaranteed cash), and they are taxed as ordinary income at vest.
+- **Private RSUs:** double-trigger = time-based vesting continues per schedule, but settlement (and tax) occurs only at a liquidity event; single-trigger = settlement at vest (tax at vest with no liquidity = cash trap).
 - **Always present equity as a Low / Base / High band (±30% around base EV)** with stated assumptions — never a single number.
 
 Flag for the user (don't decide for them): 83(b) 30-day deadline; ISO/AMT trap at exercise.
@@ -62,7 +66,9 @@ Every comparison includes **staying at the current employer** as a real column, 
 
 The forfeited-equity figure also feeds negotiation: it justifies a signing-bonus ask (see `salary-negotiation-prep` → Golden Handcuffs).
 
-## Worked Example (all totals sum from displayed rows)
+*Fictional example for structure only — never copy its facts into user output.*
+
+## Worked Example (all totals sum from displayed rows; every figure annualized where noted)
 
 ```
 OFFER A — YEAR 1 / ONGOING
@@ -85,18 +91,19 @@ Benefits (401k + health)     $24,600     $24,600
 YEAR 1 TOTAL               $270,600
 ONGOING TOTAL                          $260,600
 
-STAYING PUT — per year
+STAYING PUT — per year (all rows annualized)
 Base salary                 $145,000
 Target bonus (12%)           $17,400
-Unvested equity vesting
-  next 24 mo ($80K total)    $40,000
+Unvested equity (annualized:
+  $80K vesting over next
+  24 mo ÷ 2)                 $40,000
 Expected annual refresh      $30,000
 Benefits                     $20,000
                           ---------
 ANNUAL TOTAL                $252,400
 ```
 
-Because equity is a band, report totals as bands too: Offer B ongoing = ~$245K–$275K. If the bands overlap between offers, say the compensation is effectively a tie and decide on the non-monetary factors.
+Because equity is a band, report totals as bands too. Offer B ongoing: fixed components ($160K + $16K + $24.6K = $200.6K) + equity band $42K–$78K = **~$242.6K–$278.6K**. If the bands overlap between offers, say the compensation is effectively a tie and decide on the non-monetary factors.
 
 ## Side-by-Side Template
 

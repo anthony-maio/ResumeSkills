@@ -16,11 +16,13 @@ Use this skill when the user wants to:
 
 ## Candidate Guardrails (always apply)
 
-**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+**Truthfulness:** Every claim, metric, course, certification, skill, tool, and responsibility must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. Missing number? Insert [USER-CONFIRMED METRIC] and ask. Estimates only on explicit request, marked (~ or range), with a logged derivation.
 
-**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere (resume, interviews, references).
+**Privacy & age signals:** On resumes, omit graduation years by default for senior candidates and never include street address, DOB, or photo (US industry norm; academic CVs and non-US norms differ — follow field conventions there). Frame seniority as scope, not elapsed time; total-years phrasing is the user's choice, not a default. Never mention legal disputes, HR complaints, or settlements; reason-for-leaving is one neutral, forward-looking line, used consistently.
 
-**Confidential search (employed users):** Ask before naming the current employer anywhere semi-public; offer blind variants. Never publish employer-confidential metrics without a confidentiality pass.
+**Confidential search (employed users):** Ask before naming the current employer in any outbound or public artifact; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
+
+**Examples in this skill are illustrative only:** never copy numbers, names, employers, venues, patent numbers, or identifiers from examples into user output.
 
 ## LinkedIn vs. Resume: Key Differences
 
@@ -38,7 +40,7 @@ Use this skill when the user wants to:
 ### 1. Profile Photo
 - Professional headshot (not casual), face ~60% of frame, good lighting, high resolution
 - Neutral or branded background; attire appropriate to the industry
-- A photo matters — profiles without one get substantially fewer recruiter views. Ignore unsourced multiplier claims ("21x more views") — no verifiable source backs that number.
+- A photo matters — the no-photo rule in the guardrails is a US *resume* norm; LinkedIn is a different artifact where a professional photo is the norm, and profiles without one likely get fewer recruiter views. Ignore unsourced multiplier claims ("21x more views") — no verifiable source backs that number.
 
 ### 2. Background Banner
 - 1584 x 396 px, professional design or industry-related image
@@ -51,6 +53,8 @@ Use this skill when the user wants to:
 
 ❌ Weak: "Looking for opportunities" / "Unemployed" / "Open to work" / "Student at University"
 
+*Fictional example for structure only — never copy its facts into user output.*
+
 ✅ Strong — staff/principal SWE:
 ```
 Staff Software Engineer | Distributed Systems & Platform Engineering | Payments APIs at [X]M+ req/day
@@ -62,7 +66,7 @@ Staff Engineer → Team Lead flexible | Backend Systems | Design reviews, mentor
 
 ✅ Strong — other roles:
 ```
-Senior Product Manager | B2B SaaS | 0→1 Products from Concept to $10M ARR
+Senior Product Manager | B2B SaaS | 0→1 Products from Concept to $[X]M ARR
 
 Data Scientist | Machine Learning & Analytics | Turning Data into Business Decisions
 ```
@@ -74,7 +78,7 @@ Data Scientist | Machine Learning & Analytics | Turning Data into Business Decis
 
 **Position:** About now renders near the top of the profile — treat it as prime real estate, not a footer.
 
-- 2,600 char limit; aim 1,500-2,000 (3-5 paragraphs)
+- 2,600 char limit; ~1,500-2,000 characters (3-5 paragraphs) is a common goal if you have that much substance — an optional range, not a default
 - Only ~300 characters show before "see more" — lead with the hook
 - Structure: hook → who you are/what you do → achievements & specialties → what you want → searchable skills line → call to action
 
@@ -105,7 +109,7 @@ Per role: title, company, dates, location, 2-3 sentence scope statement, 4-6 ach
 **Staff SWE example:**
 ```
 Staff Software Engineer
-TechCorp Inc. · Full-time
+[Company] · Full-time
 Mar 2022 - Present
 San Francisco, CA · Hybrid
 
@@ -124,23 +128,23 @@ Skills: Distributed Systems · Kubernetes · Go · Terraform · Observability
 
 **Cap is 100 skills now** (raised from 50) — use it, but stay honest:
 - Aim for 30-50 genuinely held, recruiter-searched skills; don't pad to 100
-- **Pin your top 3:** the first three skills in your list display pinned at the top of the profile — make these your three strongest, most-endorsed, most-searched skills and gather endorsements there first
+- **Put your strongest skills first.** LinkedIn's UI has at times surfaced the first few skills at the top of the profile — verify the current pinning behavior in the UI rather than assuming it. Order your strongest, most-endorsed, most-searched skills first and gather endorsements there
 - Include job-specific skills, tools, methodologies, and industry terms
 - Skip soft skills as list entries ("Leadership") — show them in Experience instead
 
 ### 7. Featured Section
-Portfolio pieces, published articles, talks, media coverage, key posts. Renders prominently — keep 3-6 strong items, refreshed as work evolves.
+Portfolio pieces, published articles, talks, media coverage, key posts. Renders prominently — a handful of strong items (3-6 is a common goal, not a rule), refreshed as work evolves.
 
 ### 8. Recommendations
-- Target 5-10 quality recommendations; for senior ICs, a mix of managers, peers, and engineers you mentored
+- A small bench of quality recommendations (5-10 is a common goal if your network supports it, not a rule); for senior ICs, a mix of managers, peers, and engineers you mentored
 - Give recommendations first; ask specific people with suggested talking points right after a shared success
 
 ## Keyword Optimization
 
 1. Pull terms from 5-10 job posts for the target role
 2. Mirror profiles of people already in the target role
-3. Place keywords: headline (highest weight), About (naturally repeated), Experience descriptions, Skills
-4. Exact phrases matter more than density; recent activity boosts ranking
+3. Place keywords across headline, About (naturally repeated), Experience descriptions, and Skills — this likely helps recruiter search and comprehension; LinkedIn doesn't publish a stable weighting, so don't treat placement order as a known ranking factor
+4. Exact phrases likely matter more than density, and recent activity likely helps visibility — LinkedIn doesn't publish its ranking model
 
 ## Recruiter Visibility Settings
 
@@ -154,15 +158,15 @@ Portfolio pieces, published articles, talks, media coverage, key posts. Renders 
 - Turn off "share profile edits" while job hunting (edit notifications broadcast activity)
 
 ### Creator mode — retired
-Creator mode was removed as a separate toggle in February 2024. Do not instruct anyone to "turn on creator mode" — follows, newsletters, and analytics are now standard profile features available to everyone.
+Creator mode was removed as a separate toggle during 2024. Do not instruct anyone to "turn on creator mode" — follows, newsletters, and analytics are now standard profile features available to everyone.
 
 ## Visibility Levers That Still Matter in 2026
 
 Completeness and cadence, condensed:
-- **Core completeness:** photo, custom headline, current role with a real description, About (1,500+ chars), skills filled toward the 100 cap (top 3 pinned), location + industry set — complete profiles rank higher in recruiter search
+- **Core completeness:** photo, custom headline, current role with a real description, a substantive About section, skills filled toward the cap (strongest first), location + industry set — complete profiles likely rank higher in recruiter search; LinkedIn doesn't publish a stable weighting
 - **Posting:** 1-2 substantive technical posts per month (deep-dives, incident write-ups, architecture lessons). This is enough — influencer cadence (3-5x/week) is unnecessary and reads as content-marketing for individual contributors
 - **Commenting:** thoughtful comments in your niche a few times a week — on posts by people in your target role/companies — often generates more recruiter attention than posting, and puts your headline in front of the right audience
-- **Recent activity boosts search ranking** — the posting + commenting combo above is what keeps you warm
+- **Recent activity likely helps visibility** (LinkedIn doesn't publish a stable ranking model) — the posting + commenting combo above is what keeps you warm
 
 ## Output Format
 
@@ -189,8 +193,8 @@ Completeness and cadence, condensed:
 - Modify: [Suggested changes]
 - Media to add: [Suggestions]
 
-### Skills to Add (and top 3 to pin)
-[List of skills to add; the 3 to pin and why]
+### Skills to Add (strongest first)
+[List of skills to add; which to order first and why]
 
 ## Visibility Settings
 - Open to Work mode recommended: [Recruiters only / public] + why
@@ -200,7 +204,7 @@ Completeness and cadence, condensed:
 1. [ ] Update headline
 2. [ ] Rewrite About section
 3. [ ] Update current role description
-4. [ ] Add skills toward 100 cap; pin top 3
+4. [ ] Add skills toward the cap; order strongest first
 5. [ ] Request recommendations
 6. [ ] Refresh Featured section
 7. [ ] Set Open to Work visibility

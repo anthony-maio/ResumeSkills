@@ -1,69 +1,76 @@
 # Cold Email Examples
 
-Two worked examples for cold-email-writer. Facts shown are illustrative — in real use, every claim, metric, and system must trace to the user's actual experience.
+Two worked examples for cold-email-writer. **Fictional examples for structure only** — every name, company, product, and metric below is invented; never copy them into user output. In real use, every claim, metric, and system must trace to the user's actual experience.
 
 ## Example 1: Mid-Level / International Candidate
 
 ```
-Subject: Backend Engineer — Sarah Chen
+Subject: Backend Engineer — [First Name Last Name]
 
-Hi Marcus,
+Hi [First Name],
 
-I just came across Meridian and spent more time on your site than I planned.
+I just came across [Company] and spent more time on your site than I planned.
 What pulled me in was the framing around your data infrastructure — you're not
 just building an LLM layer on top of existing records, you're rethinking how
-clinical data flows through the system in the first place. That's a harder
+the underlying data flows through the system in the first place. That's a harder
 problem and a more interesting one.
 
-I'm based in India, flagging that upfront. Happy to figure out the rest if
+I'm based in [Country], flagging that upfront. Happy to figure out the rest if
 there's a real fit.
 
-I currently work at Lune, a London-based climate intelligence company, where I
-build event-driven data pipelines and agentic AI workflows for emissions
-compliance — regulated, data-intensive systems where reliability isn't optional.
-I also built Memos, a RAG system from scratch: hybrid retrieval, reranking,
-ChromaDB, FastAPI. And InframetAI, an SDK for LLM cost and latency
-observability that came out of seeing what breaks when the data layer isn't
-designed around how models actually work.
+I currently work at [Current Company], a [one-line descriptor] company, where I
+build [systems you own] — [one concrete technical characterization, e.g.
+regulated, data-intensive systems where reliability isn't optional].
+I also built [Side Project A]: [two-phrase technical description]. And
+[Side Project B], a [artifact type] that came out of seeing [the problem it
+solves].
 
 I think you're looking for engineers who've actually built AI systems end to
 end, not just wrapped APIs. That's the work I've been doing.
 
-More about me: yourportfolio.com/about
+More about me: [portfolio link]
 
-I'm currently at Lune and open to what's next. I think my experience maps
-closely to what you're building — so I think we'd both get something out of
-a conversation.
+I'm currently at [Current Company] and open to what's next. I think my
+experience maps closely to what you're building — so I think we'd both get
+something out of a conversation.
 
-Sarah
-sarah@email.com
+[First Name]
+[email]
 ```
 
-## Example 2: Senior/Staff Engineer (Domestic, Confidential Variant)
+What works here: leads with specific product insight, discloses location
+upfront, gives two concrete technical proof points, and closes with a
+low-pressure ask.
+
+## Example 2: Staff Engineer, Confidential Search (blind variant)
 
 ```
-Subject: Staff Backend Engineer — Alex Rivera
+Subject: [Company] platform roles — [First Name Last Name]
 
-Hi Dana,
+Hi [First Name],
 
-Your engineering blog's post on sharding the ledger by region was the first
-thing in months I've read that described my exact problem set — I spent last
-year doing a staged decomposition of a payments monolith that four product
-teams depended on.
+I've been following [Company] since [concrete artifact: your engineering blog
+post on X / the open-source release of Y / how Z shipped], and it lines up with
+the work I've been doing: [one-sentence scope statement — e.g. I own the
+platform that N product teams build on, covering serving, reliability, and
+developer experience].
 
-I'm currently a staff engineer at a Series-B fintech (happy to name it once we
-talk), where I own ingestion for 40K requests per second and led the migration
-that cut p99 latency from 850ms to 120ms without a shipping freeze. Before
-that, five years in payments infrastructure at scale. I'm based in Denver and
-open to remote or hybrid.
+Most recently I led [the initiative most relevant to them] — [one factual
+outcome, user-confirmed: the migration, the latency number, the adoption
+figure]. Before that, [one-line prior scope].
 
-You're hiring someone to own billing infrastructure end to end — that's the
-scope I want, not a bigger title. If the timing's right, I'd value a
-conversation.
+I'm exploring senior platform roles. I'm currently at a [stage/sector
+descriptor — e.g. Series-B developer-tools company] and keeping the search
+quiet, so I'd appreciate discretion; happy to share specifics on a call.
 
-Alex
-alex@email.com
-github.com/alexrivera
+If you're hiring for [team/level], I'd value 20 minutes. Either way, [genuine
+one-line engagement with their work].
+
+[First Name]
+[non-employer-identifying email / portfolio]
 ```
 
-Note what's absent from the senior example: no "I feel like", no side projects, no achievement list — systems owned and org impact in one factual paragraph, leveling addressed head-on, current employer withheld until a conversation (blind variant).
+What works here: no hedges, no "I feel like" — scope and systems owned up
+front, one proof point, leveling addressed head-on, and the blind variant asks
+for discretion without naming the employer. Follow up once after 5-7 business
+days (2-3 sentences, one new piece of information), then stop.
