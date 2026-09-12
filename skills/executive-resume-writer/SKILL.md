@@ -1,6 +1,6 @@
 ---
 name: executive-resume-writer
-description: Create C-suite and VP level resumes emphasizing strategic leadership
+description: Use only for C-suite, VP, or board resume targets — never senior IC roles; emphasizes strategic leadership, P&L, and board positioning
 ---
 
 # Executive Resume Writer
@@ -8,36 +8,33 @@ description: Create C-suite and VP level resumes emphasizing strategic leadershi
 ## When to Use This Skill
 
 Use this skill when the user:
-- Is applying for C-suite, VP, or Director roles
+- Is applying for C-suite, VP, or board roles
 - Has 15+ years of experience in senior leadership
 - Needs to emphasize strategic leadership over tactical skills
 - Mentions: "executive resume", "C-suite", "VP resume", "senior leadership", "board", "executive search"
 
-## Core Capabilities
+**GATE — executive targets only.** This skill is for genuine C-suite/VP/board candidacy. Do NOT use it for senior individual contributors (staff/principal engineers, senior PMs, senior designers) — their resumes should stay achievement-technical and 1-2 pages; use `resume-section-builder` instead. A "senior" title alone is not an executive role.
 
-- Write resumes for C-suite and VP-level positions
-- Emphasize strategic leadership and business transformation
-- Showcase P&L responsibility and organizational impact
-- Balance achievements with leadership philosophy
-- Format for executive recruiters and board presentations
-- Include board experience and industry recognition
+## Candidate Guardrails (always apply)
+
+**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+
+**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere (resume, interviews, references).
+
+**Confidential search (employed users):** Ask before naming the current employer anywhere semi-public; offer blind variants. Never publish employer-confidential metrics without a confidentiality pass.
 
 ## Executive Resume Philosophy
-
-**Key Differences from Standard Resumes:**
 
 | Standard Resume | Executive Resume |
 |-----------------|------------------|
 | Lists skills | Demonstrates leadership brand |
 | Shows tasks | Shows strategic impact |
 | Focuses on "what" | Focuses on "so what" |
-| 1-2 pages | 2-3 pages acceptable |
+| 1-2 pages | 2-3 pages (executive-search specific — see below) |
 | Keywords for ATS | Story for decision-makers |
-| Individual contributions | Organizational transformation |
+| Individual contributions | Organizational impact |
 
 ## Executive Resume Structure
-
-### Recommended Sections
 
 ```
 1. Executive Profile/Summary
@@ -52,11 +49,12 @@ Use this skill when the user:
 ### Length Guidelines
 - VP/SVP: 2 pages
 - C-Suite: 2-3 pages
-- Board CV: Can be longer
+- Board CV: can be longer
+- **Note:** 2-3 pages is an executive-search convention. If the target is a tech company hiring an exec into a VP+ role through a normal process (not a retained search firm), expect the tech norm of 1-2 pages — bias toward 2.
 
 ## Executive Profile Section
 
-This replaces the standard professional summary. Should communicate your **leadership brand**.
+Replaces the standard summary. Communicates your **leadership brand**.
 
 ### Format
 ```
@@ -70,11 +68,10 @@ This replaces the standard professional summary. Should communicate your **leade
 ```
 
 ### Example
-
 ```
-CHIEF OPERATING OFFICER | P&L LEADERSHIP | OPERATIONAL TRANSFORMATION
+CHIEF OPERATING OFFICER | P&L LEADERSHIP | OPERATIONAL SCALING
 
-Growth-focused operations executive with 20+ years scaling B2B technology companies from $50M to $500M+ in revenue. Known for building high-performance teams, operational excellence, and creating scalable infrastructure that enables rapid growth.
+Growth-focused operations executive with 15+ years scaling B2B technology companies from $50M to $500M+ in revenue. Known for building high-performance teams, operational excellence, and creating scalable infrastructure that enables rapid growth.
 
 Track record includes 3 successful exits, 2 IPO preparations, and leading organizations of 500+ employees across 6 countries. Expertise in operational strategy, M&A integration, and digital transformation in SaaS and enterprise software environments.
 
@@ -85,7 +82,6 @@ Core philosophy: Build repeatable processes that scale while maintaining the agi
 
 Frame as leadership themes rather than skills lists.
 
-### Example
 ```
 LEADERSHIP COMPETENCIES
 
@@ -96,9 +92,8 @@ Operational Excellence  | Change Management        | Investor Relations
 
 ## Career Highlights Section
 
-Place your biggest achievements upfront before chronological experience.
+Biggest achievements upfront, before chronological experience.
 
-### Format
 ```
 CAREER HIGHLIGHTS
 
@@ -107,16 +102,7 @@ CAREER HIGHLIGHTS
 • [Achievement 3 with metrics]
 • [Achievement 4 with metrics]
 ```
-
-### Example
-```
-CAREER HIGHLIGHTS
-
-• Led operational transformation at TechCorp, improving EBITDA margins from 12% to 28% while growing revenue from $150M to $400M
-• Executed 5 acquisitions totaling $200M+ and successfully integrated 3 companies with 95% employee retention
-• Built global operations team from 50 to 500+ employees across US, EMEA, and APAC regions
-• Prepared company for successful IPO, implementing SOX compliance and investor-ready reporting
-```
+(Metrics must be the user's real, defensible numbers.)
 
 ## Experience Section for Executives
 
@@ -124,44 +110,15 @@ CAREER HIGHLIGHTS
 
 **[Leadership Action] + [Strategic Initiative] + [Business Outcome at Scale]**
 
-### Example Role
-
-```
-CHIEF OPERATING OFFICER
-TechCorp Inc. | San Francisco, CA | 2019 - Present
-$400M B2B SaaS company | 1,200 employees | Series D - IPO track
-
-Recruited by CEO to transform operations and prepare company for IPO. Direct reports include VP Engineering, VP Customer Success, VP Operations, and CIO. Full P&L ownership for services business ($150M).
-
-Strategic Initiatives & Results:
-
-• Operational Transformation: Redesigned end-to-end operations, improving gross margins from 62% to 78% and reducing customer onboarding time from 90 to 30 days
-
-• Scale & Growth: Built infrastructure to support growth from $150M to $400M revenue, including implementation of ERP, expansion to 3 new geographies, and establishment of 24/7 global support
-
-• M&A Leadership: Served as operational lead for 3 acquisitions totaling $75M, achieving full integration within 6 months and 95% talent retention
-
-• Team Development: Expanded operations organization from 200 to 600 employees, established leadership development program that promoted 15 internal candidates to VP/Director roles
-
-• IPO Preparation: Led SOX compliance implementation, established audit committee reporting, and built investor-ready operational metrics and forecasting capabilities
-```
-
 ### Key Elements for Executive Experience
 
-**Always Include:**
+**Always include:**
 - Company context (revenue, employees, stage)
 - Reporting structure / span of control
 - P&L or budget responsibility
 - Strategic scope
 
-**Metrics to Emphasize:**
-- Revenue growth ($ and %)
-- Profitability improvement (margins, EBITDA)
-- Cost reduction
-- Team size and development
-- Geographic expansion
-- M&A activity
-- Exit outcomes
+**Metrics to emphasize:** revenue growth ($ and %), profitability (margins, EBITDA), cost reduction, team size and development, geographic expansion, M&A activity, exit outcomes.
 
 ## Board & Advisory Section
 
@@ -180,76 +137,56 @@ Provided operational guidance through $200M acquisition process.
 
 ## Executive-Specific Considerations
 
-### Emphasize Transformation
-
-Executives are hired to **transform**, not maintain. Show:
-- What changed because of you
-- Before/after states
-- Scale of impact
-
-**Transformation Story Formula:**
-"Inherited [situation]. Implemented [strategic change]. Achieved [outcome]."
+### Emphasize Change With Proof
+Executives are hired to change things, not maintain them. Show what changed because of you, before/after states, and scale of impact.
+**Story formula:** "Inherited [situation]. Implemented [strategic change]. Achieved [outcome]."
 
 ### Show Leadership Philosophy
-
-Unlike individual contributor resumes, executive resumes should hint at **how** you lead.
-
-**Examples:**
-- "Known for building consensus across diverse stakeholder groups"
-- "Leads with data-driven decision making while maintaining strategic flexibility"
-- "Champions innovation while maintaining operational discipline"
+Hint at **how** you lead: "Known for building consensus across diverse stakeholder groups"; "Leads with data-driven decision making while maintaining strategic flexibility."
 
 ### Handle Tenure Carefully
-
-**Short Tenures:** Frame around specific missions
-- "Brought in to lead post-merger integration"
-- "Recruited for turnaround; completed in 18 months"
-- "Joined to prepare company for acquisition"
-
-**Long Tenures:** Show progression and reinvention
-- "Promoted through 4 roles over 12 years"
-- "Led multiple transformations as company grew from $50M to $500M"
+**Short tenures:** frame around specific missions — "Brought in to lead post-merger integration"; "Recruited for turnaround; completed in 18 months."
+**Long tenures:** show progression and reinvention — "Promoted through 4 roles over 12 years."
 
 ### Confidential Information
-
-**Do:**
-- Use percentage improvements when absolutes are confidential
-- Use ranges for revenue/headcount
-- Speak to relative impact
-
-**Don't:**
-- Share proprietary strategies
-- Name confidential acquisition targets
-- Reveal undisclosed financial information
+**Do:** use percentage improvements when absolutes are confidential; use ranges for revenue/headcount.
+**Don't:** share proprietary strategies, name confidential targets, or reveal undisclosed financials.
 
 ## Executive Resume Tone
 
-### Power Language for Executives
+### Credible Language for Executives
+**Strategic action verbs (credible, checkable):**
+- Led, Drove, Built, Scaled, Established, Negotiated
+- Spearheaded, Orchestrated, Steered, Directed
+- Restructured, Integrated, Launched
 
-**Strategic Action Verbs:**
-- Spearheaded, Orchestrated, Championed, Steered
-- Transformed, Revolutionized, Pioneered
-- Architected, Engineered (strategically)
-- Drove, Accelerated, Catalyzed
+Avoid hype verbs — "Revolutionized", "Transformed", "Changed the game" — they read as inflation and invite skepticism from boards and search firms who will verify every claim. Prefer precise, boring-but-true verbs paired with real numbers: "Grew", "Reduced", "Delivered".
 
-**Leadership Language:**
+**Leadership framing:**
 - "Led organization through..."
 - "Built and scaled..."
 - "Established vision for..."
 - "Negotiated and secured..."
-- "Championed transformation..."
 
 ### What to Avoid
-
 - ❌ Tactical/operational language (managed, handled, assisted)
 - ❌ First person pronouns (I, my, me)
 - ❌ Jargon without context
 - ❌ Generic statements without proof
-- ❌ Too much humility (take credit appropriately)
+- ❌ Hype verbs that can't be verified
+
+## Executive Search Considerations
+
+**Your resume may be seen by:** executive recruiters, board members, PE/VC partners, CEOs and CHROs.
+
+**Optimize for:** quick scanning by busy executives, clear career-progression narrative, obvious leadership brand, credible and verifiable achievements.
+
+**Remember:**
+- Retained executive-search firms often check references before interviews — that is executive-search-firm-specific practice, not universal. Tech companies and most other employers check references last, after final interviews. Don't assume early-stage reference needs outside retained search.
+- Your resume will be fact-checked
+- Relationships and reputation matter; the resume opens doors, relationships close deals
 
 ## Output Format
-
-When writing an executive resume:
 
 ```markdown
 # EXECUTIVE RESUME
@@ -275,7 +212,7 @@ When writing an executive resume:
 [Board positions]
 
 ## Education & Development
-[Degrees and executive education]
+[Degrees and executive education — no graduation years by default]
 
 ---
 
@@ -284,23 +221,3 @@ When writing an executive resume:
 - Leadership brand: [What you're known for]
 - Differentiator: [What sets you apart]
 ```
-
-## Executive Search Considerations
-
-**Your resume may be seen by:**
-- Executive recruiters
-- Board members
-- PE/VC partners
-- CEOs and CHROs
-
-**Optimize for:**
-- Quick scanning by busy executives
-- Clear narrative of career progression
-- Obvious leadership brand
-- Credible, verifiable achievements
-
-**Remember:**
-- Executive searches often involve references before interviews
-- Your resume will be fact-checked
-- Relationships and reputation matter
-- The resume opens doors; relationships close deals

@@ -1,6 +1,6 @@
 ---
 name: resume-tailor
-description: Customize resume for specific job postings while maintaining truthfulness
+description: Use when tailoring an existing resume to a specific job posting or JD — emphasis, bullet order, keyword mirroring, and truthful versioning, not rewriting from scratch.
 ---
 
 # Resume Tailor
@@ -9,264 +9,134 @@ description: Customize resume for specific job postings while maintaining truthf
 
 Use this skill when the user wants to:
 - Customize their resume for a specific job posting
-- Adjust their resume to match job requirements
+- Adjust emphasis to match job requirements
 - Create a targeted version of their resume
 - Mentions: "tailor resume", "customize resume", "target role", "specific job", "match job description"
 
-Use AFTER job-description-analyzer to know what to emphasize.
+Use AFTER job-description-analyzer to know what to emphasize. Use resume-ats-optimizer for parse/match checking; this skill changes content emphasis only.
 
-## Core Capabilities
+## Candidate Guardrails (always apply)
 
-- Reorder experience sections by relevance to target role
-- Adjust professional summary for specific position
-- Add missing keywords from job description
-- Modify bullet points to match job requirements
-- Maintain authenticity while optimizing match
-- Create multiple targeted resume versions
+**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
 
-## The Tailoring Philosophy
+**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere.
 
-**Key Principle:** You're not lying or fabricating - you're HIGHLIGHTING the most relevant parts of your true experience.
+**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass — prefer percentages, ranges, anonymized phrasing.
 
-Think of your full experience as a library of achievements. Tailoring means selecting the books that best fit what each employer is looking for.
+## The Truth vs. Tailoring Line (read before any edit)
+
+**Acceptable tailoring:**
+- Reordering true information *within* a role (bullet order)
+- Emphasizing relevant experience in the summary
+- Using industry-standard terminology and the JD's vocabulary for skills the user truly has
+- Adding context to vague statements (with user-confirmed facts)
+- Compressing old roles to make room for relevant ones
+
+**Unacceptable (lying):**
+- Adding skills the user doesn't have
+- Changing numbers or metrics
+- Creating fake experiences
+- Claiming titles the user didn't hold
+- Stating certifications or courses the user hasn't completed
+
+**Never reorder jobs out of reverse-chronological order.** Parsers and recruiters read dates, not visual order; non-chronological ordering looks like concealment and breaks work-history parsing. Relevance is controlled by bullet order, summary, and skills placement — never by job order.
 
 ## Tailoring Process
 
-### Step 1: Analyze the Job (Use Job Description Analyzer First)
+### Step 1: Analyze the Job (use job-description-analyzer first)
 - Identify required skills and keywords
 - Note the company's priorities
 - Understand the role's primary responsibilities
 
-### Step 2: Audit Your Resume
+### Step 2: Audit the Resume
 For each section, ask:
-- Does this support my candidacy for THIS specific role?
+- Does this support the candidacy for THIS specific role?
 - Is there a better way to phrase this for THIS job?
-- Should this be higher or lower in priority?
+- Should this bullet be higher or lower in the role?
 
 ### Step 3: Make Strategic Adjustments
 
-**Professional Summary:** Rewrite to mirror the job's key requirements
+**Professional Summary:** Rewrite to mirror the job's key requirements (truthfully — lead with scope, not tenure).
 
-**Skills Section:** Reorder to put most relevant skills first, add missing keywords
+**Skills Section:** Reorder most-relevant first; surface true skills using the JD's terminology.
 
-**Experience:** 
-- Reorder jobs if a less recent role is more relevant
-- Swap bullet points to lead with most relevant achievements
-- Add keywords naturally into existing bullets
+**Experience (stays reverse-chronological, always):**
+- Reorder *bullets* within each role: lead with what this employer cares about
+- Compress or drop the least relevant bullets (never the whole role)
+- Fold JD keywords into existing true bullets
 
-**Education:** Highlight relevant coursework, certifications
+**Education:** Highlight relevant coursework/certifications only if true and recent.
 
-## Section-by-Section Tailoring Guide
+## How to Control Emphasis (instead of reordering jobs)
 
-### Professional Summary
+**1. Bullet order within each role.** Applying for a management-leaning role — lead with "Led 8-engineer platform team..."; applying for an IC-leadership role — lead with "Owned architecture for the payments platform (12 services, 40K QPS)...". Same role, same employer, same dates — only the bullet order changes.
 
-This is your "elevator pitch" - customize for each application.
+**2. Summary content.** The summary is the primary tailoring surface for senior candidates. Two versions of the same person:
 
-**Generic Summary (AVOID):**
 ```
-Results-driven professional with 5 years of experience in business operations. Strong analytical and communication skills. Looking for a challenging opportunity to grow.
-```
+IC-leadership emphasis:
+"Staff engineer specializing in LLM inference platforms. Led the migration
+of serving infrastructure used by 4 product teams; published applied work
+on latency-optimized model serving."
 
-**Tailored for Operations Manager Role:**
-```
-Operations Manager with 5 years optimizing supply chain processes and reducing costs by 25%. Expertise in Lean Six Sigma, vendor management, and cross-functional team leadership. Track record of improving operational efficiency while maintaining quality standards.
-```
-
-**Tailored for Project Manager Role (Same Person):**
-```
-Project Manager with 5 years leading cross-functional initiatives from concept to delivery. PMP-certified with expertise in Agile methodology, stakeholder management, and budget oversight. Track record of on-time, under-budget project delivery across $10M+ portfolios.
+Management emphasis (same person):
+"Engineering leader for the AI platform org (12 engineers across 3 teams).
+Grew the team from 4 to 12 while shipping the model-serving platform to
+production."
 ```
 
-### Skills Section Reordering
+**3. Skills placement.** Put the JD's top 3–5 true skills first in the skills section; the rest follow in normal order.
 
-**Job Description Emphasizes:** Data analysis, SQL, Python, stakeholder communication
+**4. Compression.** Roles older than ~10–15 years (or clearly irrelevant ones) can shrink to one line: "Earlier experience: Data Analyst, Acme Corp (2010–2013)". Flag the trade-off to the user; never remove content they want kept.
 
-**Before (Generic Order):**
-```
-Skills: Microsoft Office, Communication, Project Management, Python, SQL, Data Visualization, Leadership
-```
+## Keyword Form for Tech
 
-**After (Tailored Order):**
-```
-Skills: SQL, Python, Data Analysis, Data Visualization, Stakeholder Communication, Project Management, Microsoft Office
-```
+If the JD says "LLMs" and the resume says "large language models", use both forms once each — once spelled out, once abbreviated — rather than exact-phrase-only matching. Same for "K8s/Kubernetes", "postgres/PostgreSQL", "ML/机器学习"-style variants. Each critical term should appear where a reader expects it: once in skills, once inside a concrete achievement. Never repeat a term solely to raise density.
 
-### Experience Section
+## Tailoring Scenarios
 
-**Strategy 1: Reorder Jobs**
+### Scenario 1: Staff IC role, but recent title is "Engineering Manager"
+- Keep technical bullets dominant in each role
+- Frame leadership as *technical* leadership: design reviews, migrations, mentorship, strategy docs
+- Summary: "Staff engineer (most recently EM)..." or lead with scope: "Led technical direction for a 40-engineer org's AI platform"
+- Do NOT hide the title — reframe the work under it
 
-If your most recent job is less relevant than a previous role:
+### Scenario 2: Manager role, but deeply technical
+- Lead with team-scope and org-outcome bullets
+- Keep 1–2 hard-technical bullets per role to preserve credibility
+- Summary mentions span of ownership (teams, systems, budget) before technologies
 
-**Before:**
-1. Marketing Coordinator (current, but applying for data role)
-2. Data Analyst (previous, highly relevant)
+### Scenario 3: Staff-engineer resume, two emphases (AI vs platform)
+- AI emphasis: lead bullets with model quality, eval results, inference cost; mirror the JD's "LLM inference" vocabulary
+- Platform emphasis: lead with scale, reliability, migration outcomes; mirror "platform", "infrastructure", "developer productivity" vocabulary
+- Swap which papers/talks appear in the Publications line per version
 
-**After:**
-1. Data Analyst (labeled with dates, moved up)
-2. Marketing Coordinator (still included, but secondary)
+### Scenario 4: Startup target (coming from big companies)
+- Highlight cross-functional work, end-to-end ownership, speed
+- De-emphasize process maturity and large-team coordination
 
-**Strategy 2: Swap Bullet Order**
-
-Lead with bullets most relevant to the target role.
-
-**Applying for Management Role - Lead with:**
-- "Led team of 12..."
-- "Managed budget of $2M..."
-
-**Applying for Technical Role - Lead with:**
-- "Developed automated system..."
-- "Analyzed 500K+ data points..."
-
-**Strategy 3: Adjust Bullet Language**
-
-Incorporate job description keywords while staying truthful.
-
-**Job Description Says:** "stakeholder management"
-**Your Bullet Says:** "Worked with various teams"
-**Tailored Version:** "Managed stakeholder relationships across 5 departments, ensuring alignment on project priorities"
-
-## Tailoring Templates
-
-### For Each Job Application, Create:
-
-```markdown
-## RESUME TAILORING PLAN
-
-**Target Position:** [Job Title]
-**Company:** [Company Name]
-**Match Score:** [From JD Analyzer]
-
-### Summary Customization
-**Current:** [Your current summary]
-**Tailored:** [Rewritten for this role]
-
-### Skills Reordering
-**Current Order:** [List]
-**New Order:** [Reordered list with added keywords]
-**Keywords Added:** [New skills from JD]
-
-### Experience Adjustments
-
-**Job 1: [Title]**
-- Bullet to emphasize: [Which bullet to lead with]
-- Keyword to add: [What phrase to incorporate]
-- Bullet to de-emphasize: [Move down or remove if space needed]
-
-**Job 2: [Title]**
-[Same structure]
-
-### Other Adjustments
-- Education: [Any relevant coursework to add]
-- Certifications: [Any to highlight]
-- Projects: [Relevant projects to include]
-```
-
-## Common Tailoring Scenarios
-
-### Scenario 1: Technical Role at Non-Tech Company
-
-**Challenge:** They want technical skills but also business acumen
-
-**Strategy:**
-- Lead with technical achievements
-- Include business impact in every technical bullet
-- Add "translated technical concepts for business stakeholders"
-
-### Scenario 2: Management Role (But You've Done Both IC and Management)
-
-**Challenge:** Show leadership without abandoning technical credibility
-
-**Strategy:**
-- Summary: Emphasize leadership
-- Experience: Lead with team management bullets
-- Keep some technical bullets to show you understand the work
-
-### Scenario 3: Startup (But You've Worked at Big Companies)
-
-**Challenge:** Show you can thrive in ambiguity and wear many hats
-
-**Strategy:**
-- Highlight cross-functional work
-- Emphasize initiative and self-starting
-- Show scrappy, creative problem-solving
-- De-emphasize rigid processes and large team structures
-
-### Scenario 4: Big Company (But You've Worked at Startups)
-
-**Challenge:** Show you can work within structure and at scale
-
-**Strategy:**
-- Emphasize process improvement
-- Highlight work that scaled
-- Show collaboration across teams
+### Scenario 5: Big-company target (coming from startups)
+- Emphasize work that scaled, cross-team collaboration, operational maturity
 - Add metrics that show impact at scale
-
-## Keyword Integration Rules
-
-### DO:
-- Add keywords that truthfully describe your work
-- Use exact phrasing from job description when accurate
-- Place keywords naturally in context
-- Include keywords in multiple locations (summary, skills, experience)
-
-### DON'T:
-- Add skills you don't actually have
-- Keyword stuff (repeating same term 10x)
-- Create a different meaning than your actual experience
-- Sacrifice readability for keyword density
-
-## Truth vs. Tailoring Line
-
-**Acceptable Tailoring:**
-- Reordering true information
-- Emphasizing relevant experience
-- Using industry-standard terminology
-- Adding context to vague statements
-- Matching language style to job description
-
-**Unacceptable (Lying):**
-- Adding skills you don't have
-- Changing numbers or metrics
-- Creating fake experiences
-- Claiming titles you didn't hold
-- Stating certifications you don't have
 
 ## Version Management
 
-### Maintain a Master Resume
-- Keep ONE complete document with ALL experiences
-- Include every bullet you've ever written
-- This is your "source of truth"
-
-### Create Targeted Versions
-- Name files clearly: "JohnSmith_Resume_ProductManager_TechCorp.pdf"
-- Track which version went to which company
+- Maintain ONE master resume with every role and bullet — the source of truth
+- Targeted versions: `[LastName]_Resume_[TargetRole]_[Company]_[Date].pdf`
+- Track which version went to which company, and **keep a log of what each version claims** — inflated claims in one version are discoverable inconsistencies across applications and interviews
 - Save tailoring notes for interview prep
-
-### Version Naming Convention
-```
-[LastName]_Resume_[TargetRole]_[Company]_[Date].pdf
-
-Examples:
-- Smith_Resume_PM_Google_Jan2024.pdf
-- Smith_Resume_DataAnalyst_Meta_Jan2024.pdf
-- Smith_Resume_General_Master.docx (your master file)
-```
 
 ## Quick Tailoring Checklist
 
-Before submitting any resume:
-
-1. ✅ Summary mentions the exact job title/function
-2. ✅ Top 5 skills match job description's top 5 requirements
-3. ✅ Most relevant experience is positioned first
-4. ✅ Each job's top bullet addresses job's key requirement
-5. ✅ Keywords from JD appear naturally throughout
-6. ✅ Company/industry terminology is used correctly
-7. ✅ All claims are truthful
-8. ✅ File is named appropriately
-9. ✅ ATS formatting maintained
-10. ✅ Saved for interview prep reference
+1. ✅ Summary mentions the target job's function and leads with scope
+2. ✅ Top skills match the JD's top requirements (truthfully)
+3. ✅ Each role's top bullet addresses the job's key requirement
+4. ✅ Jobs remain in strict reverse-chronological order
+5. ✅ JD keywords appear naturally, both forms where relevant
+6. ✅ Roles older than ~15 years considered for compression
+7. ✅ All claims are truthful and consistent with other versions
+8. ✅ No age proxies added (graduation years, '20+ years')
+9. ✅ File named per convention; version logged
 
 ## Output Format
 
@@ -279,34 +149,29 @@ When tailoring a resume, provide:
 
 ### Professional Summary
 **Before:** [Original]
-**After:** [Tailored version]
-**Keywords Added:** [List]
+**After:** [Tailored — leads with scope, mirrors JD requirements]
 
 ### Skills Section
-**New Order:** [Reordered list]
-**Added:** [New keywords]
-**Removed:** [If any, for space]
+**New order:** [Reordered list]
+**Terminology changes:** [e.g., "large language models (LLMs)"]
 
 ### Experience Changes
+**[Company] — [Title]** (order unchanged)
+- Move bullet X to position 1 (why)
+- Modify bullet Y: Before → After
+- Compress bullet Z to one line (why)
 
-**[Company Name] - [Title]**
-- Move bullet X to position 1
-- Modify bullet Y: [Before → After]
-- Add keyword "[phrase]" to bullet Z
+### Truthfulness Check
+- Every added keyword backed by: [bullet or user confirmation]
+- Numbers changed: none / [list with user confirmation]
 
-[Repeat for each relevant job]
-
-### Overall Changes Summary
-- Keywords added: X
-- Bullets modified: Y
-- Sections reordered: Yes/No
-- Estimated new match score: Z%
+### Version Log
+- Company, date, file name, summary of claims made
 ```
 
 ## Implementation Notes
 
 - Always start with the job description analyzer
+- Never sacrifice truthful claims or chronological order for match
 - Keep tailoring changes documented for interview prep
-- Maintain master resume as source of truth
-- Never sacrifice ATS compatibility for tailoring
-- Test keyword match after tailoring
+- Defer numeric estimation to resume-quantifier (ask-first rules apply there)

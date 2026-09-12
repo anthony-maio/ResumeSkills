@@ -1,6 +1,6 @@
 ---
 name: interview-prep-generator
-description: Generate STAR stories, practice questions, and talking points from resume
+description: Use when preparing for a job interview — STAR stories, predicted questions, senior/staff SWE loops, salary and departure-question guardrails, and a per-role prep plan.
 ---
 
 # Interview Prep Generator
@@ -14,362 +14,189 @@ Use this skill when the user wants to:
 - Anticipate questions for a specific role
 - Mentions: "interview prep", "prepare for interview", "STAR stories", "interview questions", "behavioral questions"
 
-## Core Capabilities
+## Candidate Guardrails (always apply)
 
-- Generate role-specific interview questions
-- Create STAR stories from resume bullets
-- Predict questions based on job description
-- Prepare answers for common questions
-- Create talking points for each experience
-- Identify potential concerns and prepare responses
+**Truthfulness:** Every claim, metric, and achievement must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+
+**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-leaning line, identical everywhere.
+
+**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
 
 ## Interview Preparation Framework
 
 ### Phase 1: Role Analysis
 - Extract likely questions from job description
-- Identify skills that will be tested
-- Research company interview style
+- Identify skills that will be tested (for senior/staff SWE: system design is usually the decisive loop — see references/question-banks.md)
+- Research the company's interview format (onsite vs. video vs. async screen; coding vs. take-home)
 
 ### Phase 2: Story Banking
-- Convert resume bullets into STAR stories
-- Create stories for common competencies
-- Practice concise delivery
+- Convert resume bullets into STAR stories (method below; examples in references/star-examples.md)
+- Cover the core competencies: leadership, problem-solving, collaboration, achievement, failure/growth
+- For senior/staff SWE add: org-influence stories, killing-your-own-project, build-vs-buy-vs-deprecate, disagreement-with-a-principal
+- Build full (2 min), short (60s), and one-liner (15s) versions of each
 
 ### Phase 3: Mock Preparation
-- Practice common questions
-- Prepare questions to ask
-- Research company-specific topics
+- Practice answers aloud, timed
+- Prepare questions to ask (staff-appropriate set below)
+- Rehearse the departure narrative and salary answer — these are now guardrail items, not improvisation
 
-## The STAR Method Detailed
+## The STAR Method
 
-### Structure
 - **S**ituation: Set the context (1-2 sentences)
 - **T**ask: Describe your responsibility (1 sentence)
 - **A**ction: Explain what YOU did (2-3 sentences)
 - **R**esult: Share the outcome with metrics (1-2 sentences)
 
-### STAR Story Template
-
 ```
 SITUATION: "At [Company], we faced [specific challenge/context]..."
-
 TASK: "I was responsible for [specific ownership]..."
-
 ACTION: "I [specific action 1], [specific action 2], and [specific action 3]..."
-
 RESULT: "As a result, [quantified outcome]. This led to [business impact]."
 ```
 
-### Example STAR Story
+Delivery time: 90 seconds to 2 minutes. Full worked examples (including a staff-engineering story with scale metrics): `references/star-examples.md`.
 
-**Question:** "Tell me about a time you led a team through a difficult project."
+## Hard Guardrails: Departure & Career-Retrospective Questions
 
-**Answer:**
-```
-SITUATION: "At TechCorp, our main product was losing customers to a competitor who had launched a better mobile experience. We were seeing 5% monthly churn, up from our normal 2%."
+These are the highest-risk moments in any interview. Non-negotiable rules:
 
-TASK: "As the product manager, I was responsible for turning around our mobile product to stop the bleeding and win back customers."
+1. **Never mention legal disputes, HR complaints, settlements, or any negative framing of a former employer** — not if asked directly, not as context, not "off the record." Not even euphemistically.
+2. **Never bad-mouth a former employer, manager, or team**, even when the interviewer invites it ("sounds like a tough situation there"). They assume you'll talk about them the same way next.
+3. **Neutral, rehearsed departure narrative** — same one line for every departure, everywhere, forward-leaning:
 
-ACTION: "I started by interviewing 30 churned customers to understand exactly why they left. Based on that research, I prioritized 5 critical features that would achieve parity with competitors. I then worked with engineering to restructure our roadmap, negotiated with leadership to add 2 contract developers, and implemented weekly sprint reviews to keep the project on track. I also started a beta program with 50 of our best customers to get feedback before full launch."
+   ```
+   "I'm proud of what we built — [one concrete thing]. I'm looking for [scope/growth this role offers], and the timing lined up."
+   ```
 
-RESULT: "We launched the improved mobile app in 3 months, reducing churn from 5% back to 2% within 60 days. We recovered 35% of churned customers and the NPS for our mobile app increased from 32 to 58. This project was recognized in our company all-hands as a turnaround success."
-```
+   Rehearse it until it's boring. Rehearsed ≠ robotic; it means it survives pressure.
+4. **Cap the resume walkthrough at the last 10-15 years.** "Walk me through your resume" is not an invitation to narrate 25 years — it's an age proxy and it bores interviewers. Cover the last 3-4 roles in depth, then one line: "...and earlier roles in [domain X] and [domain Y]." If probed further, one sentence per role, maximum.
+5. **If asked directly about a dispute or complaint** (illegal in many places, still happens): one neutral sentence, no detail, redirect to the role — "That's resolved and behind me; I'd rather talk about what I'd build here." Do not elaborate, do not correct the record, do not express grievance.
+6. **"What would you do differently in your career?"** — answer with a professional choice (a technology bet, a scope decision), never a person, employer, or conflict.
 
-**Time:** 90 seconds to 2 minutes
+## Compensation (pay-transparency era)
 
-## Story Banking Process
+Pay-transparency laws are now in force in MA (2025), CA, CO, NY, WA and roughly 20 other states; asking about compensation and leveling is expected professional behavior, not a faux pas. Several of these states also **ban employers from asking salary history**.
 
-### Step 1: Identify Core Competencies
+- **The posted range is the anchor.** Research it before the interview (JD, Levels.fyi, Blind). If none is posted where one is legally required, that's a question to ask.
+- **Never volunteer salary history.** Not from prior roles, not "what are you making now." If asked (and it's not in a banned jurisdiction), redirect: "I'd rather focus on the value of the role — what's the range budgeted?" You are never obligated to disclose history.
+- **If asked for expectations:** give a researched range anchored to the top of the market band, stated plainly:
 
-**Leadership Stories Needed:**
-- Led a team through challenge
-- Managed conflict
-- Made a difficult decision
-- Delegated effectively
-- Developed/mentored someone
+  ```
+  "Based on the posted range and my research, I'm targeting [upper half of band] — [specific scope evidence] is why."
+  ```
 
-**Problem-Solving Stories Needed:**
-- Solved complex technical problem
-- Fixed a process that was broken
-- Handled unexpected obstacle
-- Made decision with incomplete information
-- Improved something proactively
-
-**Collaboration Stories Needed:**
-- Worked with difficult colleague
-- Aligned cross-functional stakeholders
-- Built consensus
-- Partnered with other teams
-- Influenced without authority
-
-**Achievement Stories Needed:**
-- Exceeded goals/expectations
-- Delivered under pressure
-- Went above and beyond
-- Took initiative
-- Accomplished something proud of
-
-**Failure/Growth Stories Needed:**
-- Made a mistake and learned
-- Received critical feedback
-- Failed and recovered
-- Changed approach based on learning
-
-### Step 2: Map Resume to Stories
-
-For each resume bullet, create a full STAR story:
-
-```
-RESUME BULLET: "Led cross-functional team of 12 to deliver $2M product launch"
-
-STAR EXPANSION:
-
-SITUATION: Our company was losing market share to a competitor, and leadership decided we needed to launch a new product line within 6 months.
-
-TASK: As Product Manager, I was tasked with leading the product from concept to launch, coordinating across engineering, design, marketing, and sales teams (12 people total).
-
-ACTION: 
-- I established weekly cross-functional syncs and a shared Notion workspace
-- Created a detailed project plan with milestones and dependencies
-- Implemented a rapid prototyping process with 2-week design sprints
-- Personally resolved 3 major conflicts between engineering and marketing
-- Presented monthly updates to leadership to maintain alignment
-
-RESULT: 
-- Launched on time and under budget
-- Generated $2M revenue in first year
-- Acquired 50 new enterprise customers
-- Team received company innovation award
-```
-
-### Step 3: Create Multiple Versions
-
-Each story should have:
-- **Full version:** 2 minutes (for "tell me about a time...")
-- **Short version:** 60 seconds (for follow-ups)
-- **One-liner:** 15 seconds (for "give me an example")
-
-## Common Interview Questions by Category
-
-### Behavioral Questions
-
-**Leadership:**
-- "Tell me about a time you led a team."
-- "Describe a situation where you had to make an unpopular decision."
-- "How have you developed team members?"
-- "Tell me about a time you dealt with a difficult team member."
-
-**Problem-Solving:**
-- "Describe a complex problem you solved."
-- "Tell me about a time something didn't go as planned."
-- "How do you approach problems with incomplete information?"
-- "Give an example of an innovative solution you developed."
-
-**Collaboration:**
-- "Tell me about working with someone difficult."
-- "Describe a time you had to influence someone without authority."
-- "How do you handle disagreements with colleagues?"
-- "Tell me about a successful cross-functional project."
-
-**Achievement:**
-- "What's your proudest professional accomplishment?"
-- "Tell me about a time you exceeded expectations."
-- "Describe a goal you achieved against the odds."
-- "What's the biggest impact you've had in your career?"
-
-**Failure/Growth:**
-- "Tell me about a time you failed."
-- "What's the biggest mistake you've made at work?"
-- "How do you handle criticism?"
-- "What would you do differently in your career?"
-
-### Role-Specific Questions
-
-**Product Management:**
-- "How do you prioritize features?"
-- "Walk me through how you'd approach [product problem]."
-- "How do you measure product success?"
-- "Tell me about a product you shipped from 0 to 1."
-
-**Engineering:**
-- "Describe your experience with [specific technology]."
-- "How do you approach code reviews?"
-- "Tell me about a technical challenge you solved."
-- "How do you balance technical debt vs. features?"
-
-**Marketing:**
-- "How do you measure campaign success?"
-- "Tell me about a campaign that didn't work."
-- "How do you allocate budget across channels?"
-- "Describe your approach to brand building."
-
-**Sales:**
-- "Walk me through your sales process."
-- "Tell me about a deal you lost and why."
-- "How do you handle objections?"
-- "Describe your largest closed deal."
-
-### Standard Questions
-
-**About You:**
-- "Tell me about yourself." (2 min pitch)
-- "Walk me through your resume."
-- "Why are you looking for a new role?"
-- "Where do you see yourself in 5 years?"
-
-**About the Role:**
-- "Why this role?"
-- "What interests you about this position?"
-- "What do you think this role entails?"
-- "What would you do in your first 90 days?"
-
-**About the Company:**
-- "Why this company?"
-- "What do you know about us?"
-- "Why do you want to work here?"
-- "What excites you about our mission?"
-
-## Questions to Ask Interviewers
-
-### For Hiring Manager
-- "What does success look like in this role at 30/60/90 days?"
-- "What are the biggest challenges facing the team?"
-- "How is performance measured?"
-- "What's the team structure?"
-
-### For Team Members
-- "What's a typical day/week like?"
-- "What do you enjoy most about working here?"
-- "How do teams collaborate?"
-- "What would you want a new hire to know?"
-
-### For Executives
-- "What's the company's strategy for the next year?"
-- "How does this team contribute to company goals?"
-- "What keeps you excited about the company?"
-
-### To Avoid
-- ❌ Questions about salary/benefits (save for HR)
-- ❌ Questions you could easily Google
-- ❌ Negative questions about company problems
-- ❌ Yes/no questions (ask open-ended)
+- **Never say "I'm flexible on compensation"** as an opener — it cedes the only leverage senior candidates have. Flexibility on *structure* (base/equity split) is fine; vagueness on *level* is not.
+- Asking the interviewer "What's the band for this level?" is a strong question, not an impolite one.
 
 ## Handling Difficult Questions
 
 ### "What's your greatest weakness?"
 
-**Formula:** Real weakness + Self-awareness + Improvement steps
+**Formula:** Real, bounded weakness + the concrete behavioral change you've made + evidence the fix works. A humble-brag ("I'm too detail-oriented") fails instantly with senior interviewers.
 
 ```
-"I tend to be overly detail-oriented, which can sometimes slow me down. I've recognized this and now set time limits for tasks and ask for feedback on when good enough is good enough. In my current role, I've also learned to delegate detailed work when appropriate."
+"Early on as a lead, I under-communicated strategic context — my ICs got
+tactical direction without the why, and I lost two good engineers' engagement
+before I understood why. I now run monthly context-setting sessions where I
+walk through the business picture, and my teams' retention and survey scores
+since have been the best of my career."
 ```
+
+Pick a real weakness whose fix you can demonstrate. If you can't name the fix, pick a different weakness.
 
 ### "Why are you leaving your current job?"
 
-**Keep it:**
-- Positive (growth-focused)
-- Forward-looking (not complaint-based)
-- Brief (don't over-explain)
+Neutral, brief, forward-looking (see guardrails above):
 
 ```
-"I've learned a lot at [Company], but I'm looking for [specific opportunity] that I don't see available in my current path. This role at [Company] offers exactly that - the chance to [specific thing]."
+"I've learned a lot at [Company] — [one concrete pride point]. I'm looking
+for [scope this role clearly offers], and the timing lined up."
 ```
 
 ### "Tell me about a time you failed"
 
-**Must include:**
-- Real failure (not humble brag)
-- What you learned
-- How you applied the learning
+Real failure + what you learned + how you applied it since. The failure must actually be a failure (a shipped mistake, a missed signal, a wrong bet) — not a disguised triumph. Full example in references/star-examples.md.
 
-```
-"In my first year as a PM, I launched a feature without sufficient user research. The feature was technically sound but users found it confusing. Only 10% adopted it. I learned the hard way that building the right thing matters more than building the thing right. Since then, I never skip user research - I now always do at least 10 user interviews before major feature decisions."
-```
+## Question Banks
 
-### Salary Questions
+Full question banks — behavioral by competency, role-specific (including the staff/senior SWE bank), standard questions, and questions to ask at staff level — live in `references/question-banks.md`. Highlights:
 
-**Deflect until you have to answer:**
+**Staff/senior SWE loop (decisive rounds):**
+- System design prompts (the decisive loop at staff level)
+- Org-influence probes: "Tell me about changing a decision you didn't control."
+- "Tell me about killing your own project."
+- Build vs. buy vs. deprecate reasoning
+- Disagreement with a principal/director engineer
 
-```
-"I'm flexible on compensation and more focused on finding the right role. Can you share the range budgeted for this position?"
-```
+**AI-tool norms in 2025-26 coding rounds:**
+- Ask the interviewer their AI-tool policy **before** the round (recruiter or scheduling email): allowed freely? allowed with disclosure? prohibited?
+- If allowed: use it like a senior engineer — for boilerplate and API recall, not for the actual problem-solving; narrate your reasoning either way, because the interview is testing judgment, not typing.
+- If undisclosed-but-used is against their policy, don't — it's an integrity screen, and companies increasingly check (live reasoning, follow-up questions that expose it).
+- In take-homes, disclose AI assistance exactly per instructions; over-disclosure is safe, under-disclosure is a rescinded offer.
 
-**If pressed:**
-```
-"Based on my research and experience, I'm looking for something in the range of $X-$Y, but I'm open to discussing the full compensation package."
-```
+**Async video screens (HireVue and similar):**
+- Treat as a one-take presentation: prepare 4-5 core stories in the STAR short format, rehearse aloud
+- Look at the camera, not the screen; plain background, decent light
+- Answer, then stop — rambling past the timer is the most common failure
+- Retakes (where allowed) are for technical flubs, not for polishing charm
+
+## Questions to Ask (staff-appropriate)
+
+- "How do architecture decisions actually get made here — who signs off, and what happens when two staff engineers disagree?"
+- "What did the last big technical bet here get wrong, and what did it cost?"
+- "What's a system here you'd deprecate tomorrow if you could, and why can't you?"
+- "How does this role influence roadmap vs. execute it?"
+- "What happened to the last person in this role?"
+
+**Skip:** anything answerable by their website, yes/no questions, and compensation mechanics in the first interview (that's the recruiter conversation — see the compensation section for how to handle it when it comes up).
 
 ## Output Format
-
-When generating interview prep:
 
 ```markdown
 # INTERVIEW PREP: [POSITION] AT [COMPANY]
 
 ## Role Analysis
-**Key competencies they'll test:**
-1. [Competency] - Evidence: [From JD]
-2. [Competency] - Evidence: [From JD]
-3. [Competency] - Evidence: [From JD]
+**Format:** onsite / video / async screen — confirm platform
+**Decisive loop:** [e.g., system design for staff SWE]
+**Key competencies:** 1. [C] — evidence: [from JD]
 
 ## Predicted Questions
+### High probability
+1. [Question] → story: [name]
+### Guardrail questions (rehearse verbatim)
+- Departure narrative: [one line]
+- Resume walkthrough cap: last 10-15 years + "earlier roles in X/Y"
 
-### High Probability (prepare thoroughly)
-1. [Question] → Use story: [Story name]
-2. [Question] → Use story: [Story name]
-3. [Question] → Use story: [Story name]
-
-### Medium Probability
-1. [Question]
-2. [Question]
-
-## Your STAR Story Bank
-
-### Story 1: [Name - e.g., "Product Launch Success"]
-**Use for:** Leadership, Achievement, Cross-functional
-**STAR:**
-- S: [Situation]
-- T: [Task]
-- A: [Action]
-- R: [Result with metrics]
-**Short version:** [60 second version]
-
-### Story 2: [Name]
-[Same structure]
+## STAR Story Bank
+### Story 1: [Name]
+**Use for:** [competencies]
+**S/T/A/R:** [with confirmed metrics]
+**60s version:** [summary]
 
 ## "Tell Me About Yourself" Script
-[2-minute pitch tailored to this role]
+[2 minutes, scope-framed — no cumulative-years framing]
+
+## Salary Answer (if asked)
+Anchor: [posted range / research] → [prepared range answer]
 
 ## Questions to Ask
-**For Hiring Manager:**
-1. [Question]
-2. [Question]
+1. ...
 
-**For Team:**
-1. [Question]
-2. [Question]
-
-## Company Research Notes
-- Recent news: [Item]
-- Key facts to reference: [Facts]
-- Potential concerns: [Items to be ready for]
-
-## Red Flag Answers to Avoid
-- Don't mention: [Topics]
-- Don't criticize: [Past employer aspects]
-- Watch out for: [Potential trap questions]
+## Red Flags to Avoid
+- Don't mention: [disputes, complaints, settlements — ever]
+- Don't criticize: [former employers]
+- Don't walk through: [roles older than ~15 years, except one line]
 ```
 
 ## Implementation Checklist
 
-For complete interview prep:
-1. ✅ Analyze job description for competencies
-2. ✅ Create 8-10 STAR stories covering all competencies
-3. ✅ Write "tell me about yourself" pitch
-4. ✅ Prepare answers for likely questions
-5. ✅ Research company thoroughly
-6. ✅ Prepare thoughtful questions to ask
-7. ✅ Practice out loud (time yourself)
-8. ✅ Prepare logistics (outfit, route, tech check)
-9. ✅ Review the day before interview
-10. ✅ Send thank you notes after
+1. ✅ Analyze job description for competencies and loop format
+2. ✅ Create 8-10 STAR stories covering all competencies (≥1 with scale metrics for engineering)
+3. ✅ Write "tell me about yourself" pitch (scope-framed, 2 minutes)
+4. ✅ Rehearse the departure narrative and salary answer verbatim
+5. ✅ Prepare answers for likely questions (use references/question-banks.md)
+6. ✅ Research the company and its interview format
+7. ✅ Confirm interview format (onsite / video / async) and test the platform beforehand
+8. ✅ Prepare staff-appropriate questions to ask
+9. ✅ Practice out loud, timed
+10. ✅ Send a 3-sentence thank-you email within 24h: (1) thanks + one specific discussion point from the conversation, (2) one sentence tying your experience to what you heard, (3) forward-looking close ("looking forward to next steps"). Reference a real exchange — generic thanks read as automated.

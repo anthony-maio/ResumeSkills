@@ -1,6 +1,6 @@
 ---
 name: tech-resume-optimizer
-description: Optimize resumes for software engineering, PM, and technical roles
+description: Use when optimizing a resume for software/AI engineering roles at senior level or above — skills structure, staff-level scope framing, publications/open-source sections, and technical links.
 ---
 
 # Tech Resume Optimizer
@@ -8,363 +8,209 @@ description: Optimize resumes for software engineering, PM, and technical roles
 ## When to Use This Skill
 
 Use this skill when the user:
-- Is applying for software engineering roles
+- Is applying for software/AI engineering roles (mid through staff/principal)
 - Wants to optimize a technical resume
-- Needs help with developer/PM/technical job applications
-- Mentions: "tech resume", "software engineer resume", "developer resume", "technical resume", "SWE resume", "PM resume"
+- Mentions: "tech resume", "software engineer resume", "SWE resume", "staff engineer resume", "ML resume", "AI resume"
 
-## Core Capabilities
+Focuses on senior-and-above engineering ICs; for early-career material (bootcamps, GPA, first projects) see `references/early-career.md`.
 
-- Optimize resumes for technical roles (SWE, PM, Data, DevOps)
-- Structure technical skills sections effectively
-- Highlight projects and technical achievements
-- Balance technical depth with business impact
-- Format for both ATS and technical recruiters
-- Include GitHub, portfolio, and technical links
+## Candidate Guardrails (always apply)
 
-## Tech Resume Philosophy
+**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
 
-**What Tech Recruiters Look For:**
-1. Relevant technical skills (languages, frameworks, tools)
-2. Scale and impact (users, transactions, data size)
-3. Problem-solving abilities
-4. System design understanding
-5. Collaborative abilities
-6. Growth trajectory
+**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere.
+
+**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass — prefer percentages, ranges, anonymized phrasing.
+
+## What Tech Screeners Actually Evaluate
+
+1. **Scope of ownership** — systems, teams, blast radius
+2. **Scale and impact** — users, traffic, cost, latency, model quality
+3. **Technical judgment** — architecture decisions, trade-offs, migrations
+4. **Depth where it counts** — can defend every listed technology in interview
+5. **Influence** — strategy, design reviews, mentorship, external voice (talks, papers, OSS)
+
+At staff level, hiring committees look for evidence the candidate moved the *org*, not just shipped systems. GitHub activity is not a screening signal at this level.
+
+## The Scope Ladder (diagnose the resume's level)
+
+Read the bullets and place each — and the resume overall — on the ladder:
+
+| Rung | Bullet sounds like | Level signal |
+|---|---|---|
+| **Features** | "Implemented X", "shipped Y feature" | Junior |
+| **Systems** | "Designed/owned service X serving N users" | Mid–senior |
+| **Multi-team programs** | "Drove migration across N teams", "owned platform adopted by N product lines" | Senior–staff |
+| **Org strategy** | "Defined technical strategy", "set direction for the org's platform", "owned the design-review process" | Staff+ |
+
+**Diagnosis rules:**
+- Most bullets on rung 1 → the resume reads junior regardless of title; rewrite to systems-and-up
+- All bullets on rung 2 with no cross-team evidence → reads mid-level; surface the multi-team work
+- Manager title but staff-IC target → keep technical bullets dominant; frame leadership as technical leadership
+- If the honest ceiling is rung 2–3, don't inflate — target roles one rung up
 
 ## Tech Resume Structure
 
-### Recommended Order
-
 ```
-1. Contact Information (including GitHub, Portfolio)
-2. Professional Summary (optional but helpful)
-3. Technical Skills (critical for ATS)
-4. Work Experience (with technical achievements)
-5. Projects (especially for early career)
+1. Contact Information (+ links)
+2. Professional Summary (recommended for senior+)
+3. Technical Skills
+4. Experience (technical achievements, scope-first)
+5. Publications / Talks / Patents / Open-source
 6. Education
-7. Certifications (if relevant)
+7. (Certifications only if genuinely relevant)
 ```
 
-### Contact Section for Tech
+### Professional Summary (recommended for senior+)
+
+The summary is the primary tailoring surface — never just "optional". Lead with **scope and domain, not tenure**:
+
+❌ "25-year veteran software engineer..." *(leads with age, generic)*
+✅ "Staff engineer specializing in LLM inference platforms. Drove the serving-infrastructure migration used by 4 product teams; published applied work on latency-optimized model serving."
+
+### Contact & Links
 
 ```
 John Developer
 San Francisco, CA
 john@email.com | (555) 123-4567
-LinkedIn: linkedin.com/in/johndev
-GitHub: github.com/johndev
-Portfolio: johndev.io
+linkedin.com/in/johndev · github.com/johndev · johndev.io
 ```
 
-**Include:**
-- GitHub (required for SWE roles)
-- Portfolio/personal website
-- LinkedIn
-- Tech blog (if you have one)
-
-**Don't Include:**
-- Address (city/state is enough)
-- Photo
-- Social media (unless relevant)
+**Link GitHub only if it shows substantive work** — real projects, meaningful OSS contributions. It is NOT required, and an inactive profile hurts nothing; most staff engineers at major companies have quiet GitHub profiles. For senior+ candidates, publications, patents, and talks are stronger signals and get their own section. Never optimize for a green contribution graph — it's widely known to be gameable and rarely screened.
 
 ## Technical Skills Section
 
-### Organization Strategies
-
-**Option 1: By Category**
 ```
-Languages: Python, JavaScript, TypeScript, Go, SQL
-Frameworks: React, Node.js, Django, FastAPI
-Databases: PostgreSQL, MongoDB, Redis, Elasticsearch
-Cloud/Infrastructure: AWS (EC2, S3, Lambda, RDS), Docker, Kubernetes, Terraform
-Tools: Git, JIRA, CI/CD, Datadog, Grafana
+Languages: Python, TypeScript, Go, SQL
+Frameworks: PyTorch, FastAPI, React
+Infra: AWS (EC2, Lambda, SageMaker), Docker, Kubernetes, Terraform
+AI/ML: LLM serving (vLLM), evaluation harnesses, RAG pipelines
 ```
 
-**Option 2: By Proficiency** (use carefully)
+- Order by relevance to the target role; categorize rather than one flat list at senior level
+- List only what the user can discuss deeply in an interview
+- ❌ Skill bars/ratings, Microsoft Office, every technology touched once, outdated tech unless the JD demands it
+
+## Experience Section
+
+**Bullet formula:** [Action verb] + [scope/system] + [scale or org-level outcome] + [technology]
+
+❌ Weak: "Worked on backend services", "Helped improve performance"
+
+✅ Senior IC:
 ```
-Expert: Python, React, PostgreSQL, AWS
-Proficient: Go, TypeScript, MongoDB, Docker
-Familiar: Rust, GraphQL, Kubernetes
-```
-
-**Option 3: Flat List** (ATS-friendly)
-```
-Skills: Python, JavaScript, TypeScript, React, Node.js, Django, PostgreSQL, MongoDB, AWS, Docker, Kubernetes, Git
-```
-
-### What to Include
-
-**Languages:**
-- List languages you can code in confidently
-- Order by relevance to target role
-- Include query languages (SQL, GraphQL)
-
-**Frameworks/Libraries:**
-- Web: React, Vue, Angular, Django, Flask, Express
-- Data: Pandas, NumPy, TensorFlow, PyTorch
-- Testing: Jest, Pytest, Selenium
-
-**Databases:**
-- Relational: PostgreSQL, MySQL, SQL Server
-- NoSQL: MongoDB, DynamoDB, Cassandra
-- Caching: Redis, Memcached
-
-**Cloud/DevOps:**
-- Cloud: AWS, GCP, Azure (specific services)
-- Containers: Docker, Kubernetes
-- CI/CD: Jenkins, GitHub Actions, CircleCI
-- IaC: Terraform, CloudFormation
-
-### What NOT to Include
-- ❌ Microsoft Office (assumed)
-- ❌ Operating systems (unless DevOps role)
-- ❌ Outdated tech (unless specifically required)
-- ❌ Skill bars or ratings (subjective and break ATS)
-- ❌ Every technology you've touched once
-
-## Experience Section for Tech Roles
-
-### The Technical Bullet Formula
-
-**[Action Verb] + [Technical What] + [Scale/Impact] + [Technology Used]**
-
-**Examples:**
-
-❌ **Weak Technical Bullet:**
-```
-- Worked on backend services
-- Helped improve system performance
-- Built features for the product
+• Architected the microservices migration from the monolith, cutting deploy
+  time from 2h to 15min and enabling independent team deployments
+• Optimized PostgreSQL + Redis caching for a 500K-DAU API, reducing p99
+  latency 60% (500ms → 200ms)
 ```
 
-✅ **Strong Technical Bullet:**
+✅ Staff-level (scope → decision → org-level outcome):
 ```
-- Architected microservices migration from monolith, reducing deployment time from 2 hours to 15 minutes and enabling independent team deployments
-- Optimized PostgreSQL queries and implemented Redis caching, reducing API latency by 60% (from 500ms to 200ms) for 100K daily active users
-- Built real-time notification system using WebSockets and AWS SNS, handling 1M+ messages daily with 99.9% delivery rate
-```
-
-### Technical Metrics to Include
-
-**Scale:**
-- Users: "serving 500K DAU"
-- Requests: "handling 10K requests/second"
-- Data: "processing 50TB daily"
-- Uptime: "maintaining 99.99% availability"
-
-**Performance:**
-- Latency: "reduced from Xms to Yms"
-- Speed: "improved by X%"
-- Load time: "decreased by X seconds"
-
-**Efficiency:**
-- Cost: "reduced AWS costs by 40%"
-- Time: "cut deployment time from X to Y"
-- Resources: "reduced memory usage by X%"
-
-**Business:**
-- Revenue: "features drove $XM revenue"
-- Conversion: "improved checkout by X%"
-- Engagement: "increased DAU by X%"
-
-### Role-Specific Bullet Examples
-
-**Software Engineer:**
-```
-• Designed and implemented authentication service using OAuth 2.0 and JWT, securing 2M+ user accounts with zero security incidents
-• Led migration to Kubernetes, achieving 99.99% uptime and reducing infrastructure costs by 35% ($200K annually)
-• Mentored 3 junior engineers through code reviews and pair programming, improving team velocity by 25%
+• Drove the org-wide migration from a shared monolith to team-owned services
+  across 6 teams (60+ engineers), ending the release train and cutting
+  cross-team escalations by half
+• Defined the 2-year technical strategy for the AI platform adopted by 4
+  product lines; the stack now serves 100K req/min at 38% lower cost
+• Owned design reviews for the 40-engineer platform org; RFC process cut
+  review turnaround from 2 weeks to 3 days
+• Mentored 5 engineers to senior; two now lead their own service areas
 ```
 
-**Data Engineer:**
+✅ AI/ML flavor:
 ```
-• Built data pipeline processing 100M+ events daily using Apache Kafka and Spark, reducing data latency from hours to minutes
-• Designed data warehouse schema in Snowflake, enabling self-service analytics for 50+ business users
-• Implemented data quality monitoring with Great Expectations, catching 95% of data issues before impacting downstream systems
-```
-
-**DevOps/SRE:**
-```
-• Implemented infrastructure as code using Terraform, reducing provisioning time from 2 days to 30 minutes
-• Built monitoring and alerting system with Prometheus and Grafana, reducing MTTR from 4 hours to 30 minutes
-• Automated deployment pipeline with GitHub Actions, enabling 50+ daily deployments with zero-downtime releases
+• Took a published distillation technique to production reranking, lifting
+  top-3 relevance 9 points while holding p99 serving latency under 80ms
+• Built the eval harness (human + automated) now used by 3 model teams as
+  the release gate for quality regressions
 ```
 
-**Product Manager (Technical):**
-```
-• Led API platform roadmap for developer tools used by 10K+ developers, driving 40% increase in API adoption
-• Defined technical requirements for ML recommendation engine, resulting in 25% increase in user engagement
-• Partnered with engineering to reduce technical debt by 30%, improving release velocity from bi-weekly to weekly
-```
+**Metrics that matter at senior+:** users/QPS/data volume served, latency (p50/p99 before→after), cost reduction (%), MTTR/incident reduction, adoption (teams/product lines), model quality (eval lift, win rate), inference cost per 1K requests. Defer numeric sourcing to resume-quantifier's ask-first rules.
 
-## Projects Section
+## Publications / Talks / Patents / Open-Source
 
-**Critical for:**
-- Junior engineers
-- Career changers
-- Bootcamp graduates
-- Anyone with gaps
-
-### Project Format
+For senior+ candidates this is the highest-leverage section most resumes omit. Citation-style entry plus a one-line applied tie-in to shipped work:
 
 ```
-Project Name | Technologies | Link
-• Description of what it does
-• Technical highlights and challenges solved
-• Scale or usage metrics if available
+PUBLICATIONS & TALKS
+
+• J. Doe, "Latency-Optimized Model Serving for Production LLMs," NeurIPS
+  2024 Workshop on Efficient ML. Applied as the serving design behind
+  [Company]'s 100K-req/min inference platform.
+• "Cutting Inference Cost 10x," KubeCon 2024 talk (2K+ attendees). Methods
+  adopted by two internal platform teams.
+• Patent US12,345,678 — Adaptive request batching for multi-tenant
+  inference. Licensed in the company's managed offering.
+
+OPEN SOURCE
+
+• Maintainer, vLLM (sampling engine; 40+ merged PRs). Contributions
+  shipped inside [Company]'s serving stack.
 ```
 
-### Example Projects Section
+Rules:
+- Citation format: authors (self bolded), title, venue, year — verbatim, verifiable
+- The one-line tie-in ("Applied as...") converts academic credit into engineering-scope evidence
+- Open-source entries must show role and substance (maintainer, reviewer, N merged PRs), not just a profile link
+- Truthfulness applies fully: list only real papers, patents, and talks the user confirms
+
+## Staff-Level Signals Checklist
+
+A resume reads staff-level when several of these are present and evidenced:
+- [ ] **Multi-team scope** — bullets name teams/product lines affected, not just own team
+- [ ] **Design-review ownership** — ran or owned the review process/RFC forum
+- [ ] **Strategy docs** — authored technical direction adopted beyond own team
+- [ ] **Migration leadership** — drove cross-team technical change to completion
+- [ ] **Mentorship outcomes** — engineers leveled up, tech leads grown (outcomes, not activity)
+- [ ] **Platform adoption** — internal tooling/platform used by N other teams
+- [ ] **External voice** — talks, papers, patents, OSS maintainership
+- [ ] **Influence without authority** — proposals adopted by teams that didn't report to them
+
+Missing 3+ → the resume undersells; mine the user's history for these before adding more implementation detail.
+
+## Education Section (senior defaults)
 
 ```
-PROJECTS
-
-Distributed Task Queue | Python, Redis, Docker | github.com/user/taskqueue
-• Built distributed task queue handling 10K+ jobs/hour with automatic retries and dead letter queue
-• Implemented priority queuing and rate limiting for multi-tenant support
-
-Real-time Chat App | React, Node.js, WebSocket, MongoDB | chatapp.demo.com
-• Full-stack chat application supporting 100+ concurrent users with real-time messaging
-• Implemented end-to-end encryption and message persistence
-
-ML Price Predictor | Python, TensorFlow, FastAPI | github.com/user/predictor
-• Trained regression model on 1M+ data points achieving 92% accuracy for price prediction
-• Deployed as REST API with automatic model retraining pipeline
+EDUCATION
+B.S. Computer Science | Stanford University
+M.S. Machine Learning | Carnegie Mellon
 ```
 
-### What Makes a Good Project
+Graduation year optional after ~10 years of experience (age proxy — default to omitting); GPA and coursework omitted for senior candidates. Early-career variants (bootcamp, self-taught, certifications-first) live in `references/early-career.md`.
 
-**Do Include:**
-- Projects with real users
-- Open source contributions
-- Technical blog posts
-- Hackathon projects (especially winners)
-- Complex personal projects
+## Dealing with Stack Mismatch
 
-**Don't Include:**
-- Tutorial follow-alongs
-- Trivial to-do apps
-- Incomplete projects
-- Coursework (unless exceptional)
+- **Partial match:** lead with what matches; quantify experience with those tools
+- **No match:** emphasize adjacent technologies and demonstrated ramp speed — "Extensive Python web framework experience (Django); ramped to FastAPI in production within a quarter"
 
-## Education Section for Tech
+## Interview Alignment
 
-### Standard Format
-```
-B.S. Computer Science | Stanford University | 2020
-GPA: 3.8/4.0 (include if above 3.5)
-Relevant Coursework: Distributed Systems, Machine Learning, Database Systems
-```
-
-### For Bootcamp Graduates
-```
-Software Engineering Certificate | App Academy | 2023
-- 1000+ hour immersive program
-- Full-stack JavaScript, React, Node.js, PostgreSQL
-
-B.A. Economics | UCLA | 2020
-```
-
-### For Self-Taught Engineers
-```
-Professional Certifications:
-- AWS Solutions Architect Associate | 2023
-- MongoDB Certified Developer | 2023
-
-Relevant Education:
-- MIT OpenCourseWare: Algorithms, Data Structures
-- Coursera: Machine Learning Specialization (Stanford)
-```
-
-## Tech-Specific Tips
-
-### GitHub Profile Optimization
-
-**Make sure your GitHub shows:**
-- Pinned repositories (your best 6)
-- Green contribution graph (activity)
-- README for profile
-- Complete project READMEs
-
-**Project READMEs should include:**
-- What the project does
-- Technologies used
-- How to run it
-- Screenshots/demos
-- Your contributions (for collaborative projects)
-
-### Dealing with Tech Stacks
-
-**If you match their stack:**
-- Lead with those technologies
-- Quantify your experience with them
-
-**If you don't match exactly:**
-- Emphasize transferable skills
-- Show learning ability
-- Highlight similar technologies
-- Example: "Django" → "Extensive Python web framework experience (Django); quick to ramp on new frameworks"
-
-### Technical Interviews Prep Note
-
-Tech resumes should support your interview:
-- Only claim technologies you can discuss deeply
-- Be ready to explain every project listed
-- Know the architecture of systems you've built
-- Have stories ready for each bullet
+Only claim technologies the user can discuss deeply; every bullet must have a story behind it (architecture, trade-offs, what broke). A resume line the candidate can't defend is worse than a gap.
 
 ## Output Format
-
-When optimizing a tech resume:
 
 ```markdown
 # TECH RESUME OPTIMIZATION
 
-## Technical Skills Restructure
-**Current:** [Their current skills section]
-**Optimized:**
-Languages: [Ordered list]
-Frameworks: [Ordered list]
-Databases: [Ordered list]
-Cloud/Tools: [Ordered list]
+## Scope-Ladder Diagnosis
+- Overall read: [features / systems / multi-team / strategy]
+- Highest-rung evidence: [bullet]
+- Gaps: [e.g., no multi-team bullet in last 2 roles]
+
+## Skills Restructure
+**Current:** [...]
+**Optimized:** [categorized, relevance-ordered]
 
 ## Experience Improvements
+Per bullet: current → improved, with [PLACEHOLDER] for unconfirmed numbers
 
-### [Company/Role]
+## Publications / Talks / OSS
+- [Section draft from user-confirmed entries, or questions to surface them]
 
-**Current Bullet 1:**
-"Worked on backend services"
+## Staff-Signals Checklist
+- [x/8 present; what to mine next]
 
-**Improved:**
-"Designed and deployed 5 Node.js microservices handling 50K requests/minute, reducing system coupling and enabling independent team deployments"
-
-**Current Bullet 2:**
-[Continue for each bullet]
-
-## Projects to Highlight
-[Suggestions based on their background]
-
-## GitHub Recommendations
-- [ ] Add READMEs to pinned repos
-- [ ] Pin X project (most relevant)
-- [ ] Add profile README
-
-## Technical Gaps to Address
-- [Missing skill] → [How to address in resume/cover letter]
+## Links
+- GitHub: include only if substantive; publications line preferred
 ```
-
-## ATS + Tech Recruiter Balance
-
-Remember: Your resume must pass ATS AND impress technical recruiters.
-
-**For ATS:**
-- Include exact skill keywords
-- Use standard section headers
-- Avoid tables and graphics
-
-**For Tech Recruiters:**
-- Show technical depth
-- Include metrics and scale
-- Demonstrate problem-solving
-- Show you understand systems

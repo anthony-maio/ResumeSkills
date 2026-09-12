@@ -1,229 +1,71 @@
-# Resume Skills for Claude Code
+# Resume Skills for AI Agents
 
-A collection of AI agent skills focused on resume optimization, job applications, and career development. Built for job seekers, career changers, and professionals who want Claude Code to help with resume writing, ATS optimization, interview prep, and strategic job search.
+A collection of agent skills for resume optimization, job applications, and career development — tuned for senior/staff-level software and AI engineering candidates, with 2026-accurate ATS/pay-transparency/equity guidance and strict truthfulness/privacy guardrails.
 
-## What are Skills?
+Fork of [Paramchoudhary/ResumeSkills](https://github.com/Paramchoudhary/ResumeSkills), substantially revised. Every skill now includes a shared **Candidate Guardrails** block (no fabricated metrics, no age-proxy signals, confidential-search rules for employed candidates, neutral departure narratives), trigger-style frontmatter descriptions, and progressive disclosure (worked examples live in each skill's `references/` directory).
 
-Skills are markdown files that give AI agents specialized knowledge and workflows for specific tasks. When you add these to your project, Claude Code can recognize when you're working on resume and job search tasks and apply the right frameworks and best practices.
+## What changed in this fork (vs upstream)
+
+**Myth removal & 2026 accuracy**
+- Deleted the debunked "75% of resumes are rejected by ATS" claim and all fake numeric match-score formulas (replaced with evidence-ranked keyword coverage: verbatim / synonym / absent)
+- Removed keyword-density ("2–4x per term") stuffing advice; placement-based keyword guidance instead
+- Risk-tiered formatting rules + a runnable paste-test (extract PDF text and verify it survives) instead of categorical bans on tables/columns
+- Pay-transparency leverage built in: posted-range anchoring, state salary-history-ban handling, MA/CA/NY/WA/CO/etc. table in `salary-negotiation-prep/references/pay-transparency-states.md`
+- Startup equity valued with an expected-value framework (409A vs preferred, dilution, liquidation preference, 83(b), ISO/AMT, single- vs double-trigger RSUs) — see `offer-comparison-analyzer/references/equity-math.md`
+- LinkedIn skill updated: skills cap 100 (not 50), creator mode retired Feb 2024, Open-to-Work defaults to Recruiters-only for employed users
+
+**Senior/staff-engineer content**
+- Staff-level bullet patterns (scope → decision → org-level outcome), scope-ladder diagnostic (features → systems → multi-team programs → org strategy)
+- Publications/patents/talks/open-source section formats; certifications demoted (rarely matter at staff screening)
+- Staff/senior SWE interview question bank (system design loops, org-influence probes, AI-tool disclosure norms), engineering-voice cover-letter hooks, senior cold-email variants
+- AI/ML metric categories (eval benchmarks, inference cost per 1K requests, serving latency, quality lift)
+
+**Truthfulness & privacy guardrails (all skills)**
+- Never invent or "estimate" metrics: ask-first flow, `[PLACEHOLDER]` discipline, marked estimates with logged derivations
+- No age proxies: graduation years omitted by default for senior candidates, tenure capped at "15+" or omitted, 10–15-year experience horizon
+- Confidential search: ask before naming the current employer; blind variants; NDA gate before publishing any employer-confidential metric
+- Neutral departure narratives everywhere (resume, cover letters, interviews, reference briefings); never reference disputes or bad-mouth employers
+- Sensitive ATS fields (EEO self-id incl. age bracket, work-authorization attestations, desired salary) are never auto-filled
+- References: excluded from current employer by default, consent required for shared contact channels, departure-narrative briefing step
+
+**Gated skills** (kept for other audiences, scoped so they don't misfire): `executive-resume-writer` (C-suite/VP/board only), `career-changer-translator` (genuine career changers only; functional format restricted + warned), `academic-cv-builder` (faculty/postdoc only), `creative-portfolio-resume` (creative fields only).
 
 ## Available Skills
 
 | Skill | Description |
 |-------|-------------|
-| [resume-ats-optimizer](/skills/resume-ats-optimizer) | Optimize resumes for Applicant Tracking Systems, check ATS compatibility, analyze keyword match |
-| [resume-bullet-writer](/skills/resume-bullet-writer) | Transform weak bullets into achievement-focused statements with metrics and impact |
-| [job-description-analyzer](/skills/job-description-analyzer) | Analyze job postings, calculate match scores, identify gaps, create application strategy |
-| [resume-tailor](/skills/resume-tailor) | Customize resume for specific job postings while maintaining truthfulness |
-| [cover-letter-generator](/skills/cover-letter-generator) | Create personalized, compelling cover letters from resume + job description |
-| [linkedin-profile-optimizer](/skills/linkedin-profile-optimizer) | Sync resume with LinkedIn, optimize for searchability and engagement |
-| [interview-prep-generator](/skills/interview-prep-generator) | Generate STAR stories, practice questions, talking points from resume |
-| [salary-negotiation-prep](/skills/salary-negotiation-prep) | Research market rates, build negotiation strategy, create counter-offer scripts |
-| [tech-resume-optimizer](/skills/tech-resume-optimizer) | Optimize resumes for software engineering, PM, and technical roles |
-| [executive-resume-writer](/skills/executive-resume-writer) | Create C-suite and VP level resumes emphasizing strategic leadership |
-| [career-changer-translator](/skills/career-changer-translator) | Translate skills from one industry to another, identify transferable skills |
-| [resume-quantifier](/skills/resume-quantifier) | Find opportunities to add metrics, estimate when numbers unknown |
-| [resume-formatter](/skills/resume-formatter) | Ensure ATS-friendly formatting, create clean scannable layouts |
-| [portfolio-case-study-writer](/skills/portfolio-case-study-writer) | Transform resume bullets into detailed portfolio case studies |
-| [academic-cv-builder](/skills/academic-cv-builder) | Format CVs for academic positions with publications, grants, teaching |
-| [reference-list-builder](/skills/reference-list-builder) | Format professional references properly and prepare reference materials |
-| [offer-comparison-analyzer](/skills/offer-comparison-analyzer) | Compare multiple job offers side-by-side with total compensation analysis |
-| [resume-version-manager](/skills/resume-version-manager) | Track different resume versions, maintain master resume, manage tailored versions |
-| [creative-portfolio-resume](/skills/creative-portfolio-resume) | Balance visual design with ATS compatibility for creative roles |
-| [resume-section-builder](/skills/resume-section-builder) | Create targeted sections optimized for different experience levels and roles |
+| [resume-ats-optimizer](/skills/resume-ats-optimizer) | Verify a resume parses cleanly and covers a JD's requirements — evidence-ranked coverage, no fake scores |
+| [resume-bullet-writer](/skills/resume-bullet-writer) | Rewrite weak bullets into achievement statements; staff-level patterns |
+| [job-description-analyzer](/skills/job-description-analyzer) | Evidence-ranked fit assessment and application strategy for a posting |
+| [resume-tailor](/skills/resume-tailor) | Tailor an existing resume to a specific posting; truthful versioning |
+| [cover-letter-generator](/skills/cover-letter-generator) | Cover letters and short application notes; when to skip the letter entirely |
+| [linkedin-profile-optimizer](/skills/linkedin-profile-optimizer) | LinkedIn optimization with employed-candidate privacy defaults |
+| [interview-prep-generator](/skills/interview-prep-generator) | STAR stories, staff-level SWE question banks, sensitive-question guardrails |
+| [salary-negotiation-prep](/skills/salary-negotiation-prep) | Negotiation with pay-transparency leverage and salary-history legality |
+| [tech-resume-optimizer](/skills/tech-resume-optimizer) | Senior/staff software & AI engineering resumes; publications, OSS, scope framing |
+| [offer-comparison-analyzer](/skills/offer-comparison-analyzer) | Offer comparison with equity EV math and a "vs. staying put" baseline |
+| [career-changer-translator](/skills/career-changer-translator) | For genuine career/industry changers only |
+| [resume-quantifier](/skills/resume-quantifier) | Add real metrics — ask-first, confidentiality pass, no invented numbers |
+| [resume-formatter](/skills/resume-formatter) | ATS-friendly formatting with paste-test verification |
+| [portfolio-case-study-writer](/skills/portfolio-case-study-writer) | Case studies with an NDA/confidentiality gate; SWE and AI/ML examples |
+| [academic-cv-builder](/skills/academic-cv-builder) | For faculty/postdoc/academic targets only |
+| [reference-list-builder](/skills/reference-list-builder) | Reference lists with consent, freshness, and departure-narrative rules |
+| [executive-resume-writer](/skills/executive-resume-writer) | For C-suite/VP/board targets only |
+| [resume-version-manager](/skills/resume-version-manager) | Master/tailored version tracking; git-based workflow for engineers |
+| [creative-portfolio-resume](/skills/creative-portfolio-resume) | For creative fields only; risk-tiered ATS compatibility |
+| [resume-section-builder](/skills/resume-section-builder) | Section formats by career stage, with a senior-IC track |
 
 ## Installation
 
-### Option 1: CLI Install (Recommended)
-
 ```bash
-# Install all 20 skills globally (works across all projects)
-npx skills add Paramchoudhary/ResumeSkills -g -y
-
-# Install to current project only
-npx skills add Paramchoudhary/ResumeSkills -y
-
-# List installed skills
-npx skills list
-
-# List global skills
-npx skills list --global
+# Clone and copy to your agent's skills folder
+git clone https://github.com/anthony-maio/ResumeSkills.git
+mkdir -p ~/.claude/skills   # or ~/.hermes/skills, ~/.codex/skills, etc.
+cp -r ResumeSkills/skills/* ~/.claude/skills/
 ```
 
-### Option 2: Manual Install
-
-```bash
-# Clone and copy to skills folder
-git clone https://github.com/Paramchoudhary/ResumeSkills.git
-mkdir -p ~/.cursor/skills
-cp -r ResumeSkills/skills/* ~/.cursor/skills/
-```
-
-### Option 3: Direct Download
-
-Download individual skill files from the `/skills` directory and add them to your AI agent's skills folder.
-
-### Uninstall
-
-```bash
-# Remove individual skills by name
-npx skills remove resume-ats-optimizer
-npx skills remove resume-bullet-writer
-
-# Or remove all skills from a directory
-rm -rf ~/.agents/skills/resume-*
-rm -rf ~/.cursor/skills/resume-*
-```
+Each skill directory is self-contained (SKILL.md + optional `references/`), so you can also copy just the skills you want.
 
 ## Supported AI Agents
 
-These skills work with multiple AI coding assistants:
-
-- **Cursor** (IDE)
-- **Claude Code** (CLI)
-- **Windsurf**
-- **Codex**
-- **Gemini CLI**
-- **Amp, Antigravity, Augment** and 30+ more
-
-## Usage
-
-Once installed, just ask your AI assistant to help with resume tasks:
-
-```
-"Optimize my resume for ATS"
-→ Uses resume-ats-optimizer skill
-
-"Improve my resume bullets"
-→ Uses resume-bullet-writer skill
-
-"Should I apply to this job?" + paste job description
-→ Uses job-description-analyzer skill
-
-"Write me a cover letter for this role"
-→ Uses cover-letter-generator skill
-
-"Prep me for an interview at Google"
-→ Uses interview-prep-generator skill
-```
-
-## Skill Categories
-
-### Resume Optimization
-- `resume-ats-optimizer` - Pass ATS systems
-- `resume-bullet-writer` - Write achievement-focused bullets
-- `resume-quantifier` - Add metrics and numbers
-- `resume-formatter` - Clean, scannable formatting
-- `resume-section-builder` - Targeted section creation
-
-### Job Search Strategy
-- `job-description-analyzer` - Match analysis and strategy
-- `resume-tailor` - Customize for specific jobs
-- `resume-version-manager` - Track multiple versions
-- `offer-comparison-analyzer` - Compare job offers
-
-### Supporting Documents
-- `cover-letter-generator` - Personalized cover letters
-- `linkedin-profile-optimizer` - LinkedIn optimization
-- `portfolio-case-study-writer` - Portfolio content
-- `reference-list-builder` - Professional references
-
-### Interview & Negotiation
-- `interview-prep-generator` - STAR stories and practice
-- `salary-negotiation-prep` - Negotiation strategy
-
-### Specialized Roles
-- `tech-resume-optimizer` - Engineering/PM/technical
-- `executive-resume-writer` - C-suite/VP
-- `academic-cv-builder` - Academic positions
-- `creative-portfolio-resume` - Design/creative roles
-- `career-changer-translator` - Career transitions
-
-## Why These Skills Matter
-
-**The Problem:**
-- 75% of resumes rejected by ATS before humans see them
-- Average job gets 250 applications
-- Most resumes have weak bullets with no metrics
-- Job seekers apply to wrong jobs, waste time
-
-**The Solution:**
-- Pass ATS with optimized formatting and keywords
-- Stand out with achievement-focused bullets
-- Apply strategically to right-fit roles
-- Get interviews faster with tailored applications
-
-**The Results:**
-- 2-3x more interviews per application
-- Higher quality responses
-- Faster job search (2 months saved on average)
-- Better salary negotiations ($10K+ higher offers)
-
-## Quick Start Examples
-
-### Example 1: Full Resume Optimization
-
-```
-User: Here's my resume [paste]. I'm applying to data scientist roles. Help me optimize it.
-
-Claude will:
-1. Run ATS compatibility check
-2. Analyze against common data scientist job requirements
-3. Improve bullet points with metrics
-4. Suggest keyword additions
-5. Format for ATS compatibility
-```
-
-### Example 2: Job-Specific Tailoring
-
-```
-User: Here's a job description [paste] and my resume [paste]. Should I apply?
-
-Claude will:
-1. Calculate match score
-2. Identify gaps and strengths
-3. Flag any red flags in posting
-4. Provide resume customization strategy
-5. Generate cover letter talking points
-```
-
-### Example 3: Interview Preparation
-
-```
-User: I have an interview at [Company] for [Role]. Here's my resume. Help me prepare.
-
-Claude will:
-1. Generate STAR stories from your experience
-2. Predict likely interview questions
-3. Create talking points for each bullet
-4. Research company-specific prep
-5. Prepare questions to ask
-```
-
-## Contributing
-
-Found a way to improve a skill? Have a new skill to suggest? PRs and issues welcome!
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Ways to Contribute
-- Improve existing skill instructions
-- Add industry-specific examples
-- Create new skills for specialized use cases
-- Fix typos or clarify language
-- Add translations
-
-## License
-
-MIT License - Use these skills however you want.
-
-See [LICENSE](LICENSE) for details.
-
-## About
-
-Resume skills for Claude Code. ATS optimization, bullet writing, job matching, interview prep, and career development.
-
-**Keywords:** resume, CV, ATS, job search, career, interview, cover letter, LinkedIn, salary negotiation, job application
-
----
-
-*Built with care for job seekers everywhere. Good luck with your search!*
+Claude Code, Hermes Agent, Codex CLI, Cursor, Windsurf, Gemini CLI, and other agents that load the SKILL.md convention.

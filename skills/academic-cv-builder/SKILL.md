@@ -1,42 +1,37 @@
 ---
 name: academic-cv-builder
-description: Format CVs for academic positions with publications, grants, and teaching
+description: Use when the user is applying for faculty, postdoc, or research-academic positions and needs a CV with publications, grants, and teaching. NOT for industry resumes — use tech-resume-optimizer or resume-formatter instead.
 ---
 
 # Academic CV Builder
 
 ## When to Use This Skill
 
-Use this skill when the user:
+Use this skill **only for research-academic positions**: faculty (tenure-track, lecturer), postdocs, research scientists, and academic administration. Industry and general resumes are handled by other skills — this structure actively hurts outside academia.
+
+Use when the user:
 - Is applying for academic positions (faculty, research, postdoc)
 - Needs to create or update a curriculum vitae
 - Wants to format publications, grants, and teaching experience
-- Is in academia or transitioning to academic careers
 - Mentions: "academic CV", "curriculum vitae", "faculty position", "research CV", "professor resume"
 
-## Core Capabilities
+## Candidate Guardrails (always apply)
 
-- Structure CVs for academic positions
-- Format publications, presentations, and grants
-- Organize teaching and research experience
-- Include appropriate academic sections
-- Tailor for different academic roles (tenure-track, postdoc, lecturer)
-- Balance research, teaching, and service
+**Truthfulness:** Every claim, publication, grant, course name, and metric must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a detail is missing, insert [PLACEHOLDER] and ask. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation.
+**Privacy & age signals:** Academic CVs conventionally include degree years and full chronology — the "omit graduation years" rule for industry resumes does NOT apply here; academic search committees expect complete records. Still never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral line used identically everywhere.
+**Confidential search (employed users):** Ask before naming a current search or confidential application; academic job-market candor norms differ, but follow the user's instruction.
 
 ## Academic CV vs. Resume
 
 | Resume | Academic CV |
 |--------|------------|
-| 1-2 pages | 2-20+ pages (length increases with career) |
+| 1-2 pages | 2-20+ pages (grows with career) |
 | Highlights relevant experience | Comprehensive record |
 | Results-focused | Scholarship-focused |
-| Industry keywords | Disciplinary expertise |
 | Skills section prominent | Publications prominent |
 | Education minimal | Education detailed |
 
 ## Standard Academic CV Sections
-
-### Typical Order
 
 ```
 1. Contact Information
@@ -50,13 +45,10 @@ Use this skill when the user:
 9. Service
 10. Professional Memberships
 11. Honors & Awards
-12. References (or "Available upon request")
+12. References (named — see below)
 ```
 
-### Section Order Varies By:
-- **Research position:** Publications, grants, research experience first
-- **Teaching position:** Teaching, course development first
-- **Administrative position:** Leadership, service first
+**Section order varies by position type:** research positions lead with publications/grants; teaching positions lead with teaching; administrative with leadership/service. Full role-specific emphasis and discipline conventions: `references/discipline-conventions.md`.
 
 ## Section-by-Section Guide
 
@@ -64,300 +56,83 @@ Use this skill when the user:
 
 ```
 FIRST MIDDLE LAST, Ph.D.
-Department of [Field]
-[University Name]
-[Building, Room Number]
+Department of [Field], [University]
 [City, State ZIP]
-
-Email: email@university.edu
-Phone: (555) 123-4567
-Web: www.yoursite.edu
-ORCID: 0000-0000-0000-0000
+Email: email@university.edu | Phone: (555) 123-4567
+Web: yoursite.edu | ORCID: 0000-0000-0000-0000
 ```
 
 ### 2. Education
 
-**Format:** Degree, Field, Institution, Year
-
 ```
 EDUCATION
-
 Ph.D. in Molecular Biology, Stanford University, 2019
-  Dissertation: "Title of Your Dissertation"
+  Dissertation: "Title"
   Advisor: Dr. Jane Smith
   Committee: Dr. A, Dr. B, Dr. C
-
 M.S. in Biology, UC Berkeley, 2015
-
-B.S. in Biochemistry, UCLA, 2013
-  Summa Cum Laude
+B.S. in Biochemistry, UCLA, 2013 (Summa Cum Laude)
 ```
 
-**Include:**
-- All degrees (in reverse chronological order)
-- Dissertation/thesis title
-- Advisor(s)
-- Committee members (for PhD)
-- Honors (cum laude, etc.)
-- Relevant minors or certificates
+Include all degrees reverse-chronologically, dissertation title, advisor, committee (PhD), honors, relevant certificates.
 
 ### 3. Research/Academic Positions
 
 ```
 ACADEMIC APPOINTMENTS
-
 Assistant Professor of Biology, University of Michigan, 2022-Present
-  Department of Molecular, Cellular, and Developmental Biology
-
-Postdoctoral Fellow, MIT, 2019-2022
-  Advisor: Dr. John Doe
-  Lab: Computational Biology Lab
-
+Postdoctoral Fellow, MIT, 2019-2022 (Advisor: Dr. John Doe)
 Graduate Research Assistant, Stanford University, 2014-2019
-  Advisor: Dr. Jane Smith
 ```
 
-### 4. Publications
+### 4. Publications (most important section for research positions)
 
-**Most Important Section for Research Positions**
-
-#### Formatting Options
-
-**Option 1: Numbered List (Common in Sciences)**
-```
-PUBLICATIONS
-
-Peer-Reviewed Journal Articles
-
-15. Last, F.M., Co-Author, A.B., & Senior, C.D. (2023). Article title. Journal Name, 45(2), 123-145. doi:10.1000/xyz
-
-14. Last, F.M., & Co-Author, A.B. (2022). Article title. Journal Name, 44(1), 10-25. doi:10.1000/abc
-```
-
-**Option 2: Categories (Useful for Multiple Types)**
-```
-PUBLICATIONS
-
-Peer-Reviewed Journal Articles (15)
-
-Book Chapters (3)
-
-Books (1)
-
-Under Review (2)
-
-In Preparation (3)
-```
-
-**Formatting Details:**
-- **Bold your name** in author lists
-- Include DOIs when available
-- Note impact factors if requested/relevant
-- Indicate student co-authors with asterisk*
-- Some fields expect reverse chronological; others expect chronological
-
-**Categories to Consider:**
-- Peer-reviewed journal articles
-- Books and book chapters
-- Conference proceedings
-- Technical reports
-- Non-peer-reviewed publications
-- Works under review
-- Works in preparation
+Numbered list (sciences) or categorized (journal articles / chapters / books / under review / in preparation). Bold your name; include DOIs; mark student co-authors; follow your field's chronological-order convention (see discipline reference).
 
 ### 5. Presentations
 
-```
-PRESENTATIONS
-
-Invited Talks
-
-"Talk Title," Conference Name, Location, Date.
-"Talk Title," Department Seminar, University Name, Date.
-
-Conference Presentations
-
-"Poster/Talk Title," Conference Name, Location, Date. [Poster/Oral]
-```
-
-**Categorize By:**
-- Invited talks (keynotes, seminars)
-- Conference presentations
-- Campus talks
-- Public lectures/outreach
+Split **Invited Talks** (keynotes, seminars — prestige signal) from **Conference Presentations** (posters/oral). Format: "Talk Title," Venue, City, Date.
 
 ### 6. Grants & Funding
 
-```
-GRANTS AND FUNDING
-
-Awarded
-
-NIH R01 (Co-PI), "Project Title," 2023-2028, $2.5M total ($500K to my lab)
-
-NSF CAREER Award (PI), "Project Title," 2022-2027, $650,000
-
-Internal Grant (PI), "Project Title," 2021, $25,000
-
-Pending
-
-NIH R21 (PI), "Project Title," submitted January 2024
-
-Not Funded (Optional)
-
-[Some fields expect you to list unfunded submissions]
-```
-
-**Include:**
-- Funding agency and mechanism
-- Your role (PI, Co-PI, Co-I)
-- Project title
-- Dates
-- Total amount (and amount to your lab if split)
+List agency, mechanism, your role (PI/Co-PI/Co-I), title, dates, total amount and your lab's share. Separate **Awarded** / **Pending**. Listing "Not Funded" is field-specific — see the discipline reference.
 
 ### 7. Teaching Experience
 
-```
-TEACHING EXPERIENCE
-
-Courses Taught
-
-BIOL 301: Molecular Biology (Instructor of Record)
-  University of Michigan, Fall 2022, Fall 2023
-  Enrollment: 45 students
-  Developed new course curriculum
-
-BIOL 101: Introduction to Biology (Lab Instructor)
-  Stanford University, 2015-2018
-  
-Guest Lectures
-
-"Topic," Course Name, Professor's Name, University, Date
-```
-
-**Include:**
-- Course number and title
-- Your role (Instructor, TA, Guest Lecturer)
-- Institution and dates
-- Enrollment numbers
-- Course development or new preparations
-- Teaching evaluations summary (if strong)
+Course number, title, role (Instructor of Record / TA / Guest Lecturer), institution, dates, enrollment, any new course development. Summarize teaching evaluations if strong.
 
 ### 8. Mentoring
 
-```
-MENTORING
-
-Graduate Students
-- Student Name (Ph.D. expected 2025), Dissertation: "Title"
-- Student Name (Ph.D. 2023), Current position: Postdoc at MIT
-
-Postdoctoral Fellows
-- Name (2021-2023), Current position: Assistant Professor at X
-
-Undergraduate Researchers
-- Name (2022-2023), Thesis: "Title," Current: PhD program at Y
-- Name (2021-2022), Thesis: "Title," Current: Industry position
-```
+Graduate students (name, expected year, dissertation, current position), postdocs, undergrad researchers. Placement outcomes matter to committees.
 
 ### 9. Service
 
-```
-SERVICE
+Profession (editorial boards, review panels, organizing) / University (committees, search committees) / Department (advising, seminar coordination).
 
-To the Profession
-- Editorial Board Member, Journal Name, 2022-Present
-- Grant Reviewer, NIH Study Section XYZ, 2023
-- Conference Organizer, Conference Name, 2022
+### 10–11. Memberships & Honors
 
-To the University
-- Graduate Admissions Committee, 2022-Present
-- Faculty Search Committee, 2023
-- Curriculum Committee, 2022-2023
+Professional societies with years; honors in reverse-chronological order (fellowships early-career, awards later).
 
-To the Department
-- Seminar Coordinator, 2022-Present
-- Undergraduate Advisor, 2022-Present
-```
+### 12. References — named, never "available upon request"
 
-### 10. Professional Memberships
+**On academic CVs, always list 3–5 named referees with title and affiliation. "References available upon request" is a disqualifying-cliché on academic CVs — never emit it.**
 
 ```
-PROFESSIONAL MEMBERSHIPS
-
-American Society for Cell Biology (ASCB), 2015-Present
-Society for Neuroscience (SfN), 2018-Present
+REFERENCES
+Dr. Jane Smith, Professor of Biology, Stanford University
+  smith@stanford.edu
+Dr. John Doe, Principal Research Scientist, MIT
+  doe@mit.edu
+Dr. [Name], Program Director, [Funder/Institution]
+  [email]
 ```
 
-### 11. Honors & Awards
-
-```
-HONORS AND AWARDS
-
-NSF CAREER Award, 2022
-Best Paper Award, Conference Name, 2021
-Outstanding Graduate Student Award, Stanford University, 2018
-National Science Foundation Graduate Research Fellowship, 2015-2018
-Phi Beta Kappa, 2013
-```
-
-## Role-Specific Emphasis
-
-### Tenure-Track Faculty
-
-**Emphasize:**
-1. Publications (especially recent, high-impact)
-2. Grants (especially independent funding)
-3. Research trajectory and vision
-4. Teaching experience
-5. Mentoring record
-
-### Postdoctoral Position
-
-**Emphasize:**
-1. Publications (from PhD and postdoc)
-2. Research experience and skills
-3. Collaboration experience
-4. Future research potential
-5. Any funding/fellowships
-
-### Lecturer/Teaching Faculty
-
-**Emphasize:**
-1. Teaching experience (courses, evaluations)
-2. Course development
-3. Pedagogical training
-4. Mentoring undergraduates
-5. Teaching awards
-
-### Research Scientist
-
-**Emphasize:**
-1. Publications
-2. Technical skills
-3. Grant writing experience
-4. Collaboration record
-5. Relevant research experience
-
-## Discipline-Specific Conventions
-
-### Sciences (Biology, Chemistry, Physics)
-- Author order matters (first author, last author = senior)
-- Impact factors sometimes included
-- Numbered publication lists common
-- Conference presentations less weighted than publications
-
-### Humanities (History, Literature, Philosophy)
-- Single-author publications highly valued
-- Book publications crucial
-- Conference presentations important
-- Public scholarship valued
-
-### Social Sciences
-- Both solo and collaborative work valued
-- Mix of journal articles and books
-- Funded research important
-- Policy impact valued
+Rules:
+- 3–5 referees; for early-career, the dissertation advisor is conventionally first
+- Full name, title, affiliation, email (phone optional) for each
+- Ask each referee before listing them; confirm they'll write a strong letter
+- If a dossier service (e.g., Interfolio) is used, list it here instead
+- If the user cannot name referees yet, use [PLACEHOLDER] and ask — don't fall back to "available upon request"
 
 ## CV Length Guidelines
 
@@ -369,53 +144,40 @@ Phi Beta Kappa, 2013
 | Mid-Career Faculty | 10-20 pages |
 | Senior Faculty | 15-30+ pages |
 
-**Rule:** Your CV grows throughout your career. Don't pad, but don't artificially constrain length.
+The CV grows throughout a career. Don't pad, but don't artificially constrain length.
 
 ## Output Format
-
-When creating an academic CV:
 
 ```markdown
 # ACADEMIC CV STRUCTURE FOR [NAME]
 
 ## Recommended Section Order
-[Based on position type and field]
-
-1. [Section]
-2. [Section]
-...
+1. [Section] ... (per position type)
 
 ## Section Content
-
 ### Education
-[Formatted education section]
-
+[formatted]
 ### Publications
-[Formatted with appropriate style for field]
+[field-appropriate style]
+### [Other sections]
+[formatted]
 
-### [Other Sections]
-[Formatted content]
-
----
+## References Section
+[3-5 named referees with title/affiliation/email — placeholders if TBD]
 
 ## Formatting Notes
-- [Field-specific conventions to follow]
-- [Style guide recommendations]
+- [Field-specific conventions from references/discipline-conventions.md]
 
 ## Things to Add/Update
 - [ ] [Missing item]
-- [ ] [Item needing update]
 ```
 
 ## Academic CV Checklist
 
-- ✅ Contact information complete (including ORCID if applicable)
-- ✅ Education includes all degrees, advisors, dissertations
-- ✅ Publications properly formatted with your name highlighted
-- ✅ All grants listed with amounts and your role
-- ✅ Teaching experience comprehensive
-- ✅ Service documented
-- ✅ Consistent formatting throughout
-- ✅ Reverse chronological order (usually)
-- ✅ No unexplained gaps
-- ✅ Updated within last 6 months
+- ✅ Position is genuinely academic (faculty/postdoc/research) — otherwise use an industry skill
+- ✅ Education complete with advisors, dissertation, committee
+- ✅ Publications formatted per field convention, name bolded, DOIs included
+- ✅ Grants with role, dates, amounts; Awarded/Pending separated
+- ✅ Teaching and service documented
+- ✅ References: 3–5 named referees with titles/affiliations — no "available upon request"
+- ✅ Consistent formatting, reverse-chronological (usually), no unexplained gaps

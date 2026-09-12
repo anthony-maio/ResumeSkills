@@ -1,6 +1,6 @@
 ---
 name: cover-letter-generator
-description: Create personalized, compelling cover letters from resume and job description
+description: Use when the user needs a cover letter or short application note for a job application — includes the decision of whether a letter is even the right artifact.
 ---
 
 # Cover Letter Generator
@@ -9,269 +9,169 @@ description: Create personalized, compelling cover letters from resume and job d
 
 Use this skill when the user wants to:
 - Write a cover letter for a job application
-- Create a personalized application letter
+- Create a personalized application note
 - Address specific job requirements in letter format
 - Mentions: "cover letter", "application letter", "write cover letter", "letter for job"
 
-Use AFTER analyzing job description to have clear talking points.
+Use AFTER analyzing the job description (job-description-analyzer) to have clear talking points.
 
-## Core Capabilities
+## Candidate Guardrails (always apply)
 
-- Generate personalized cover letters from resume + job description
-- Match tone to company culture
-- Address qualification gaps strategically
-- Create compelling opening hooks
-- Structure persuasive arguments for candidacy
-- Maintain authenticity while selling effectively
+**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
 
-## Cover Letter Philosophy
+**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-leaning line, identical everywhere.
 
-**The Problem:** Most cover letters are generic, boring, and add no value beyond the resume.
+**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
 
-**The Solution:** A great cover letter should:
-1. Show you've researched the company
-2. Connect YOUR specific experience to THEIR specific needs
-3. Address the "why you, why now, why here" questions
-4. Add personality and context a resume can't convey
+## Step 0: Decision Gate — Is a Letter Even the Right Artifact?
 
-## The Perfect Cover Letter Structure
+Before writing, ask:
 
-### Length & Format
-- **Length:** 250-400 words (3-4 paragraphs)
-- **Format:** Professional business letter style
-- **Tone:** Confident but not arrogant, personalized but professional
+1. **Is the cover letter field required or optional?**
+2. **How senior is the candidate?**
 
-### Structure Overview
+Decision rules:
+
+- **Senior/staff candidate + optional field** → recommend a **3-4 sentence application note** (pasted into the optional field or attached) or **direct outreach to the hiring manager** (see cold-email-writer skill) instead of a full letter. A 400-word formal letter from a staff-level engineer reads as mid-level effort and can actively hurt.
+- **Required field** → write the letter, but keep it short (see length below).
+- **Conservative industries** (finance, consulting, legal, government) → full formal letter remains the norm.
+
+Only write the full letter if the user wants one after hearing the recommendation.
+
+## Length
+
+- **Senior candidates: 150-250 words usually beats 400.** Hiring managers skim; a short, dense letter reads as senior. 
+- Mid-level / required-field / conservative industries: 250-350 words max.
+- Anything over 400 words is a bug.
+
+## Format Default
+
+**Default: header-free body text** — salutation through sign-off. Nearly all 2026 applications are pasted into ATS text boxes or email/portal fields, where letterhead, dates, and postal addresses waste the word budget and can break ATS parsing.
+
+**Fallback (conservative industries / email attachments only):** formal letter layout — sender contact block, date, recipient block — kept minimal.
+
+## Structure
+
 ```
-[Your Contact Info]
-[Date]
-[Recipient Info]
+[Salutation — named person if known, else "Dear Hiring Team,"]
 
-Opening Paragraph: Hook + Position + Why This Company (2-3 sentences)
+Opening: Hook + position + why this company (2-3 sentences)
+Body 1: Strongest qualification match — their need + your exact experience + specific result (3-4 sentences)
+Body 2: Additional value, and gap handling ONLY if a required gap is confirmed (2-3 sentences)
+Closing: Enthusiasm for something specific + call to action (2-3 sentences)
 
-Body Paragraph 1: Your strongest qualification match (3-4 sentences)
-
-Body Paragraph 2: Additional qualifications + address any gaps (3-4 sentences)
-
-Closing Paragraph: Call to action + enthusiasm (2-3 sentences)
-
-[Professional Sign-off]
-```
-
-## Opening Paragraph Strategies
-
-The opening is critical - you have 5 seconds to grab attention.
-
-### Hook Types (Choose One)
-
-**1. Specific Company Knowledge**
-```
-"I was excited to see TechCorp's recent launch of your API marketplace - as a Product Manager who's spent 3 years building developer tools, I immediately saw how my experience could accelerate your platform growth."
+[Sign-off + name]
 ```
 
-**2. Mutual Connection**
+## Opening Hooks (choose one)
+
+Keep exactly one opening in the final letter; the others can be offered as alternatives in the output. Two engineering-voice examples, two PM/general.
+
+**1. Specific Company Knowledge (engineering)**
 ```
-"Sarah Chen on your engineering team mentioned you're looking for a PM to lead the payments initiative. Having worked with Sarah at [Previous Company] and led payment integrations at [Current Company], I'd love to discuss how I could contribute."
+"Your engineering blog's post on migrating the ledger to a region-sharded architecture described exactly the problem I spent last year solving — staged decomposition of a monolith that four teams depended on."
 ```
 
-**3. Problem-Solver**
+**2. Impressive Achievement (engineering)**
 ```
-"Your job description mentions the challenge of aligning technical and business stakeholders - I've navigated this exact challenge, successfully launching 8 products by building shared roadmap visibility across engineering, sales, and executive teams."
-```
-
-**4. Impressive Achievement**
-```
-"Last year, I led a product that grew from 0 to 100K users in 6 months. I'm excited about the opportunity to bring that growth mindset to [Company]'s expanding product line."
+"I own the ingestion pipeline that handles 40K requests per second at [Company]; your JD's scale requirements are the first I've read in months that match the problems I work on daily."
 ```
 
-**5. Industry Insight**
+**3. Mutual Connection (general)**
 ```
-"The B2B payments space is at an inflection point, and [Company]'s approach to embedded finance positions you perfectly for the next wave. As someone who's been building in fintech for 5 years, I'd love to contribute to that growth."
+"[Name] on your [team] team mentioned you're hiring for [role] — having worked with [Name] at [Previous Company] on [domain], I wanted to reach out directly."
 ```
 
-### Opening Don'ts
-- ❌ "I am writing to apply for..." (boring, obvious)
-- ❌ "I am the perfect candidate..." (let them decide)
+**4. Industry Insight (PM/general)**
+```
+"The B2B payments space is at an inflection point, and [Company]'s approach to embedded finance positions you well for the next wave — I've spent five years building in fintech and want to contribute to exactly this."
+```
+
+**Opening don'ts:**
+- ❌ "I am writing to apply for..." (obvious)
+- ❌ "I am the perfect candidate..." (their call, not yours)
 - ❌ "I saw your job posting on LinkedIn..." (generic)
-- ❌ Starting with "I" (start with them or a hook)
+- ❌ Starting with "I" when you could start with them or the hook
 
-## Body Paragraph Frameworks
+## Body Paragraphs
 
-### Body Paragraph 1: Direct Match
+**Body 1 — direct match:** [Their top need] + [your exact experience] + [specific result].
 
-Connect your strongest experience to their top requirement.
-
-**Formula:** [Their Need] + [Your Exact Experience] + [Specific Result]
-
+Engineering example:
 ```
-Your focus on data-driven product decisions aligns perfectly with my approach. At [Company], I implemented a product analytics framework that increased feature adoption by 40% by identifying and prioritizing high-impact opportunities through A/B testing and user behavior analysis.
+Your requirement for engineers who've owned systems at scale maps directly to my last four years: I designed and led the migration of our payments ingestion from a single-region service to a sharded architecture serving 40K req/s, cutting p99 latency from 850ms to 120ms while four product teams kept shipping on top of it.
 ```
 
-### Body Paragraph 2: Broader Value + Gap Handling
+**Body 2 — broader value + gap handling:**
 
-Show additional value and proactively address concerns.
+If there are NO required-skill gaps, add more value (one more relevant achievement or a specific company-research connection).
 
-**If you have gaps, address them:**
-```
-While my SQL experience is developing (currently completing DataCamp's SQL track), I bring strong analytical skills demonstrated through building Tableau dashboards that informed $2M in strategic decisions. I've consistently collaborated effectively with data teams and have a track record of quickly ramping on new tools.
-```
-
-**If no gaps, add more value:**
-```
-Beyond product management, I bring [relevant additional skill]. At [Company], this enabled me to [specific achievement]. I'm particularly drawn to [Company] because [specific reason showing research].
-```
-
-## Closing Paragraph
-
-End with confidence and a clear call to action.
-
-**Strong Closing Example:**
-```
-I'm excited about the opportunity to bring my [specific skill] experience to [Company]'s [specific initiative or product]. I'd welcome the chance to discuss how my background in [key area] could contribute to your team's goals. Thank you for considering my application.
-```
-
-**Elements of a Good Close:**
-- Express genuine enthusiasm (for something specific)
-- Reference a specific contribution you'd make
-- Clear call to action (discuss, meet, etc.)
-- Thank them
-
-**Closing Don'ts:**
-- ❌ "I look forward to hearing from you" (passive)
-- ❌ "Please find my resume attached" (obvious)
-- ❌ "I am available for an interview at your convenience" (desperate)
-
-## Complete Cover Letter Template
+**Gap handling rules (strict):**
+- Address a gap ONLY if (a) the JD lists it as *required*, AND (b) the user has confirmed their actual status with that skill.
+- **Never volunteer an unasked weakness.** Raising a gap the JD doesn't require — or that no one asked about — undermines the application, especially for senior candidates.
+- **Never insert course names, self-study claims, or activities the agent hasn't been told about.** If the user's status is unknown, ask before writing anything.
+- Use truthful generic phrasing when confirmed:
 
 ```
-[Your Name]
-[Your Email] | [Your Phone] | [LinkedIn URL]
-[City, State]
-
-[Date]
-
-[Hiring Manager Name, if known]
-[Title]
-[Company Name]
-[Company Address]
-
-Dear [Mr./Ms. Last Name / Hiring Manager],
-
-[OPENING HOOK - 1-2 sentences grabbing attention with company knowledge, mutual connection, or impressive achievement]
-
-[BRIDGE TO POSITION - 1 sentence stating the role and your interest]
-
-[BODY 1 - 3-4 sentences connecting your strongest relevant experience to their primary requirement. Include specific metrics and results.]
-
-[BODY 2 - 3-4 sentences adding additional value, addressing any gaps if needed, and demonstrating company research/culture fit]
-
-[CLOSING - 2-3 sentences expressing enthusiasm, suggesting next steps, and thanking them]
-
-Sincerely,
-[Your Name]
+"My data work has been in [confirmed area]; I ramp quickly on new tooling — [confirmed example of having done exactly that]."
 ```
 
-## Industry-Specific Considerations
+## Closing
 
-### Tech/Engineering
-- Mention specific technologies
-- Reference GitHub, portfolio, or technical projects
-- Show you understand their tech stack
+End with confidence and a clear next step:
 
-### Marketing/Creative
-- Show creativity in the letter itself (within reason)
-- Reference their campaigns or brand voice
-- Include relevant metrics (engagement, conversion, etc.)
-
-### Finance/Consulting
-- More formal tone
-- Lead with credentials/certifications
-- Emphasize analytical rigor and results
-
-### Startup vs. Enterprise
-**Startup:** More casual, show scrappiness, emphasize growth mindset
-**Enterprise:** More formal, emphasize process and scale experience
-
-## Handling Common Scenarios
-
-### When You Don't Know the Hiring Manager
 ```
-Dear Hiring Manager,
-OR
-Dear [Department] Team,
-OR
-Dear [Company Name] Recruiting Team,
-```
-Avoid "To Whom It May Concern" (too impersonal)
-
-### When You Have a Referral
-Lead with it:
-```
-"[Name] on your [team] team suggested I reach out about the [Position] role. Having [connection to referrer], I was excited to learn about [Company]'s work in [area]."
+"I'd welcome the chance to discuss how the [specific system/domain] experience maps to your [specific initiative]. Thank you for considering my application."
 ```
 
-### When You're Underqualified
-Don't apologize. Instead, emphasize:
-- Transferable skills
-- Quick learning ability
-- Genuine enthusiasm
-- Related experience that compensates
+**Closing don'ts:** passive "I look forward to hearing from you", "Please find my resume attached" (they know), "at your convenience" desperation.
 
-### When You're Overqualified
-Explain your motivation:
-```
-"After 10 years leading large teams, I'm energized by the opportunity to return to hands-on [function] work at a company where I can make direct impact on [specific area]."
-```
+## Scenarios
 
-### When Addressing Career Change
-```
-"While my background is in [Previous Field], I've been actively building [New Field] skills through [courses, projects, etc.]. My experience in [transferable skill] translates directly to [new role] through [specific connection]."
-```
+**Referral:** lead with it — "[Name] on your [team] suggested I apply."
+
+**Underqualified (by the JD's letter, not reality):** don't apologize; lead with the strongest transferable evidence. One sentence acknowledging the stretch at most.
+
+**Overqualified / leveling down:** address motivation with *scope*, not elapsed time: "I want to return to hands-on [domain] work with direct system ownership" — NOT "after 20 years..." (age proxy; also unnecessary).
+
+**Career change:** "While my background is in [field], my work in [transferable skill] translates directly to [new role] via [specific connection]." Any upskilling claims must be user-confirmed facts, not generated course names.
+
+**Unknown hiring manager:** "Dear Hiring Team," or "Dear [Department] Team," — never "To Whom It May Concern."
+
+## Industry Notes
+
+- **Tech/Engineering:** reference their stack/systems honestly, link GitHub/portfolio if the user has one.
+- **Finance/Consulting/Legal:** formal tone, full letter layout, credentials early — this is the header fallback case.
+- **Startup:** casual, scrappy, growth-minded. **Enterprise:** process and scale experience.
 
 ## Output Format
 
-When generating a cover letter, provide:
-
 ```markdown
-# COVER LETTER FOR [POSITION] AT [COMPANY]
+# APPLICATION LETTER FOR [POSITION] AT [COMPANY]
 
-## Analysis Summary
-- Match Score: [From JD Analyzer]
-- Key Strengths to Highlight: [List]
-- Gaps to Address: [List or "None"]
-- Company Research Notes: [Key facts to reference]
+## Decision
+- Field: required / optional (→ note if a short application note is recommended instead)
+- Length: [N] words
 
-## Generated Cover Letter
+## Letter
+[Header-free body text]
 
-[Full cover letter text]
+## Alternative Opening (optional, one)
+[One alternative hook]
 
----
-
-## Alternative Openings
-
-**Option 1 (Company Knowledge):**
-[Alternative opening hook]
-
-**Option 2 (Achievement-Led):**
-[Alternative opening hook]
-
-## Key Talking Points for Interview
-- [Point 1 from the letter to expand on]
-- [Point 2]
-- [Point 3]
+## Interview Talking Points
+- [2-3 points the letter sets up]
 ```
 
 ## Quality Checklist
 
-Before delivering any cover letter:
-
-1. ✅ Opens with a hook (not "I am writing to apply")
-2. ✅ Mentions specific company knowledge
-3. ✅ Connects experience directly to job requirements
-4. ✅ Includes at least one specific metric/achievement
-5. ✅ Addresses any obvious gaps (if applicable)
-6. ✅ Has confident but not arrogant tone
-7. ✅ Ends with clear call to action
-8. ✅ Is 250-400 words (3-4 paragraphs)
-9. ✅ Contains no typos or grammatical errors
-10. ✅ Would make you want to interview this person
+1. ✅ Decision gate answered before writing (required field? senior candidate?)
+2. ✅ Opens with a hook, not "I am writing to apply"
+3. ✅ One specific company-research reference
+4. ✅ Experience tied to their stated requirements, with a real metric the user confirmed
+5. ✅ No unasked-for gaps, no invented courses/skills
+6. ✅ No age proxies (graduation years, cumulative-years framing), no disputes, no negative employer framing
+7. ✅ Neutral, forward-leaning language about any departure
+8. ✅ Header-free format unless conservative industry
+9. ✅ Length appropriate (150-250 for senior; ≤400 always)
+10. ✅ Confident, not arrogant; would make you want to interview this person

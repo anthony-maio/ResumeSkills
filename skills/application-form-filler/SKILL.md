@@ -1,6 +1,6 @@
 ---
 name: application-form-filler
-description: Fill out job application form fields with context-aware, tailored answers drawn from the candidate's CV and the job description
+description: Use when filling out job application form fields on Greenhouse, Lever, Ashby, Workday, or any ATS — tailored answers from the candidate's CV, plus safe handling of sensitive and attestation fields.
 ---
 
 # Application Form Filler
@@ -14,11 +14,56 @@ Use this skill when the user wants to:
 - Get clean, copy-pasteable answers to application questions
 - Mentions: "fill this out", "what do I write here", "answer this question", "application form", "form field"
 
+## Candidate Guardrails (always apply)
+
+**Truthfulness:** Every claim, metric, project name, and skill listed must come from facts the user provided or confirmed — project names come from the user's CV only, never from examples. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+
+**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-leaning line, identical everywhere.
+
+**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
+
 ## Core Principle
 
 Application form answers should be direct and specific — not a cover letter crammed into a text box. Each field has a purpose. Answer that purpose clearly, then stop.
 
 **The answer should feel like:** A real person typed it, not a template was filled in.
+
+## Sensitive Fields (read this section before touching any form)
+
+These appear on nearly every Workday/Greenhouse application. Mishandling them ranges from harmful to legally binding. When in doubt, stop and ask.
+
+**1. EEO voluntary self-identification (race, gender, veteran status, disability, and the 40+ age bracket):**
+- **Always ask the user; never auto-fill.** Even if the user answered identically on a previous form, confirm each time.
+- Note they are **voluntary**, used for compliance reporting, and can be declined ("prefer not to say") with no effect on the application.
+
+**2. Work-authorization and criminal-history attestations:**
+- Read the question **verbatim** to the user and require **explicit confirmation** before answering.
+- Never infer, never paraphrase, never "fill in what they obviously meant." These are legally binding attestations; an inaccurate yes/no can be grounds for rescinding an offer or firing later.
+- If the wording is ambiguous, surface the exact wording and let the user decide — for ambiguous criminal-history wording, suggest they get advice rather than guess.
+
+**3. Desired salary / compensation expectations:**
+- **The user's number only. Never generate, suggest a default, or "estimate market rate" into the field.**
+- If the user has no number yet, say so and leave the field to them — you can offer to research posted ranges as a separate exercise, but the answer they submit is theirs.
+- In pay-transparency jurisdictions (CO, CA, NY, WA, MA and others), the posted range is the anchor; the user decides where in it to land.
+
+**4. Date-of-birth and graduation-date fields:**
+- Flag any DOB or graduation-year field to the user as an **age disclosure** before filling it. DOB is almost never legitimately required at application stage; graduation years are a soft age proxy. Let the user choose to answer, skip, or omit (many forms allow "prefer not to say" or leaving the year blank).
+
+**5. AI-usage attestations ("Did you use AI tools to prepare this application?"):**
+- **Never answer on the user's behalf.** That's the user's call — answering truthfully is a policy attestation, not a writing task.
+- Ask the user directly, answer exactly what they say, no editorializing.
+
+**6. "Have you applied here before?" / "Do you know anyone at this company?":**
+- Honesty-sensitive and often verifiable in the ATS. Ask the user; never guess "No" as a default. If they know an employee, get the exact name and relationship — referral tracking is a real pipeline.
+
+## Knockout-Filter Warning (numeric and rating fields)
+
+Some numeric/rating fields are **knockout filters**: the ATS auto-rejects candidates who self-rate below a threshold or whose years-of-experience dropdown is under the JD bar.
+
+- **Never inflate.** A false "expert" rating collapses in the technical screen.
+- **Don't undercount either.** The honest answer isn't always the narrowest one. If asked "years of experience with SQL," the truthful figure may be **total years across technologies**, or the most recent contiguous span — ask the user which framing is accurate rather than defaulting to the smallest defensible number.
+- **Flag the risk:** if the user's honest answer sits right at or just under an apparent bar (e.g., 7 years against a "8+ years" dropdown), say so explicitly — "this field may auto-reject; here's what you're answering and why" — and let them decide.
+- For dropdowns that only offer coarse brackets ("5-7", "8-10"), the user picks the bracket their honest total falls in.
 
 ## Before Answering
 
@@ -30,8 +75,6 @@ Always read:
 If the user hasn't provided a CV or JD, ask for them before writing.
 
 ## Question Types and How to Handle Each
-
----
 
 ### Type 1: Experience/Background Questions
 
@@ -48,19 +91,12 @@ specific project or context]. [Optional: secondary tools in the same category].
 
 **Rules:**
 - Lead with the most used/relevant technology
-- Give years honestly — don't inflate
+- Give years honestly — don't inflate; check the knockout-filter guidance above so you don't undercount
 - Anchor every claim to a real project or role
 - For "describe experience" questions: 2-4 sentences max, one project per sentence
 - If experience is indirect (adjacent domain), say so and pivot to what is relevant
 
----
-
 ### Type 2: Why This Company / What Interests You
-
-**Examples:**
-- "Why do you want to work at [Company]?"
-- "What interests you about this role?"
-- "Why are you a good fit?"
 
 **Format:**
 ```
@@ -76,17 +112,9 @@ specific project or context]. [Optional: secondary tools in the same category].
 - Keep it under 150 words for a form field
 - Don't repeat the JD back to them
 
----
-
 ### Type 3: Portfolio / Work Samples
 
-**Examples:**
-- "Include any other samples of work you're proud of"
-- "Link to relevant projects or repositories"
-- "Describe a project you've built end-to-end"
-
-**Format:**
-List projects with one-line descriptions and links. Lead with the most relevant.
+**Format:** List projects with one-line descriptions and links, most relevant first:
 
 ```
 [Project Name] ([live URL] | [github URL]) — [one line: what it is and one
@@ -94,21 +122,13 @@ proof point]. [Stack if relevant].
 ```
 
 **Rules:**
-- Only include projects relevant to the role
+- Only include projects relevant to the role; don't pad to look prolific
 - Always include links (live demo > GitHub > nothing)
 - If the project has paying users or measurable usage, say so — once
-- Don't pad with irrelevant projects to look prolific
-
----
+- Project names must come from the user's CV only — never from a previous example
 
 ### Type 4: Technical Skill Questions
 
-**Examples:**
-- "Which frontend frameworks have you used most extensively?"
-- "Rate your proficiency in Python"
-- "Describe your experience with cloud infrastructure"
-
-**Format:**
 For open-text fields:
 ```
 [Primary skill] — [X years]. [Specific use: what you built with it, in what context].
@@ -116,22 +136,9 @@ For open-text fields:
 [Note any relevant gaps honestly].
 ```
 
-For rating/dropdown fields: pick the honest level — don't optimize for the highest rating if it's not accurate.
-
-**Rules:**
-- Years + context beats years alone
-- Acknowledge gaps rather than hiding them
-- If asked to rate, rate honestly — inflated ratings create problems in technical interviews
-- For stacks you've used but not recently, note it
-
----
+For rating/dropdown fields: follow the knockout-filter guidance above — honest level, never inflated, never undercounted, risk flagged when near the bar.
 
 ### Type 5: Open-Ended / "Tell Us About Yourself"
-
-**Examples:**
-- "Tell us about yourself"
-- "Describe your professional background"
-- "What are you looking for in your next role?"
 
 **Format:**
 ```
@@ -147,17 +154,9 @@ Optional: one project or side work that's relevant (1 sentence).
 - End on the forward-looking note (what you want, not where you've been)
 - No trait statements ("I'm passionate about...") — just facts and projects
 
----
-
 ### Type 6: Situational / Behavioral Questions
 
-**Examples:**
-- "Describe a time you solved a complex technical problem"
-- "Tell us about a project you led end-to-end"
-- "How do you handle working across multiple teams?"
-
 **Format:** Condensed STAR (no labels, just flow)
-
 ```
 [Context in one sentence]. [What you specifically did — 2 sentences]. [Outcome
 with a metric if possible — 1 sentence].
@@ -170,17 +169,16 @@ with a metric if possible — 1 sentence].
 - First-person, active voice throughout
 - End with the result, not the lesson learned (save that for interviews)
 
----
+### Type 7: AI-Experience Questions ("Describe your experience with AI/LLMs")
 
-### Type 7: Opinion / Vision Questions
+**Rules:**
+- Describe **real system-building experience factually**: what was built, what the user's specific contribution was, what's production vs. prototype. Never inflate prototype work into "production ML experience."
+- If the user has no AI experience, say so plainly — fabricating AI experience is the single easiest claim to falsify in a 2026 interview loop.
+- Mirror the JD's actual AI demands (check the job-description-analyzer's AI-washing notes): "used an LLM API in a feature" ≠ "built training/eval pipelines."
 
-**Examples:**
-- "Which technologies do you think are most important for the future?"
-- "What would you learn if you had unlimited time?"
-- "Where do you see AI/[domain] in 5 years?"
+### Type 8: Opinion / Vision Questions
 
-**Format:**
-Answer with a genuine opinion. Pick one or two things and explain the reasoning briefly.
+**Format:** Answer with a genuine opinion. Pick one or two things and explain the reasoning briefly.
 
 **Rules:**
 - Have an actual point of view — vague answers are forgettable
@@ -188,7 +186,12 @@ Answer with a genuine opinion. Pick one or two things and explain the reasoning 
 - Keep to 100-150 words
 - Don't hedge everything — commit to a view, acknowledge it's one perspective
 
----
+## ATS Quirks
+
+- **Plain text survives:** no markdown, no bullets pasted from word processors — use plain sentences or "-" dashes; markdown syntax renders as literal characters in most ATS text boxes.
+- **Workday multi-step forms** lose unsaved answers on back-navigation; fill in one pass or save at each step.
+- **Greenhouse custom questions** often have character limits (frequently ~500-1000 chars); check before drafting 250 words.
+- **Required dropdowns** force an answer where you'd prefer to skip — if the honest answer isn't an option, tell the user rather than picking the closest wrong one.
 
 ## Output Format
 
@@ -202,8 +205,9 @@ If providing multiple answers (one per field), use separate code blocks with a l
 
 **Years of React experience:**
 ```
-4 years. Used it across Screenr (agentic hiring SaaS), a Tauri-based POS
-system, and several client projects. Also used Next.js where SSR was needed.
+6 years. Used it across [Project A] (a real-time analytics dashboard), an
+internal design-system library, and several client projects. Next.js where
+SSR was needed.
 ```
 
 **Describe your backend experience:**
@@ -224,24 +228,24 @@ system, and several client projects. Also used Next.js where SSR was needed.
 
 When in doubt, shorter is better. Recruiters skim form answers. The goal is to be clear and memorable, not comprehensive.
 
+## Pre-Submit Checklist
+
+Before the user submits:
+1. ✅ Every factual claim traces to the user's CV or explicit statement
+2. ✅ Sensitive fields (EEO, attestations, salary, DOB/graduation dates, AI-usage, applied-before/knows-anyone) were answered by the user, not generated
+3. ✅ Numeric/rating answers: honest, not undercounted, knockout risk flagged where relevant
+4. ✅ List any fields left for the user to answer personally, with why
+
 ## Common Mistakes to Avoid
 
-**Repeating the JD:**
-❌ "I am interested in this role because you are looking for someone to build scalable backend systems..."
-✅ "What caught my attention was the real-time constraint — healthcare data at milliseconds latency is a different class of problem than most backend work."
+**Repeating the JD:** ❌ "I am interested in this role because you are looking for someone to build scalable backend systems..." → ✅ "What caught my attention was the real-time constraint — healthcare data at milliseconds latency is a different class of problem than most backend work."
 
-**Generic trait claims:**
-❌ "I am a fast learner who thrives in collaborative environments"
-✅ [Just describe the actual work — the traits come through]
+**Generic trait claims:** ❌ "I am a fast learner who thrives in collaborative environments" → ✅ just describe the actual work — the traits come through.
 
-**Over-qualifying:**
-❌ "While I may not have exactly 5 years, I believe my experience..."
-✅ "The role mentions 5 years — I'm at 3, but the systems I've shipped are production-facing."
+**Over-qualifying:** ❌ "While I may not have exactly 5 years, I believe my experience..." → ✅ "The role mentions 5 years — I'm at 3, but the systems I've shipped are production-facing."
 
-**Listing without context:**
-❌ "React, Vue, Angular, Next.js, TypeScript, Node.js..."
-✅ "React is my primary frontend framework — 4 years across Screenr and several client projects. Vue and Angular for about 3 years each, mostly dashboards and admin tooling."
+**Listing without context:** ❌ "React, Vue, Angular, Next.js, TypeScript, Node.js..." → ✅ "React is my primary frontend framework — 6 years across [Project A] and several client projects. Vue and Angular for about 3 years each, mostly dashboards and admin tooling."
 
-**Padding to fill space:**
-❌ Adding projects or experience that aren't relevant just to look prolific
-✅ Include only what's relevant to this specific role
+**Padding to fill space:** ❌ adding irrelevant projects to look prolific → ✅ include only what's relevant to this specific role.
+
+**Auto-filling sensitive fields:** ❌ selecting an EEO category, guessing a work-authorization answer, typing a salary number → ✅ ask, read attestations verbatim, and let the user answer.

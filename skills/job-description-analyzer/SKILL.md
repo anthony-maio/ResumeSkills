@@ -1,6 +1,6 @@
 ---
 name: job-description-analyzer
-description: Analyze job postings, calculate match scores, identify gaps, and create application strategy
+description: Use when analyzing a job posting to decide whether and how to apply — evidence-ranked fit, gap strategy, red flags, and tailoring priorities for senior candidates.
 ---
 
 # Job Description Analyzer
@@ -10,448 +10,142 @@ description: Analyze job postings, calculate match scores, identify gaps, and cr
 Use this skill when the user:
 - Wants to analyze a job posting
 - Asks "should I apply to this job?"
-- Wants to know their match percentage for a role
+- Wants to know how well they fit a role
 - Needs help understanding job requirements
 - Wants to tailor their resume for a specific position
-- Mentions: "analyze this job", "am I qualified", "match score", "should I apply"
+- Mentions: "analyze this job", "am I qualified", "how do I match", "should I apply"
 
 Use this BEFORE resume tailoring to ensure effort is worth it.
 
-## Core Capabilities
+## Candidate Guardrails (always apply)
 
-- Extract and categorize job requirements (must-have vs nice-to-have)
-- Calculate match score between user's experience and job requirements
-- Identify skill gaps and strengths
-- Detect red flags in job postings
-- Prioritize which experiences to highlight
-- Generate resume tailoring strategy
-- Create cover letter talking points
-- Assess company culture fit indicators
+**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
 
-## The Strategic Problem
+**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-leaning line, identical everywhere.
 
-Most job seekers waste time on:
-- Jobs they're under-qualified for (<60% match)
-- Jobs they're over-qualified for (flight risk)
-- Jobs with red flags (high turnover, toxic culture)
-- Applying to 50+ jobs blindly hoping something sticks
+**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass.
 
-Better approach:
-- Apply to 10-15 jobs strategically
-- Target 70-90% match jobs
-- Customize deeply for each
-- Higher response rate, less burnout
+**Fabrication guard (gap handling):** Before writing ANY claim about the user's learning activities, certifications, or skills ("I'm learning X", "I hold Y cert", adding a skill to their resume), ask the user what their actual experience with it is. Never insert named courses, self-study claims, or skill-list additions without explicit confirmation. If a gap skill is genuinely absent, write "gap — no evidence; ask the user before addressing it anywhere."
 
 ## Analysis Process
 
 ### Step 1: Extract Requirements
 
-Break job description into categories:
+Break the job description into categories:
 
-**Required (Must-Have)**
-- Education requirements
-- Years of experience
-- Specific technical skills
-- Certifications/licenses
-- Industry experience
+**Required (Must-Have)** — education, years of experience, specific technical skills, certifications/licenses, location/work-authorization constraints.
 
-**Preferred (Nice-to-Have)**
-- "Bonus" skills
-- Advanced certifications
-- Domain expertise
-- Specific tool experience
+**Preferred (Nice-to-Have)** — "bonus" skills, advanced certifications, domain expertise, specific tool experience.
 
-**Soft Skills/Culture**
-- Communication style
-- Work environment
-- Team structure
-- Company values
+**Scope & Impact Signals** (most important for senior roles) — system ownership, team/org influence, on-call/incident leadership, technical direction, scale (users, throughput, latency), business metrics.
 
-### Step 2: Keyword Extraction
+### Step 2: Evidence-Ranked Fit (replaces any numeric score)
 
-Identify three types:
+For EACH requirement, rank by evidence from the user's actual resume/statements:
 
-**Hard Skills** (Technical abilities)
-- Tools: Salesforce, Python, AWS, Excel
-- Methodologies: Agile, Six Sigma, SDLC
-- Certifications: PMP, CPA, AWS Certified
+- **Meets** — user has direct, evidenced experience (name the evidence).
+- **Partially meets** — adjacent or shallower experience (say how deep it actually goes).
+- **Missing** — no evidence. Never paper over this; if a claim would be needed to close it, that's a fabrication risk — ask the user first.
 
-**Soft Skills** (Interpersonal)
-- Leadership, collaboration, communication
-- Problem-solving, critical thinking
-- Adaptability, initiative
+Then give an overall triage — and label it clearly:
 
-**Industry/Domain Knowledge**
-- B2B SaaS, healthcare, fintech
-- Enterprise vs SMB
-- Regulatory knowledge (HIPAA, SOX, GDPR)
+> **This triage is a heuristic to prioritize the user's effort. It is not how recruiters or ATS platforms evaluate candidates, and it should not be treated as a probability of success.**
 
-### Step 3: Calculate Match Score
+- **Strong fit** — meets nearly all required requirements, with direct evidence for the top 3.
+- **Stretch** — meets roughly half; missing items are learnable or compensable by stronger adjacent evidence.
+- **Skip** — a hard dealbreaker applies (see below), OR the user confirms the role's core work doesn't interest them.
 
-```
-MATCH CALCULATION:
+No overqualified penalty. If the user meets ~100% of requirements and the title is a level down, that is NOT a reason to skip — apply if the scope interests them, and address leveling directly in outreach: "I want this scope, not a bigger title."
 
-Required Skills:
-- User has 8 out of 10 required = 80%
+### Step 3: Dealbreaker Detection
 
-Preferred Skills:
-- User has 3 out of 5 preferred = 60%
+**Actual dealbreakers (don't apply):**
+- Required license/clearance the user can't obtain (medical, legal, CPA, security clearance)
+- Location or work-authorization requirement the user can't meet
+- Legally mandated qualification (e.g., bar admission for attorney roles)
 
-Overall Match:
-- Weight required 70%, preferred 30%
-- (80% × 0.7) + (60% × 0.3) = 74%
+**NOT dealbreakers (apply anyway):**
+- "X+ years" bars — for senior candidates these are wish lists, not hard filters; hiring teams routinely interview people above or below the stated bar. Judge fit by scope evidence.
+- "Preferred" degree the user doesn't have
+- Nice-to-have tools the user can learn
+- Industry experience when the user has transferable skills
 
-INTERPRETATION:
-90-100% = Overqualified (may be flight risk)
-75-89% = Excellent fit (apply immediately)
-60-74% = Good fit (apply with strong cover letter)
-50-59% = Stretch role (apply if passionate)
-<50% = Under-qualified (skip unless dream job)
-```
+### Step 4: Red Flag Detection
 
-### Step 4: Gap Analysis
+**Workload red flags:** "wear many hats", "fast-paced environment", "hit the ground running", "self-starter in ambiguous situations".
 
-For each missing requirement:
-- **Critical gap**: Deal-breaker (don't apply)
-- **Major gap**: Significant but addressable (mention in cover letter)
-- **Minor gap**: Easy to learn (downplay or emphasize related skills)
+**Culture red flags:** "rockstar/ninja/guru", "work hard play hard", "unlimited vacation", "like a family".
 
-### Step 5: Red Flag Detection
+**Compensation red flags:** "competitive salary" with no range, equity-heavy comp, commission-based, "DOE" with no range. Note: pay-transparency laws (CO, CA, NY, WA, MA and others) require ranges in many jurisdictions — a missing range where one is legally required is itself a signal.
 
-Scan for warning signs:
+**AI-washing (flag explicitly):** JDs that say "AI-powered", "LLM experience required", or "GenAI" without describing what the AI actually does or what the person would build. Probe: is this a real ML/LLM engineering role, a conventional role rebranded for funding optics, or prompt-engineering theater? Surface the discrepancy and ask the user how much it matters to them.
 
-**Workload Red Flags:**
-- "Wear many hats"
-- "Fast-paced environment"
-- "Hit the ground running"
-- "Self-starter in ambiguous situations"
+## Senior-Engineering Calibration
 
-**Culture Red Flags:**
-- "Rockstar/Ninja/Guru"
-- "We work hard, play hard"
-- "Unlimited vacation"
-- "Like a family"
+When the user is a senior/staff engineer:
 
-**Compensation Red Flags:**
-- "Competitive salary" (won't tell you range)
-- "Equity-heavy" (low cash compensation)
-- "Commission-based" (no base salary)
-- "DOE" with no range
+1. **Weight scope over tool keywords.** "Own the technical direction for payments infrastructure" outranks five framework names. Judge: systems owned, scale (QPS, data volume, uptime), blast radius, org-level influence, incident leadership.
+2. **Vague staff+ requirements resist keyword counting** — "set technical vision" is evidenced by narratives (RFCs authored, migrations led, standards set), not resume keywords. Flag these as "evidence-gathering needed: ask the user for 1-2 stories per vague requirement."
+3. **Years bars are negotiable.** See dealbreakers above. Don't let a "10+ years" bar cause a strong 22-year candidate to self-select out — or a strong 8-year candidate to skip. The evidence, not the arithmetic, decides.
+4. **Prefer referral/warm-intro paths.** Most tech applications get no response regardless of match. Before recommending a cold application, ask: does the user know anyone at the company, or anyone two hops away? A referral or a warm intro to an engineering leader converts far better than a portal submission. Cold-apply as the fallback, not the default.
 
-## Match Score Output Format
+## Report Skeleton
+
+Output the analysis in this shape (full worked example: `references/example-report.md`):
 
 ```markdown
-# JOB ANALYSIS REPORT
-
-**Position:** Senior Product Manager
-**Company:** TechCorp Inc.
-**Location:** San Francisco, CA (Hybrid)
-**Salary Range:** $140K-$180K + equity
-
-═══════════════════════════════════════════
-
-## OVERALL MATCH SCORE: 78% ✅
-
-**Recommendation:** STRONG FIT - Apply within 48 hours
-
-**Application Priority:** HIGH
-**Estimated Competition:** Medium (Posted 2 days ago)
-**Time to Tailor Resume:** 30-45 minutes
-
-═══════════════════════════════════════════
-
-## REQUIREMENTS BREAKDOWN
-
-### Required Skills - 8/10 ✅
-
-✅ 5+ years product management (You have: 6 years)
-✅ B2B SaaS experience (You have: 4 years)
-✅ Agile/Scrum (You have: 5 years)
-✅ Cross-functional leadership (You have: Strong experience)
-✅ Data-driven decision making (You have: 3 years analytics)
-✅ API products (You have: 2 years)
-✅ Roadmap planning (You have: Extensive)
-✅ User research (You have: 2 years)
-❌ SQL/data analysis (You have: Basic Excel only) ⚠️
-❌ Mobile product experience (You don't have) ⚠️
-
-### Preferred Skills - 4/6 ✅
-
-✅ MBA or equivalent (You have: MBA from UC Berkeley)
-✅ Developer tools experience (You have: 2 years)
-✅ Payment systems (You have: 1 year)
-✅ International markets (You have: Worked with EU teams)
-❌ E-commerce background (You don't have)
-❌ Machine learning products (You don't have)
-
-### Soft Skills - 5/5 ✅
-
-✅ Stakeholder management (Strong mentions in your resume)
-✅ Communication (You present regularly)
-✅ Strategic thinking (MBA + senior experience)
-✅ Influence without authority (You've done this)
-✅ Customer empathy (User research experience)
-
-═══════════════════════════════════════════
-
-## STRENGTHS TO EMPHASIZE
-
-**Your Top 3 Selling Points:**
-
-1. **B2B SaaS PM Experience**
-   - 4 years in SaaS, exactly what they want
-   - Lead with this in resume summary
-
-2. **API Product Background**
-   - Your developer tools experience is highly relevant
-   - This differentiates you from other candidates
-
-3. **Data-Driven Approach**
-   - Your analytics background addresses their need
-   - Emphasize metrics and data in every bullet
-
-═══════════════════════════════════════════
-
-## GAPS TO ADDRESS
-
-**Critical Gaps:** None ✅
-
-**Major Gaps:**
-⚠️ **SQL/Data Analysis**
-- They mention this 5x in job description
-- They want PM who can query data independently
-
-**Strategy:**
-- Don't avoid this gap
-- Address in cover letter: "While my primary analytics work has been in Excel and BI tools, I'm actively learning SQL through DataCamp and can currently write basic queries"
-- Emphasize your data-driven mindset and collaboration with data team
-
-**Minor Gaps:**
-- Mobile product experience (mentioned 2x)
-- Not a dealbreaker - they want "any product," mobile just a plus
-
-**Strategy:**
-- Don't mention this gap
-- If asked in interview, pivot to "transferable product skills"
-
-═══════════════════════════════════════════
-
-## RESUME CUSTOMIZATION STRATEGY
-
-### Priority 1: Lead with Most Relevant Experience
-
-**Current Resume Order:**
-1. Company ABC - General PM work
-2. Company XYZ - Your developer tools role
-3. Company 123 - Early career
-
-**Recommended Order:**
-1. Company XYZ - Developer tools role (MOST RELEVANT)
-2. Company ABC - B2B SaaS work
-3. Company 123 - Only if space allows
-
-### Priority 2: Keyword Integration
-
-**Add These Exact Phrases:**
-- "SQL and data analysis" (mentioned 5x in JD)
-- "API product management" (mentioned 4x)
-- "Developer-focused products" (mentioned 3x)
-- "Stakeholder alignment" (mentioned 3x)
-
-**Where to Add:**
-- Professional Summary: Mention "API products" and "data-driven"
-- Skills Section: Add "SQL (basic), Data Analysis, API Design"
-- Experience: Weave into existing bullets
-
-### Priority 3: Quantify Everything
-
-They mention "metrics" and "KPIs" 7 times total.
-
-**Enhance These Bullets:**
-
-Current: "Led product roadmap"
-Better: "Defined product roadmap based on analysis of 50+ customer interviews and usage data from 100K+ users"
-
-Current: "Launched new features"
-Better: "Launched 8 features in 12 months, increasing user engagement by 35% and reducing churn by 20%"
-
-═══════════════════════════════════════════
-
-## COVER LETTER TALKING POINTS
-
-### Opening Hook (Choose One):
-
-**Option 1 - Specific Company Knowledge:**
-"I noticed TechCorp recently launched your API marketplace - I've spent the last 2 years as PM for a developer tools platform, and I'm excited about the opportunity to bring that experience to your growing API ecosystem."
-
-**Option 2 - Mutual Connection:**
-"[Name] on your product team mentioned you're looking for a PM to lead the API product line - my 2 years in developer tools and B2B SaaS background would be a strong fit."
-
-**Option 3 - Problem-Solver:**
-"Your JD mentions challenges in stakeholder alignment across technical teams - I've navigated this exact challenge at my current role, aligning engineering, design, and sales teams across 6 concurrent product initiatives."
-
-### Body - Address the Match:
-- "Your requirement for B2B SaaS experience: I have 4 years with..." 
-- "Your focus on data-driven decisions: In my current role, I..."
-- "Your need for API product expertise: At [Company], I..."
-
-### Addressing SQL Gap (Optional):
-"While my data analysis has primarily been in Excel and Tableau, I'm expanding my SQL skills and can currently write basic queries. More importantly, I've built strong partnerships with data teams and consistently use data to inform product decisions."
-
-═══════════════════════════════════════════
-
-## RED FLAGS ANALYSIS
-
-### Potential Concerns: ⚠️ MINOR
-
-**Flag 1:** "Fast-paced environment"
-- Appears 2x in description
-- Interpretation: Likely startup or high-growth
-- May mean: Long hours, ambiguity, rapid changes
-
-**Flag 2:** Salary range is wide ($140K-$180K)
-- 29% spread
-- May indicate: Experience range is flexible, or negotiation room
-
-### Positive Signals: ✅
-
-**Signal 1:** Detailed job description
-- Shows company knows what they want
-- Well-organized role
-
-**Signal 2:** Mentions specific tools (JIRA, Amplitude)
-- Shows operational maturity
-
-**Signal 3:** Hybrid flexibility mentioned
-- Modern workplace practices
-
-### Company Research Needed:
-
-Before applying, check:
-- Glassdoor reviews (look for patterns in 1-2 star reviews)
-- Recent funding/news (layoffs? growth?)
-- LinkedIn: Check how long people stay (high turnover?)
-- Levels.fyi: Verify salary range is accurate
-
-═══════════════════════════════════════════
-
-## APPLICATION TIMELINE
-
-**✅ Day 1 (Today):**
-- Customize resume (30-45 minutes)
-- Write cover letter (30 minutes)
-
-**✅ Day 1-2:**
-- Submit application
-- Connect with 2-3 current employees on LinkedIn
-- Research company more deeply
-
-**✅ Week 1:**
-- Follow up if no response after 7 days
-
-**📊 Expected Response Time:** 1-2 weeks
-
-**📊 Interview Process (from job posting):**
-1. Recruiter screen (30 min)
-2. Hiring manager (1 hour)
-3. Product case study (take-home)
-4. Team interviews (3-4 hours)
-5. Executive interview (1 hour)
-
-═══════════════════════════════════════════
-
-## DECISION FACTORS
-
-### Reasons to Apply ✅
-
-1. Strong match (78%) - You meet most requirements
-2. Role aligns with career goals
-3. Salary range is appropriate for your experience
-4. Company stage fits your preferences
-5. You have unique relevant experience (developer tools)
-
-### Reasons to Hesitate ⚠️
-
-1. SQL gap is real - prepare to address this
-2. "Fast-paced" may mean high pressure
-3. Need to research company culture more
-
-### Overall Recommendation:
-
-**APPLY - This is a strong opportunity**
-
-You meet 80% of required skills and 67% of preferred skills. Your developer tools and B2B SaaS experience makes you a differentiated candidate. The SQL gap is addressable with honesty and emphasis on your analytical skills. Apply within 48 hours while posting is fresh.
+# JOB ANALYSIS: [Role] at [Company]
+**Triage:** STRONG FIT / STRETCH / SKIP — *(heuristic; not how recruiters score you)*
+**Hard dealbreakers checked:** location / work-auth / license — [result]
+
+## Requirements (evidence-ranked)
+| Requirement | Verdict | Evidence |
+|---|---|---|
+| [Top requirement] | Meets / Partially / Missing | [specific resume evidence or "ask user"] |
+
+## Strengths to emphasize (top 3, with evidence)
+## Gaps — and the exact question to ask the user before addressing any of them
+## Red flags / AI-washing notes
+## Referral & warm-intro check
+## Application plan: apply when tailored; one follow-up at 10-14 days
 ```
 
-## Requirement Classification Guide
+Never include fabricated fields: no "estimated competition", no "expected response time", no "posted X days ago → urgency" claims. You don't have that data.
 
-### Identifying "Must Have" vs "Nice to Have"
+## Application Plan Guidance (candidate-controllable only)
 
-**Language indicating REQUIRED:**
-- "Must have..."
-- "Required: X years of..."
-- "You have..."
-- "Essential qualifications"
-- Listed under "Requirements"
-- Mentioned 3+ times in description
+- **Apply when the resume is properly tailored** — not "within 48 hours". Freshness urgency is manufactured; ATS pipelines commonly run 2-4+ weeks.
+- **Follow up once**, politely, after **10-14 days** if no response.
+- **Contact one relevant person** — the hiring manager or a relevant engineer/EM, with a specific, short note. Not a LinkedIn blast to 2-3 employees.
+- **Silence is the default outcome** in the 2026 tech market; it is not evidence the user is unqualified. Prioritize quality over quantity: 10-15 well-targeted applications beat 50 blind ones.
 
-**Language indicating PREFERRED:**
-- "Nice to have..."
-- "Bonus if you have..."
-- "Preferred qualifications"
-- "Ideally, you'd have..."
-- "A plus if..."
-- Mentioned only 1-2 times
+## Company Research Checklist
 
-### Dealbreaker Detection
-
-**Absolute dealbreakers (don't apply):**
-- Required license you don't have (medical, legal, CPA)
-- Required clearance you can't get
-- Years of experience 50%+ below requirement
-- Required degree you don't have (when stated as "required")
-- Location requirement you can't meet
-
-**Not dealbreakers (apply anyway):**
-- Years of experience slightly below (e.g., 3 years when they want 5)
-- "Preferred" degree you don't have
-- Nice-to-have tools/skills you can learn
-- Industry experience when you have transferable skills
+Before applying, check:
+- Glassdoor reviews (patterns in 1-2 star reviews)
+- Blind and LinkedIn tenure (high turnover?)
+- layoffs.fyi and recent news (layoffs, down-rounds, pivots)
+- Levels.fyi and posted ranges (note: many companies under-post or omit ranges even where required)
 
 ## Implementation Checklist
 
-When analyzing a job:
-
-1. ✅ Extract all requirements (required vs preferred)
-2. ✅ Identify all keywords (hard skills, soft skills, industry terms)
-3. ✅ Calculate match score
-4. ✅ Identify strengths to emphasize
-5. ✅ Identify gaps and strategies to address
-6. ✅ Detect red flags
-7. ✅ Create resume customization plan
-8. ✅ Generate cover letter talking points
-9. ✅ Research company
-10. ✅ Provide application recommendation and timeline
+1. Extract requirements (required / preferred / scope signals)
+2. Rank each requirement by evidence (meets / partially / missing)
+3. Assign triage with the heuristic caveat
+4. Check hard dealbreakers only
+5. List strengths with evidence
+6. List gaps with the question to ask the user — never a generated claim
+7. Detect red flags and AI-washing
+8. Check referral/warm-intro paths
+9. Give a candidate-controllable application plan
+10. Move on — analysis serves the decision; don't over-polish
 
 ## Edge Cases
 
-### Vague Job Descriptions
-- Flag as potential red flag
-- Extract what keywords you can
-- Recommend reaching out for clarity before applying
-- Use industry standard requirements as baseline
+**Vague job descriptions** — flag as a signal; extract what's possible; suggest asking the recruiter for scope details before investing heavy tailoring.
 
-### Multiple Roles in One JD
-- Identify the core role vs "other duties"
-- Focus match score on primary responsibilities
-- Flag scope creep concerns
+**Multiple roles in one JD** — identify the core role vs "other duties"; analyze the primary responsibilities; flag scope creep.
 
-### Internal Postings (Already Working There)
-- Different strategy - emphasize internal knowledge
-- Highlight cross-team relationships
-- Reference specific company initiatives
+**Internal postings** — different strategy: emphasize internal knowledge and cross-team relationships; skip the referral check (you ARE the warm path).
 
-### Reposted Jobs
-- May indicate: Previous hire didn't work out, role expanded, or first search failed
-- Worth applying, but research why it was reposted
-- Check if requirements changed from original posting
+**Reposted jobs** — worth applying, but check whether requirements changed; a repost after a completed search can signal the team doesn't know what it wants.

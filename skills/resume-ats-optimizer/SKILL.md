@@ -1,6 +1,6 @@
 ---
 name: resume-ats-optimizer
-description: Optimize resumes for Applicant Tracking Systems, check ATS compatibility, and analyze keyword match
+description: Use when checking whether a resume will parse cleanly and cover a specific JD's requirements — extractable-text verification, risk-tiered formatting, and evidence-ranked keyword coverage (no fake scores).
 ---
 
 # Resume ATS Optimizer
@@ -8,312 +8,163 @@ description: Optimize resumes for Applicant Tracking Systems, check ATS compatib
 ## When to Use This Skill
 
 Use this skill when the user wants to:
-- Optimize their resume for Applicant Tracking Systems (ATS)
-- Check if their resume will pass automated screening
-- Understand why their applications aren't getting responses
-- Mentions keywords like: "ATS", "not getting interviews", "resume not working", "optimize resume", "keyword optimization"
+- Check whether their resume will parse in an Applicant Tracking System (ATS)
+- Compare resume coverage against a specific job description
+- Understand why applications aren't getting responses
+- Mentions: "ATS", "not getting interviews", "resume not working", "keyword match", "optimize resume"
 
-Also use when the user provides a resume file and mentions they're applying to jobs.
+For visual layout and fonts, defer to resume-formatter (canonical). This skill covers parseability verification and JD coverage.
 
-## Core Capabilities
+## Candidate Guardrails (always apply)
 
-- Parse resume and test ATS compatibility
-- Extract and analyze keywords against job descriptions
-- Identify formatting issues that break ATS parsers
-- Calculate match scores between resume and job postings
-- Suggest keyword additions and placements
-- Generate ATS-friendly formatting recommendations
+**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
 
-## The ATS Problem
+**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere.
 
-75% of resumes are rejected by Applicant Tracking Systems before a human ever sees them. Companies use ATS to:
-- Filter out unqualified candidates automatically
-- Search for specific keywords from job requirements
-- Parse resumes into structured data
-- Rank candidates by keyword match percentage
+**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass — prefer percentages, ranges, anonymized phrasing.
 
-Common reasons resumes fail ATS:
-1. Poor formatting (tables, columns, headers/footers)
-2. Missing keywords from job description
-3. Inconsistent section headers
-4. Non-standard fonts or special characters
-5. Text embedded in images
-6. Incorrect file format
+## How ATS Actually Works (2026 reality)
 
-## ATS Compatibility Checklist
+Modern ATS platforms (Greenhouse, Lever, Workday, iCIMS) **parse and store** resumes; they do not auto-reject on formatting. Auto-rejection is rare and happens via knockout questions (work authorization, location, license requirements) — not two-column layouts. Recruiters then **search by keyword** and review ranked lists.
 
-### File Format
-- ✅ Use .docx or .pdf (not .pages, .odt)
-- ✅ PDF must be text-based, not scanned image
-- ✅ File name: "FirstName_LastName_Resume.pdf"
+The real risks, in order:
+1. **Unparseable files** — scanned/image PDFs, text embedded in graphics
+2. **Missing searchable keywords** — true skills the user has, phrased so search finds them
+3. **Knockout questions** — answer these carefully in the portal, not the resume
 
-### Font & Formatting
-- ✅ Standard fonts: Arial, Calibri, Georgia, Times New Roman
-- ✅ Font size: 10-12pt for body, 14-16pt for headers
-- ✅ No text boxes, tables, or columns
-- ✅ No headers/footers (put contact info in body)
-- ✅ No images, graphics, or charts
-- ✅ Consistent date formats (MM/YYYY)
-- ✅ Standard bullet points (•, -, *)
+Context that lowers the stakes: referrals, recruiter outreach, and Easy Apply with a strong profile largely bypass keyword screening. Keyword coverage matters, but it is not the bottleneck folklore makes it. Never cite rejection-percentage statistics — the popular ones are debunked myths.
 
-### Section Headers
-Use standard, recognizable headers:
-- ✅ "Professional Experience" or "Work Experience" (not "Where I've Been")
-- ✅ "Education" (not "Academic Background")
-- ✅ "Skills" (not "Core Competencies")
-- ✅ "Summary" or "Professional Summary"
+## Parseability Verification (actually run this)
 
-### Contact Information
-```
-John Smith
-email@example.com | (555) 123-4567 | LinkedIn: linkedin.com/in/johnsmith
-San Francisco, CA
+Don't guess whether a resume parses — extract its text and check:
+
+```bash
+pdftotext resume.pdf - | head -80
 ```
 
-NOT in header/footer, and avoid:
-- ❌ Tables for contact info
-- ❌ Special characters in email
-- ❌ Multiple phone numbers
-- ❌ Full mailing address (city/state is enough)
+(Available in poppler-utils; `python -m pip install pdftotext` or use `pdftotext` via WSL. For .docx, unzip and read `word/document.xml`, or convert with `libreoffice --headless --convert-to pdf`.)
 
-## Keyword Optimization Process
+**Pass criteria — all must survive extraction:**
+- [ ] Name and contact info present and in order
+- [ ] Every job title and employer recognizable
+- [ ] Every date range intact (e.g., "Jan 2020 – Mar 2023")
+- [ ] Section headers recognizable ("Experience", "Education", "Skills")
+- [ ] Skills list intact, not scrambled or merged
 
-### Step 1: Extract Job Description Keywords
+If text extraction scrambles the layout (columns interleaving, dates detached from titles), simplify the layout and re-run. If contact info and dates survive a text-extraction pass, parsing will almost certainly work.
 
-Identify three types of keywords:
+## Formatting Risk Tiers
 
-**Hard Skills (Technical)**
-- Programming languages (Python, Java, SQL)
-- Tools and platforms (Salesforce, AWS, Excel)
-- Certifications (PMP, CPA, CFA)
-- Methodologies (Agile, Six Sigma, SDLC)
+**Never (high risk, no payoff):**
+- ❌ Scanned or image-based PDFs (no text layer)
+- ❌ Text embedded in images/graphics/charts
+- ❌ Skill bars, infographic ratings, text in logos
 
-**Soft Skills**
-- Leadership, collaboration, communication
-- Problem-solving, analytical thinking
-- Project management, stakeholder management
+**Low risk, verify with the paste test:**
+- Headers/footers — major platforms extract them; still keep contact info in the body as belt-and-suspenders
+- Simple tables and two-column layouts — fine on Greenhouse/Lever/Workday if the paste test passes (text extraction keeps names/dates/sections in order)
+- Columns for skills lists — acceptable; verify extraction order reads sensibly
 
-**Industry Terms**
-- B2B, SaaS, e-commerce
-- Enterprise, SMB, mid-market
-- ARR, MRR, churn rate
+**Always safe:**
+- ✅ Single column, standard headers, standard bullets (•, -), consistent MM/YYYY dates
+- ✅ Standard section names: "Professional Experience", "Education", "Skills", "Summary"
 
-### Step 2: Match Analysis
+**File format:** .docx or text-based .pdf. File name: `FirstName_LastName_Resume.pdf`. Full formatting canon lives in resume-formatter.
 
-For each keyword in job description:
-1. Check if exact phrase appears in resume
-2. Check for synonyms or variations
-3. Count frequency of mention
-4. Note location (summary, experience, skills)
+## JD Coverage Analysis (qualitative, no scores)
 
-### Step 3: Calculate Match Score
+Do not compute or invent numeric match scores — there is no universal threshold, vendor weighting varies, and a fabricated "65%" drives keyword-stuffing anxiety. Report evidence instead.
 
-```
-Match Score = (Keywords Matched / Total Required Keywords) × 100
+### Step 1: Extract JD requirements
+List each *requirement* from the JD (not just keywords): responsibilities, required skills, nice-to-haves, seniority signals.
 
-Example:
-Job has 20 required keywords
-Your resume has 15 of them
-Match Score = 75%
+### Step 2: Classify coverage per requirement
 
-Target: 80%+ for strong match
-```
+| JD Requirement | Coverage | Evidence in resume |
+|---|---|---|
+| e.g., "LLM inference experience" | **Verbatim** | "Reduced LLM inference cost 38%..." |
+| e.g., "stakeholder management" | **Synonym** | "Aligned 4 product teams on..." |
+| e.g., "Kubernetes at scale" | **Absent** | — |
 
-### Step 4: Keyword Placement Strategy
+Three coverage levels only: **Verbatim** (JD's term appears), **Synonym** (equivalent phrasing — flag exact term for consideration), **Absent** (no evidence).
 
-**Priority 1: Professional Summary (Top of Resume)**
-- Include 5-8 most important keywords
-- Use naturally in 3-4 sentence paragraph
-- Example: "Data Scientist with 5+ years using Python, SQL, and machine learning to drive business insights..."
+### Step 3: Report and recommend
 
-**Priority 2: Skills Section**
-- List keywords explicitly
-- Group by category if needed
-- Use exact phrasing from job description
+- Verbatim → no action
+- Synonym → suggest adding the JD's exact term *if truthfully the user's skill* ("aligned 4 teams" can also say "stakeholder alignment across 4 teams")
+- Absent → ask the user: do you have this? If yes, where? If no, don't add it
 
-**Priority 3: Experience Bullets**
-- Incorporate keywords into achievement statements
-- Don't force keywords unnaturally
-- Use variations throughout
-
-**Keyword Density Guidelines:**
-- Critical keywords: Appear 2-4 times throughout resume
-- Important keywords: Appear 1-2 times
-- Don't keyword stuff - keep it natural
-- Vary phrasing (e.g., "led team" and "team leadership")
+**Placement principle:** each critical term should appear where a reader expects it — once in skills, once inside a concrete achievement. Never repeat a term solely to raise density; there is no keyword-density ranking factor on mainstream platforms, and repetition reads as spam to the recruiter who opens the file.
 
 ## Analysis Output Format
 
-When analyzing a resume, provide this structured report:
-
 ```markdown
-# ATS COMPATIBILITY REPORT
+# ATS PARSE & COVERAGE REPORT
 
-## Overall Score: [X]/100
+## Parseability (from pdftotext run)
+- Text extraction: Pass/Fail
+- Name/contact intact: Y/N
+- All titles + employers + dates intact: Y/N
+- Layout notes: [scrambled column order? detached dates?]
 
-### File Format Check ✅/❌
-- Format: [DOCX/PDF]
-- Text extraction: [Success/Failed]
-- File size: [X KB/MB]
+## Formatting Risks
+- Tier-1 (must fix): [image PDFs, text in graphics — or none]
+- Tier-2 (verify, likely fine): [tables/columns that passed the paste test]
 
-### Formatting Issues
-✅ No tables or columns detected
-❌ Contact info in header (move to body)
-⚠️  Two different font sizes in skills section
+## JD Requirement Coverage
+| Requirement | Verbatim | Synonym | Absent |
+|---|---|---|---|
+| [req 1] | ✓ | | |
+| [req 2] | | ✓ ("your phrasing" ≈ "JD term") | |
+| [req 3] | | | ✗ — ask user |
 
-### Keyword Analysis
-
-JOB REQUIREMENTS vs YOUR RESUME:
-
-**Critical Keywords (Must Have):**
-✅ Project Management - Found 3x
-✅ Agile/Scrum - Found 2x
-❌ Stakeholder Management - MISSING (mentioned 5x in JD)
-❌ Budget Management - MISSING (mentioned 3x in JD)
-
-**Important Keywords:**
-✅ Cross-functional teams - Found 1x
-⚠️  "Risk management" - You have "risk mitigation" (close but not exact match)
-✅ Process improvement - Found 2x
-
-**Match Score: 65%**
-Target: 80%+ recommended
-
-### Recommended Changes
-
-**1. Add Missing Keywords:**
-
-In Professional Summary, change:
-"Experienced project manager with proven track record..."
-
-To:
-"Experienced project manager with proven track record in stakeholder management and budget oversight..."
-
-In Experience section, add bullet:
-"Managed stakeholder communication across 3 departments and executive leadership team"
-"Directed budget management for $2.5M project portfolio"
-
-**2. Fix Formatting:**
-- Move contact information from header to body of resume
-- Make all skill section items same font size (currently 10pt and 11pt mixed)
-
-**3. Strengthen Existing Keywords:**
-Change "risk mitigation" to "risk management" for exact match
-
-### Estimated New Match Score: 85%
+## Recommended Changes
+1. [Synonym → exact term, only if truthful]
+2. [Absent → question for the user, never auto-add]
+3. [Any Tier-1 formatting fix + re-run paste test]
 ```
 
-## Common ATS Failure Patterns
+No "overall score", no "estimated new match %" — coverage decisions belong to the human.
 
-### Pattern 1: Creative Formatting
-```
-❌ PROBLEM:
-[Two-column layout with graphics]
-[Skill bars and proficiency charts]
-[Text in colored boxes]
+## Level-Specific Advice
 
-✅ SOLUTION:
-- Single column layout
-- Text-only skills list
-- Simple bullet points
-```
+### Mid-level engineers
+- Lead bullets with scale (users, QPS, data volume) and the JD's stack names
+- One strong bullet per requirement beat; don't pad
 
-### Pattern 2: Unconventional Section Names
-```
-❌ PROBLEM:
-"My Journey" (instead of Experience)
-"What I Bring to the Table" (instead of Skills)
-"Academic Pursuits" (instead of Education)
+### Senior engineers
+- Each recent role: 3–5 bullets showing system ownership and outcomes
+- Mirror the JD's domain vocabulary (e.g., "platform", "developer productivity", "inference")
 
-✅ SOLUTION:
-Use standard headers ATS recognizes
-```
+### Staff/principal engineers
+- Recruiters screen for **scope and org-level influence**, not keyword count
+- Coverage language that matters: "across N teams", "org-wide", "adopted by N product lines", "defined technical strategy for..."
+- **Certifications rarely influence screening** at this level at major tech companies — don't add AWS/Azure certs to chase keywords; noise at best
+- A **publications / patents / talks** line carries far more weight than any certification: "Publications: 6 papers on applied LLM serving (NeurIPS, arXiv); talk, KubeCon 2024" — searchable, verifiable, differentiating
+- Design-review ownership, migration leadership, and strategy-doc authorship are the searchable signals of staff scope
 
-### Pattern 3: Missing Keywords
-```
-❌ PROBLEM:
-Job requires: "Python, SQL, Data Visualization"
-Resume says: "Programming, databases, making charts"
+### Executive level
+- Strategic keywords, board experience, P&L size, org size — plus the staff-track signals above if the role is technical
 
-✅ SOLUTION:
-Use exact terminology from job description
-```
+For Healthcare / Marketing / Business / Finance industry keyword sets, see `references/industries.md`.
 
-### Pattern 4: Keyword Stuffing
-```
-❌ PROBLEM:
-Skills: Python, Python programming, Python developer, Python expert, Python specialist, Advanced Python...
+## Edge Cases
 
-✅ SOLUTION:
-Skills: Python, SQL, JavaScript, React, Node.js
-(Then incorporate naturally in bullets)
-```
+### Career changers
+- Coverage table will show many "Absent" — resist the urge to bridge gaps with borrowed keywords; surface transferable evidence and ask before adding any new claim
 
-## Industry-Specific Considerations
+### Recent graduates
+- Education becomes the keyword surface (coursework, tools); internships count as experience
 
-### Tech Resumes
-- Emphasize programming languages and frameworks
-- Include GitHub, portfolio links in Skills section (not header)
-- Certifications and courses matter highly
-
-### Business/Finance
-- Focus on software proficiency (Excel, SAP, Salesforce)
-- Certifications critical (CPA, CFA, PMP)
-- Industry keywords (P&L, ROI, KPI)
-
-### Healthcare
-- Licenses and certifications required
-- Specific systems (Epic, Cerner, MEDITECH)
-- Compliance keywords (HIPAA, Joint Commission)
-
-### Marketing
-- Platform expertise (HubSpot, Salesforce, Google Analytics)
-- Channel keywords (SEO, PPC, email marketing)
-- Metrics and results-driven language
-
-## Edge Cases & Special Situations
-
-### Career Changers
-- Focus on transferable skills
-- Use keywords from TARGET industry, not just current
-- May need two resume versions for ATS
-
-### Recent Graduates
-- Education section becomes priority for keywords
-- Include relevant coursework, projects
-- Internships count as experience - use those keywords
-
-### Executive Level
-- ATS still matters for senior roles
-- Focus on strategic keywords
-- Include board experience, P&L size, team size
-
-### Gaps in Employment
-- Use years only (not months) if it helps
-- Include freelance/consulting with keywords
-- Volunteer work can include relevant keywords
+### Employment gaps
+- Years-only dates are acceptable; freelance/consulting lines carry keywords truthfully
 
 ## Implementation Checklist
 
-When helping user optimize for ATS:
-
-1. ✅ Scan current resume for ATS compatibility issues
-2. ✅ Analyze job description for required keywords
-3. ✅ Calculate current match score
-4. ✅ Identify specific missing keywords
-5. ✅ Suggest exact placements for new keywords
-6. ✅ Flag formatting problems
-7. ✅ Provide before/after examples
-8. ✅ Re-score after suggested changes
-9. ✅ Verify file format and naming
-10. ✅ Test with ATS simulator if possible
-
-## Success Metrics
-
-After optimization, the resume should:
-- Score 80%+ match for target job descriptions
-- Pass ATS parsing test (all sections recognized)
-- Have zero formatting errors
-- Include all critical keywords 2-4x each
-- Read naturally (not keyword-stuffed)
-- Be ready to submit immediately
+1. ✅ Run text extraction (pdftotext or equivalent) on the actual file
+2. ✅ Verify name, contacts, titles, employers, dates all extract
+3. ✅ Build the requirement coverage table (verbatim/synonym/absent)
+4. ✅ Ask the user about every "absent" before suggesting anything
+5. ✅ Suggest exact-term swaps only for confirmed-synonym cases
+6. ✅ Fix Tier-1 formatting issues; re-run extraction after any layout change
+7. ✅ Report qualitatively — no invented scores

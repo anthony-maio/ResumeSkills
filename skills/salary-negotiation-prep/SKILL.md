@@ -1,6 +1,6 @@
 ---
 name: salary-negotiation-prep
-description: Research market rates, build negotiation strategy, and create counter-offer scripts
+description: Use when the user is negotiating a job offer, researching market rates, or preparing counter-offer scripts — includes pay-transparency leverage, salary-history legality, and equity-aware strategy.
 ---
 
 # Salary Negotiation Prep
@@ -11,117 +11,88 @@ Use this skill when the user wants to:
 - Negotiate a job offer or salary
 - Research market rates for their role
 - Create a counter-offer strategy
-- Understand total compensation packages
+- Understand a total compensation package
 - Mentions: "salary negotiation", "negotiate offer", "counter offer", "compensation", "how much should I ask for"
+
+## Candidate Guardrails (always apply)
+
+**Truthfulness:** Every claim, metric, and skill must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation.
+**Privacy & age signals:** Never volunteer age proxies (graduation years by default for senior candidates; "20+ years" framing; early-career dates). Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral line used identically everywhere.
+**Confidential search (employed users):** Ask before naming the current employer; blind variants. Never publish employer-confidential metrics (revenue, internal infra numbers) without an explicit confidentiality pass — prefer percentages, ranges, anonymized phrasing.
 
 ## Core Capabilities
 
 - Research and validate market compensation
+- Turn pay-transparency laws into leverage
 - Build negotiation strategy and scripts
-- Calculate total compensation (not just base salary)
-- Prepare counter-offer responses
-- Identify negotiation leverage points
-- Navigate difficult salary conversations
+- Calculate total compensation (not just base)
+- Prepare counter-offer responses and pushback plans
 
 ## The Negotiation Mindset
 
-**Key Principles:**
-1. Negotiation is expected - companies budget for it
-2. 84% of employers expect candidates to negotiate
-3. Not negotiating leaves $500K-$1M on the table over a career
-4. The goal is win-win, not adversarial
+1. Negotiation is expected — companies budget for it; a polite counter almost never costs an offer.
+2. The goal is win-win, not adversarial.
+3. Never volunteer your current salary or salary history (see Scenario 5) — anchor to the role's posted/market range instead.
 
-**What You're Really Negotiating:**
-- Base salary
-- Signing bonus
-- Annual bonus/commission
-- Equity (stock options, RSUs)
-- Benefits (401k match, insurance)
-- Perks (vacation, remote work, professional development)
-- Start date
-- Title
+**What you can negotiate:** base salary, signing bonus, annual bonus, equity, level/title, 401(k) match, vacation, remote flexibility, start date, review timing.
+
+## Step 0: Pay Transparency Leverage
+
+**Before any compensation conversation, check the job posting for a legally required pay range.**
+
+- Roughly 20 states plus DC require a salary range in job postings (CA, NY, WA, CO, IL, MN, NJ, HI, MD, VT, ME, VA, MA, and more). Effective dates and employer-size thresholds vary — see `references/pay-transparency-states.md` and verify current law before relying on any one state's rule.
+- **MA:** range required for employers with 25+ employees effective **Oct 29, 2025**.
+- **CA:** postings must also disclose the stock/bonus components of compensation beginning **Jan 1, 2026**.
+- **Remote roles can trigger multiple states' laws at once** — a remote posting reachable from CO, NY, or WA generally must comply with those states' rules regardless of where the company is HQ'd.
+- **A missing range where one is required is itself leverage** — ask the recruiter for the posted range for the role.
+
+**How to use a posted range:**
+- The posted range is the full band; employers expect to pay near the middle.
+- **Anchor your counter to the top third of the posted range** — the top of a legally disclosed band is, by definition, within budget.
+- If the offer is below the posted range, name it: "The posting lists $X–$Y; this offer is below that range."
+- If there's no posted range, ask: "Is there a posted or budgeted range for this role?" Many states require one.
 
 ## Research Phase
 
 ### Step 1: Determine Market Rate
 
-**Sources to Check:**
-- Levels.fyi (best for tech)
-- Glassdoor (general, take with grain of salt)
-- LinkedIn Salary
-- Blind (anonymous reports)
-- PayScale
-- Salary.com
-- H1B salary data (publicly available)
+Sources: Levels.fyi (tech), Glassdoor, LinkedIn Salary, Blind, Payscale, Salary.com, public H1B salary data. **Posted ranges from pay-transparency postings are primary data — weight them above crowd-sourced self-reports.**
 
-**Build a Range:**
 ```
-Low (25th percentile): $XXX,XXX
-Target (50th percentile): $XXX,XXX  
-High (75th percentile): $XXX,XXX
+Low (25th percentile):    $XXX,XXX
+Target (50th percentile): $XXX,XXX
+High (75th percentile):   $XXX,XXX
 Stretch (90th percentile): $XXX,XXX
 ```
 
 ### Step 2: Know Your Value
 
-**Factors That Increase Your Worth:**
-- Years of relevant experience
-- Specialized/rare skills
-- Track record of results
-- In-demand certifications
-- Current competing offers
-- Referral from employee
-- Market demand in your field
-
-**Factors That May Limit:**
-- Entry level or career change
-- Less experience than ideal candidate
-- Gaps in required skills
-- Location arbitrage (lower cost of living)
+Increases worth: rare/specialized skills, track record of results, competing offers, strong referrals, hot market.
+May limit: entry level, career change, skill gaps, location arbitrage.
 
 ### Step 3: Calculate Total Compensation
 
-**Total Comp = Base + Bonus + Equity + Benefits**
-
-```
-EXAMPLE:
-Base Salary: $150,000
-Target Bonus (15%): $22,500
-RSU Grant (4-year): $200,000 ($50,000/year)
-401k Match (4%): $6,000
-Benefits Value: ~$15,000
-
-Total Annual Comp: $243,500
-```
-
-**Common Equity Terms:**
-- **RSUs:** Restricted Stock Units (real shares, taxed when vesting)
-- **Options:** Right to buy at strike price (value = current price - strike price)
-- **Vesting:** Typically 4-year with 1-year cliff
-- **Refresh grants:** Annual additional equity grants
+Total comp = base + bonus + equity + benefits. Treat equity as a **range** using expected value, never face value — the single source of truth for equity math is `../offer-comparison-analyzer/references/equity-math.md` (EV framework, 409A haircuts, RSU taxation). Do not duplicate that math here; point to it.
 
 ## Negotiation Strategy
 
 ### When to Negotiate
 
-**Best Time:** After you have a written offer, before you sign
+Best time: after a written offer, before signing.
 
-**Timeline:**
-1. Receive verbal offer → Express enthusiasm, ask for written offer
-2. Receive written offer → Thank them, ask for time to review
-3. Research and prepare → 24-48 hours
-4. Counter with ask → Email or call
-5. Discussion/back and forth → May take several rounds
-6. Final agreement → Get in writing
+1. Verbal offer → express enthusiasm, ask for it in writing
+2. Written offer → thank them, ask for time to review
+3. Research and prepare (24–48 hours)
+4. Counter via email or call
+5. Discussion (may take rounds) → get final agreement in writing
 
-### The Counter-Offer Framework
+### Counter-Offer Framework
 
-**Structure:**
 1. Express enthusiasm
 2. Reinforce your value
-3. Make specific ask
-4. Provide justification
-5. Open discussion
+3. Make a specific ask
+4. Justify it (market data, posted range, competing process)
+5. Open the discussion
 
 ### Counter-Offer Email Template
 
@@ -130,15 +101,11 @@ Subject: [Your Name] - Offer Discussion
 
 Hi [Recruiter/Hiring Manager],
 
-Thank you so much for the offer to join [Company] as [Title]. I'm very excited about the opportunity to [specific thing about the role]. After speaking with the team and learning more about [something specific], I'm confident this is the right fit.
+Thank you for the offer to join [Company] as [Title]. I'm excited about [specific thing about the role].
 
-I've had time to review the offer details and wanted to discuss the compensation. Based on my research of the market and my [X years of experience / specific valuable skill / competing offer], I was hoping we could discuss a base salary of $[Your Ask] rather than $[Their Offer].
+After reviewing the details: based on the posted range for this role ($X–$Y) and my [years of experience / specific skill / scope of the role], I was hoping we could discuss a base salary of $[top-third anchor] rather than $[their offer]. I'm flexible and open to talking about the full package — signing bonus and equity included.
 
-[Optional: Add specific justification - e.g., "I've seen similar roles at [comparable companies] in this range" or "Given the scope of the role and my track record of [specific achievement], I believe this reflects my value."]
-
-I'm flexible and open to discussing other elements of the package as well. Would you have time for a quick call to discuss?
-
-Thank you again for this opportunity. I'm looking forward to finding a package that works for both of us.
+Would you have time for a quick call this week?
 
 Best,
 [Your Name]
@@ -147,232 +114,154 @@ Best,
 ### Counter-Offer Call Script
 
 ```
-"Hi [Name], thanks for making time. I'm really excited about this opportunity - [genuine specific reason].
+"Hi [Name], thanks for making time. I'm really excited about this role — [genuine specific reason].
 
-I've reviewed the offer and want to discuss compensation. Based on my market research and [X years experience / key accomplishment / competing offer], I was hoping for a base salary closer to $[Amount].
+I've reviewed the offer and want to discuss compensation. The posting listed $X–$Y; based on my [experience/accomplishment], I was hoping for something closer to $[anchor]. Is there flexibility there?"
 
-Is there flexibility there?"
+[LISTEN — let them respond]
 
-[LISTEN - Let them respond]
+[If pushback:] "I understand there are constraints. Could we look at signing bonus, equity, or level to bridge the gap?"
 
-[If they push back:]
-"I understand there are constraints. I'm flexible - could we look at other elements like signing bonus, equity, or [other element] to bridge the gap?"
-
-[If they say they'll need to check:]
-"That's totally fair. When would be a good time to reconnect?"
+[If they need to check:] "That's fair — when's a good time to reconnect?"
 ```
+
+### Staff-Level Note: Negotiate the Level, Not Just the Base
+
+At staff+ levels (L6/L7/E6 and equivalents), **the level sets the band** — base, bonus, and equity ranges all hang off it. A $20K base bump is worth far less than coming in one level higher. Ask directly: "What level is this offer calibrated to, and what would it take to come in at [target level]?" Level compounds: refresh grants, promo equity, and every future offer key off it.
+
+### Golden Handcuffs: Price Your Unvested Equity Before Setting a Walk-Away
+
+If the user is currently employed, leaving means forfeiting unvested equity. Before setting any walk-away number:
+
+1. Compute **incumbent unvested equity vesting over the next 24 months** (shares × current price/FMV, by vest date).
+2. Add the **expected annual refresh grant** and any promotion in flight (promos usually bump equity, not base).
+3. That total is a real cost of leaving — and it justifies a larger ask. A **signing bonus is the standard tool to buy out forfeited equity**: "I'm walking away from roughly $[X] in unvested equity; a signing bonus of $[Y] would offset that."
+
+Never invent share counts or prices — use [PLACEHOLDER] and ask the user for their actual grant data.
 
 ## Common Negotiation Scenarios
 
 ### Scenario 1: First Offer Is Low
 
-**Approach:**
-- Don't accept immediately
-- Express enthusiasm for role
-- Counter with research-backed number
-- Be prepared to justify
+Don't accept immediately; express enthusiasm, then counter with a research- or posted-range-backed number.
 
-**Script:**
 ```
-"I'm thrilled about the opportunity. The base salary is lower than I expected based on my research. For this role and market, I was expecting something in the $X-$Y range. Is there room to move closer to $X?"
+"I'm thrilled about the opportunity. The base is below what I expected — the posting listed $X–$Y and my research supports that range. Is there room to move closer to $[anchor]?"
 ```
 
 ### Scenario 2: They Ask Your Salary Expectations First
 
-**Deflection Strategy:**
 ```
-"I'm flexible and focused on finding the right fit. What's the range you've budgeted for this role?"
+"I'm focused on finding the right fit. What's the range you've budgeted for this role?"
 ```
 
-**If Pressed:**
-```
-"Based on my research for this role and market, I'm looking at $X-$Y, but I'm open to discussing the full compensation picture."
-```
+If pressed: "Based on my research for this role and market, I'm targeting $X–$Y, and I'm open to discussing the full compensation picture." (An *expectation* is fine to state; *history* is not — see Scenario 5.)
 
 ### Scenario 3: They Won't Budge on Base
 
-**Alternatives to Negotiate:**
-- Signing bonus (one-time, easier to approve)
-- Additional equity
-- Earlier performance review (sooner raise)
-- More vacation days
-- Remote work flexibility
-- Professional development budget
-- Title upgrade
-- Relocation assistance
-- Start date
+Alternatives: signing bonus (one-time, easiest to approve), additional equity, earlier performance review, extra vacation, remote flexibility, development budget, level/title, relocation, start date.
 
-**Script:**
 ```
-"I understand the base salary is firm. Could we discuss a signing bonus to help bridge the gap? Something in the range of $X would make this work."
+"I understand base is firm. Could we discuss a signing bonus to bridge the gap? Something around $X would make this work — it would also offset equity I'd be forfeiting at my current employer."
 ```
 
 ### Scenario 4: You Have Competing Offers
 
-**Use Carefully:**
-- Only mention if true
-- Don't make it a threat
-- Frame as problem-solving
+Only mention if true. **Confirm the offer's existence without volunteering the number** — once you state the other company's figure, the negotiation centers on it, and their number isn't this employer's business.
 
-**Script:**
 ```
-"I want to be transparent - I'm also in discussions with [another company/a few other companies]. They're offering $X. [Your Company] is my first choice because [genuine reason], but I want to make sure the compensation is competitive."
+"I want to be transparent — I do have another offer in hand. I'm not going to use their number as a bargaining chip. [Company] is my first choice because [genuine reason], and I want to make sure the package here is competitive for the level. Is there flexibility on [base/equity/signing]?"
 ```
 
-### Scenario 5: They Ask About Current Salary
+Never lie about having a competing offer.
 
-**In Many States, This Question Is Illegal**
+### Scenario 5: They Ask Your Current or Past Salary
 
-**If Asked (and legal):**
+**Asking salary history is illegal in Massachusetts (M.G.L. c. 149 §105A, in force since 2018) and in 20+ other states and many cities.** Do not soften this into a "comply if it's legal" answer, and never declare the question "legal" without checking the state against `references/pay-transparency-states.md`.
+
+**Refusal script (firm, non-deflecting):**
 ```
-"I'd prefer to focus on the value I'd bring to this role and what the market rate is. What's the range you've budgeted?"
+"I don't share salary history — let's focus on the range for this role. What's the budgeted range?"
 ```
+Then stop. Don't apologize, don't offer a "ballpark," and don't get drawn into current bonus or unvested equity either — those are history in disguise.
 
-**Or Redirect:**
-```
-"My current compensation isn't really comparable since [different location/role/structure]. Based on my research for this role, I'm targeting $X-$Y."
-```
+**If pressed:** "Salary history isn't something I provide. My expectations for this role are $X–$Y, and I'm happy to talk about how that fits the band."
 
-## Negotiation Tactics
+**If the ask appears illegal:**
+- Note the **date, recruiter name, and company** of the ask, and advise the user to **preserve the record** (screenshot the email/chat, save the voicemail).
+- Stay factual: the user may decline to answer, and may report the ask to the state labor agency. Don't threaten litigation on the user's behalf.
+- Never assert a specific statute violation beyond what the reference file supports — verify current law for that state first.
 
-### Do's:
+## Negotiation Do's and Don'ts
+
+**Do's:**
 - ✅ Always negotiate (respectfully)
 - ✅ Get the offer in writing before negotiating
-- ✅ Research thoroughly
-- ✅ Be specific with numbers
+- ✅ Check the posting for a legally required range first
+- ✅ Be specific with numbers, anchor to the top third of the posted band
 - ✅ Express genuine enthusiasm
 - ✅ Give them a way to say yes
-- ✅ Consider total compensation
-- ✅ Be patient - process takes time
-- ✅ Get final agreement in writing
+- ✅ Get the final agreement in writing
 
-### Don'ts:
+**Don'ts:**
 - ❌ Accept on the spot
-- ❌ Give a salary history (if not required by law)
-- ❌ Make ultimatums
-- ❌ Lie about competing offers
-- ❌ Be rude or aggressive
-- ❌ Negotiate just for the sake of it
+- ❌ Share salary history — asking is illegal in MA (since 2018) and 20+ states, and it only anchors you downward everywhere else; redirect to the role's range
+- ❌ Volunteer a competing offer's number (confirm existence only)
+- ❌ Make ultimatums or lie about competing offers
 - ❌ Accept verbal promises without writing
 - ❌ Burn bridges if it doesn't work out
 
-## Total Compensation Comparison
+## Comparing Multiple Offers
 
-### Side-by-Side Analysis
-
-```markdown
-## OFFER COMPARISON
-
-| Component | Company A | Company B | Notes |
-|-----------|-----------|-----------|-------|
-| Base Salary | $150,000 | $140,000 | A wins |
-| Target Bonus | 15% ($22,500) | 20% ($28,000) | B wins |
-| Signing Bonus | $20,000 | $10,000 | A wins |
-| Equity (annual) | $50,000 | $75,000 | B wins |
-| 401k Match | 4% ($6,000) | 6% ($8,400) | B wins |
-| Benefits | Standard | Premium | B wins |
-| WFH | Hybrid (3 days) | Full remote | B wins |
-| Vacation | 3 weeks | Unlimited | Depends |
-
-**Year 1 Total Comp:**
-Company A: $248,500
-Company B: $261,400
-
-**Analysis:** Company B is higher total comp, but Company A has higher base which affects future raises and mortgage qualification.
-```
-
-## Negotiation Timeline Template
-
-```
-Day 1: Receive offer
-- Thank them, express enthusiasm
-- Ask for offer in writing
-- Ask deadline for response
-
-Day 1-3: Research
-- Verify market rate
-- Calculate total comp
-- Identify priorities
-- Prepare counter-offer
-
-Day 3-5: Counter
-- Send counter-offer email or schedule call
-- Be specific about ask
-
-Day 5-10: Discussion
-- May require several rounds
-- Be patient but responsive
-- Stay professional and positive
-
-Day 10+: Resolution
-- Agree on terms
-- Get everything in writing
-- Sign and celebrate!
-```
+Side-by-side offer math, expected-value equity treatment, and the mandatory "offer vs. staying put" row live in the **`offer-comparison-analyzer`** skill. Use that skill rather than rebuilding the comparison table here.
 
 ## Output Format
-
-When preparing salary negotiation:
 
 ```markdown
 # SALARY NEGOTIATION STRATEGY
 
+## Pay Transparency Check
+**Posted range:** $X–$Y (source: posting; state law applies: [state — verify references/pay-transparency-states.md])
+**Anchor:** top third of posted range = $X | **Range missing:** leverage note if required by state law
+
 ## Market Research Summary
-**Role:** [Title]
-**Location:** [City/Remote]
-**Experience Level:** [Years]
+**Role:** [Title] | **Location:** [City/Remote] | **Level:** [L6/L7/E6/…]
+**Market Range:** 25th: $X | 50th: $X | 75th: $X | 90th: $X
+**Sources:** [list]
 
-**Market Range:**
-- 25th percentile: $XXX,XXX
-- 50th percentile: $XXX,XXX (target)
-- 75th percentile: $XXX,XXX
-- 90th percentile: $XXX,XXX (stretch)
+## Their Offer vs. Your Counter
+| Component | Offer | Ask | Justification |
+|-----------|-------|-----|---------------|
+| Level | [L6] | [L7] | Level sets the band |
+| Base | $X | $X | Posted range top third |
+| Signing | $X | $X | Offsets forfeited unvested equity |
+| Equity (EV range) | $X–$X | $X–$X | See equity-math reference |
 
-**Sources:** [List sources used]
-
-## Their Offer
-| Component | Amount |
-|-----------|--------|
-| Base | $XXX,XXX |
-| Bonus | X% |
-| Equity | $XXX,XXX |
-| Signing | $XXX |
-| Total Year 1 | $XXX,XXX |
-
-## Your Counter
-| Component | Ask | Justification |
-|-----------|-----|---------------|
-| Base | $XXX,XXX | [Why] |
-| Signing | $XXX | [Why] |
-| [Other] | | |
+## Golden Handcuffs (if employed)
+**Unvested equity vesting next 24 mo:** $[X] ([PLACEHOLDER] if unknown)
+**Expected refresh/promo:** $[X]
+**Walk-away point (incl. forfeited equity):** $[X]
 
 ## Counter-Offer Script
-[Email template or call script customized for this situation]
+[Email or call script customized for this situation]
 
 ## If They Push Back
-**Plan B:** [Alternative elements to negotiate]
-**Walk-away Point:** [Your minimum]
-
-## Key Talking Points
-1. [Your experience/value point]
-2. [Market data point]
-3. [Specific achievement]
+**Plan B:** [alternative elements] | **Walk-away:** [minimum]
 
 ## Questions to Clarify
-- [Equity vesting schedule?]
-- [Bonus guaranteed?]
-- [Review cycle timeline?]
+- Equity: vesting schedule? RSU or options? expected-value assumptions?
+- Bonus: guaranteed or target?
+- Level: what level is this calibrated to?
 ```
 
 ## Implementation Checklist
 
-1. ✅ Research market rate from 3+ sources
-2. ✅ Calculate total compensation (not just base)
-3. ✅ Identify your priorities
-4. ✅ Determine walk-away point
-5. ✅ Prepare counter-offer with justification
-6. ✅ Write or practice negotiation script
-7. ✅ Plan for pushback scenarios
-8. ✅ Get agreement in writing
-9. ✅ Review final offer letter carefully
-10. ✅ Sign and celebrate!
+1. ✅ Check the posting for a legally required range (pay transparency)
+2. ✅ Research market rate from 3+ sources
+3. ✅ Calculate total compensation with equity as an EV range
+4. ✅ Price unvested equity if currently employed
+5. ✅ Determine walk-away point (including golden handcuffs)
+6. ✅ Prepare counter-offer anchored to top third of posted range
+7. ✅ Practice the salary-history refusal script
+8. ✅ Plan pushback scenarios
+9. ✅ Get agreement in writing and review the final letter

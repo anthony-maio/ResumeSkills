@@ -1,6 +1,6 @@
 ---
 name: resume-formatter
-description: Ensure ATS-friendly formatting and create clean scannable layouts
+description: Use when laying out, reformatting, or ATS-checking a resume's visual structure — margins, fonts, sections, and a paste-test parseability check.
 ---
 
 # Resume Formatter
@@ -10,351 +10,179 @@ description: Ensure ATS-friendly formatting and create clean scannable layouts
 Use this skill when the user:
 - Needs help with resume layout and formatting
 - Has a messy or hard-to-read resume
-- Wants to ensure ATS compatibility through formatting
-- Needs a clean, professional design
+- Wants layout that parses cleanly in ATS
 - Mentions: "format resume", "resume layout", "resume design", "clean resume", "professional format"
 
-## Core Capabilities
+This is the canonical formatting skill — other resume skills defer here on layout.
 
-- Structure resumes for optimal readability
-- Ensure ATS compatibility through formatting
-- Create visual hierarchy
-- Optimize white space and margins
-- Select appropriate fonts and sizes
-- Balance aesthetic appeal with functionality
+## Candidate Guardrails (always apply)
+
+**Truthfulness:** Every claim, metric, course name, certification, and skill listed must come from facts the user provided or confirmed. Never generate specifics the user hasn't stated. If a number is missing, insert [PLACEHOLDER] and ask — never invent or silently 'estimate' one. If the user explicitly requests an estimate, mark it (~ or range) and log the derivation so they can defend it in an interview.
+
+**Privacy & age signals:** Never volunteer age proxies — graduation years (omit by default for senior candidates), '20+ years' framing (cap at '15+' or omit), early-career dates. Frame seniority as scope, not elapsed time. Contact info: name, phone, email, city/state, optional links — never street address, DOB, photo. Never mention legal disputes, HR complaints, settlements, or negative framings of former employers; reason-for-leaving is one neutral forward-looking line, identical everywhere.
+
+**Confidential search (employed users):** Ask before naming the current employer in outreach or public artifacts; offer blind variants. Never publish employer-confidential metrics without an explicit confidentiality pass — prefer percentages, ranges, anonymized phrasing.
 
 ## Formatting Fundamentals
 
-### The Dual Audience Challenge
-
-Your resume must work for:
-1. **ATS (Applicant Tracking Systems)** - Robots that parse text
-2. **Human Readers** - Recruiters who scan quickly
-
-**The Solution:** Clean, simple formatting that satisfies both.
-
-## Document Setup
+The resume must work for two readers: the parser (extractable text) and the human (6-second skim). Clean, simple formatting serves both — the human skim is usually the stricter constraint.
 
 ### Page Length
-- **Entry Level (0-5 years):** 1 page
-- **Mid-Level (5-15 years):** 1-2 pages
-- **Senior/Executive (15+ years):** 2 pages (max 3 for executives)
+- **Entry level (0–5 years):** 1 page
+- **Mid-level (5–15 years):** 1–2 pages
+- **Senior (15+ years):** 2 pages
+- **Staff/principal ICs:** 2 pages is standard; page 3 only if publications/patents warrant their own section
+- **Executives:** 2 pages (a third only with board/publications content)
 
-### Margins
-- **Recommended:** 0.5" - 1" all sides
-- **Minimum:** 0.5" (don't go smaller)
-- **Maximum:** 1" (don't waste space)
+### Document Setup
+- **Margins:** 0.5"–1" all sides (0.5" minimum)
+- **Fonts:** Arial, Calibri, Helvetica (sans) or Georgia, Times New Roman (serif)
+- **Sizes:** name 16–20pt, headers 12–14pt, body 10–12pt (never below 10pt)
+- **Spacing:** 1.0–1.15 line spacing; 12–16pt between sections
 
-### Font Selection
+## Parse-Safe Formatting (risk-tiered)
 
-**Safe, ATS-Friendly Fonts:**
-- **Sans-serif:** Arial, Calibri, Helvetica, Verdana
-- **Serif:** Times New Roman, Georgia, Garamond
+### Never
+- ❌ Scanned or image-based PDFs — no text layer, nothing extracts
+- ❌ Text embedded in images, graphics, or charts
+- ❌ Skill bars / proficiency graphics
+- ❌ Essential information conveyed only by color
 
-**Font Sizes:**
-- **Name:** 16-20pt
-- **Section Headers:** 12-14pt
-- **Body Text:** 10-12pt
-- **Minimum readable:** 10pt
+### Low risk — acceptable, verify with the paste test
+- **Simple tables** (e.g., contact info in a row) — fine on major platforms
+- **Two-column layouts / columnar skills lists** — acceptable if extraction reads in order
+- **Headers/footers** — extractable on major platforms; still keep contact info in the body
+- **Bold/italic sparingly, standard bullets (•, -)**
 
-### Spacing
-- **Line spacing:** 1.0 to 1.15
-- **Space after paragraphs:** 6-12pt
-- **Section spacing:** 12-16pt between sections
+### The Paste Test (run it, don't guess)
+Convert the final PDF to text and read it:
 
-## ATS-Safe Formatting Rules
+```bash
+pdftotext resume.pdf - | head -80
+```
 
-### DO:
-- ✅ Use standard fonts
-- ✅ Use simple bullet points (•, -, *)
-- ✅ Use bold and italic sparingly
-- ✅ Use standard section headers
-- ✅ Save as .docx or text-based .pdf
-- ✅ Put contact info in body (not header)
-- ✅ Use single column layout
-- ✅ Use consistent formatting throughout
+**Pass:** name, contact, every title, employer, and date range extract intact and in order; sections recognizable. If columns interleave or dates detach from titles, simplify to single-column and re-test. If it passes, parsing will almost certainly work.
 
-### DON'T:
-- ❌ Use tables (except simple ones for contact info)
-- ❌ Use text boxes
-- ❌ Use columns (multi-column layouts)
-- ❌ Use headers/footers for important info
-- ❌ Use images or graphics
-- ❌ Use unusual fonts
-- ❌ Use skill bars or progress indicators
-- ❌ Use special characters or emojis
-- ❌ Use color for essential information
+### Always safe
+- ✅ Single column, standard section headers, consistent MM/YYYY or "Mon YYYY" dates, .docx or text-based .pdf
 
 ## Section Organization
 
-### Standard Section Order
-
+### Standard Order
 ```
 1. Contact Information
-2. Professional Summary (optional)
-3. Skills/Technical Skills
+2. Professional Summary (recommended for senior+)
+3. Skills / Technical Skills
 4. Professional Experience
-5. Education
-6. Certifications (if relevant)
-7. Additional (volunteer, languages, etc.)
+5. Publications / Talks / Patents (if any — see tech-resume-optimizer)
+6. Education
+7. Certifications / Additional
 ```
 
-### Section Header Formatting
+### Section Headers (parser-recognizable)
+PROFESSIONAL EXPERIENCE / WORK EXPERIENCE · EDUCATION · SKILLS / TECHNICAL SKILLS · SUMMARY · PROJECTS · PUBLICATIONS
 
-**ATS-Recognized Headers:**
-- PROFESSIONAL EXPERIENCE or WORK EXPERIENCE
-- EDUCATION
-- SKILLS or TECHNICAL SKILLS
-- PROFESSIONAL SUMMARY or SUMMARY
-- CERTIFICATIONS
-- PROJECTS
+Format consistently — CAPS with a rule line, or bold title case; pick one.
 
-**Format Options:**
-```
-PROFESSIONAL EXPERIENCE
-━━━━━━━━━━━━━━━━━━━━━━
+## Contact Information
 
-or
-
-Professional Experience
-_______________________
-
-or
-
-PROFESSIONAL EXPERIENCE
-```
-
-## Contact Information Layout
-
-### Recommended Format
 ```
 JOHN SMITH
 john.smith@email.com | (555) 123-4567 | linkedin.com/in/johnsmith
 San Francisco, CA
 ```
 
-### Alternative Format
-```
-JOHN SMITH
-San Francisco, CA
-john.smith@email.com | (555) 123-4567
-LinkedIn: linkedin.com/in/johnsmith | GitHub: github.com/johnsmith
-```
+**Include:** name, professional email, one phone, city/state, LinkedIn, portfolio/GitHub/scholar profiles if substantive.
+**Hyperlinks:** show full URLs as visible text (`github.com/johnsmith`), optionally also hyperlinked — the visible text survives parsing even when the link doesn't.
 
-### What to Include
-- ✅ Full name
-- ✅ Professional email
-- ✅ Phone number
-- ✅ City, State (no full address needed)
-- ✅ LinkedIn URL
-- ✅ Portfolio/GitHub (if relevant)
-
-### What to Exclude
+**Exclude:**
 - ❌ Full street address
-- ❌ Photo
-- ❌ Date of birth
-- ❌ Marital status
-- ❌ Multiple phone numbers
-- ❌ Personal social media
+- ❌ Photo, date of birth, marital status
+- ❌ Multiple phone numbers, personal social media
+- ❌ Graduation years for senior candidates (age proxy — optional after ~10 years of experience)
+- ❌ GPA (recent grads only)
 
-## Experience Section Formatting
+## Experience Section
 
-### Standard Format
 ```
 COMPANY NAME | City, ST
-Job Title | Month Year - Month Year
-
-• Achievement bullet with metrics and results
-• Achievement bullet with metrics and results
+Job Title | Mon YYYY – Mon YYYY
 • Achievement bullet with metrics and results
 ```
 
-### Alternative Format
-```
-Job Title
-COMPANY NAME, City, ST                    Month Year - Month Year
+- **Dates:** one consistent format throughout ("Jan 2020 – Present"); avoid full day-level dates
+- **Bullets:** 1–2 lines each; 3–6 per role (more for recent roles, 1–2 for roles 10+ years old)
+- **Old roles:** compress to a one-line "Earlier experience" entry by default; flag the trade-off to the user
 
-• Achievement bullet with metrics and results
-• Achievement bullet with metrics and results
-```
+## Skills Section
 
-### Date Formatting
-- **Consistent format:** Use same format throughout
-- **Recommended:** Month Year (Jan 2020 - Present)
-- **Also acceptable:** MM/YYYY (01/2020 - Present)
-- **Avoid:** Full dates (January 15, 2020)
-
-### Bullet Point Guidelines
-- **Length:** 1-2 lines each
-- **Format:** Start with action verb, end with result
-- **Quantity:** 3-6 bullets per role (more for recent, fewer for old)
-- **Symbol:** Use standard bullets (•, -, *)
-
-## Skills Section Formatting
-
-### Option 1: Simple List
-```
-SKILLS
-Python, JavaScript, SQL, React, Node.js, AWS, Docker, Git, Agile, JIRA
-```
-
-### Option 2: Categorized
 ```
 TECHNICAL SKILLS
-Languages: Python, JavaScript, TypeScript, SQL
-Frameworks: React, Node.js, Django, Flask
-Tools: AWS, Docker, Kubernetes, Git, Jenkins
+Languages: Python, TypeScript, SQL
+Frameworks: React, FastAPI, PyTorch
+Infra: AWS, Docker, Kubernetes, Terraform
 ```
 
-### Option 3: Columns (Careful with ATS)
-```
-SKILLS
-Languages        Frameworks       Tools
-Python           React            AWS
-JavaScript       Node.js          Docker
-SQL              Django           Git
-```
+Columnar/triple-column lists are acceptable — verify with the paste test that the categories and items extract in reading order.
 
-**Note:** Multi-column layouts may cause ATS issues. Test before using.
+## Education Section
 
-## Education Section Formatting
-
-### Standard Format
 ```
 EDUCATION
-Bachelor of Science in Computer Science
-University of California, Berkeley | 2018
-GPA: 3.8/4.0 (include if 3.5+)
+B.S. Computer Science | UC Berkeley
 ```
 
-### With Honors/Details
-```
-EDUCATION
-MBA, Finance & Strategy | Stanford Graduate School of Business | 2020
-• Graduated with Distinction
-• Relevant Coursework: Corporate Finance, M&A Strategy
-```
+For senior candidates: degree, institution; graduation year optional; GPA and coursework omitted.
 
-## Visual Hierarchy Principles
+## Visual Hierarchy (short version)
 
-### Hierarchy Order
-1. **Name** - Largest, most prominent
-2. **Section Headers** - Clear divisions
-3. **Job Titles/Company Names** - Easy to scan
-4. **Bullet Points** - The details
+1. **Name** largest → 2. **Section headers** clear → 3. **Titles/companies** scannable → 4. **Bullets** the detail. Use size, bold, and CAPS for levels; consistent spacing between sections. Good white space separates sections and frames content; bad white space is inconsistency, huge gaps, or half-empty pages.
 
-### Creating Hierarchy
-- Use font SIZE to create levels
-- Use **BOLD** for emphasis (names, titles, headers)
-- Use CAPS for section headers
-- Use consistent spacing to separate sections
+## Common Mistakes
 
-## White Space Management
+1. **Wall of text** → bullets, short lines
+2. **Inconsistent formatting** → pick one scheme, apply everywhere
+3. **Over-creative design** → the real costs are slowed human scanning and possible parse errors on older enterprise portals; for tech roles, senior engineers converge on clean single-column anyway. Creativity goes in the portfolio.
+4. **Cramming** → cut content by relevance, not margins
+5. **Too sparse** → add detail, widen to 0.5" margins
 
-### Good White Space:
-- Between sections (clear separation)
-- After headings (visual breathing room)
-- Between bullets (don't cram)
-- Around margins (frame the content)
+## File Guidelines
 
-### Bad White Space:
-- Huge gaps between sections
-- Inconsistent spacing
-- Half-empty pages
-- Excessive margins eating space
-
-## Common Formatting Mistakes
-
-### Mistake 1: Wall of Text
-**Problem:** Dense paragraphs with no bullets
-**Solution:** Use bullet points, keep paragraphs short
-
-### Mistake 2: Inconsistent Formatting
-**Problem:** Different fonts, sizes, or styles throughout
-**Solution:** Pick one format and stick to it
-
-### Mistake 3: Trying to Be Creative
-**Problem:** Fancy designs that break ATS
-**Solution:** Save creativity for portfolio, not resume
-
-### Mistake 4: Too Much Information
-**Problem:** Cramming everything onto one page
-**Solution:** Edit ruthlessly, prioritize relevance
-
-### Mistake 5: Not Enough Information
-**Problem:** Half-page resume with massive margins
-**Solution:** Add detail, reduce margins (to 0.5")
-
-## File Format Guidelines
-
-### For Online Applications
-- **.docx** - Best for ATS parsing
-- **.pdf** - Good if created from Word (not scanned)
-
-### For Email/Direct Send
-- **.pdf** - Preserves formatting
-
-### File Naming
-```
-FirstName_LastName_Resume.pdf
-JohnSmith_Resume_ProductManager.pdf
-```
-
-**Avoid:**
-- resume_final_v2_updated_FINAL.docx
-- resume (1).pdf
-- Untitled document.docx
+- **Online applications:** .docx (safest) or text-based .pdf
+- **Direct send:** .pdf (preserves layout)
+- **Naming:** `FirstName_LastName_Resume.pdf` or `FirstName_LastName_Resume_[Role].pdf` — never `resume_final_v2_FINAL.docx`
 
 ## Output Format
-
-When formatting a resume:
 
 ```markdown
 # RESUME FORMATTING REVIEW
 
 ## Current Issues
-- [ ] [Issue 1]
-- [ ] [Issue 2]
-- [ ] [Issue 3]
+- [Issue 1] ...
 
 ## Recommended Changes
-
 ### Document Setup
-- Margins: [Current] → [Recommended]
-- Font: [Current] → [Recommended]
-- Font sizes: [Current] → [Recommended]
-
+- Margins/Font/Sizes: [current → recommended]
 ### Section Order
-**Current:** [Current order]
-**Recommended:** [New order and why]
+- [current → recommended + why]
+### Parse-Safety Fixes
+- [Tier-1: image text, etc.]
+- [Tier-2: verify tables/columns via paste test]
 
-### Visual Improvements
-- [Specific change 1]
-- [Specific change 2]
+## Paste Test Result
+- Extraction: Pass/Fail; notes on column order, detached dates
 
-### ATS Compatibility Fixes
-- [Fix 1]
-- [Fix 2]
-
-## Before/After Preview
-
-### Before:
-[Description or example of current formatting]
-
-### After:
-[Description or example of improved formatting]
+## Before/After
+- [Sketch of key changes]
 ```
 
-## Quick Formatting Checklist
+## Quick Checklist
 
-Before submitting any resume:
-- ✅ One page (or two if warranted)
-- ✅ Standard font (10-12pt body)
-- ✅ Consistent formatting throughout
-- ✅ Clear section headers
-- ✅ Appropriate white space
-- ✅ No tables, text boxes, or columns
-- ✅ Contact info in body (not header)
-- ✅ Saved as .docx or .pdf
-- ✅ Proper file name
-- ✅ Proofread for consistency
+- ✅ Length matches seniority (2 pages standard for senior/staff)
+- ✅ Standard font, 10–12pt body
+- ✅ Consistent formatting and dates
+- ✅ No scanned/image PDFs, no text in graphics
+- ✅ Tables/columns passed the paste test
+- ✅ Contact info in body, city/state only, no age proxies (grad years, GPA for seniors)
+- ✅ Full URLs visible as text
+- ✅ Saved as .docx or text-based .pdf, properly named
